@@ -1,13 +1,6 @@
 """ PDF text extracter using tika """
 from tika import parser as tikaParser
 
-def getReferences(content):
-    print("### References ###")
-    ref_section_index = content.lower().find("references")
-    if ref_section_index != -1:
-        print(content[ref_section_index:])
-
-
 def saveContent(content):
     # Open in WB to write UTF8 encoded text
     with open("pdf_text_output.txt", "wb") as file:
@@ -33,8 +26,7 @@ paper_filename = "../shapes.pdf"
 pdf_obj = tikaParser.from_file(paper_filename)
 metadata = pdf_obj['metadata']
 content = pdf_obj['content']
+
 saveContent(content)
 
 displayMetaData(metadata)
-print("-"*30)
-getReferences(content)
