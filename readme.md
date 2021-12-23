@@ -1,4 +1,11 @@
 # Code Repository
+## Tika Installation
+Installation process for text extraction using Tika
+```bash
+pip install tika
+```
+### Note:
+Tika is written in Java, so you need a java runtime installed
 
 ## OCR installation
 Installation process for OCR text extraction on Linux
