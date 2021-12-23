@@ -26,6 +26,3 @@ pytesseract performs the OCR process on an image
 ```bash
 pip install pytesseract
 ```
-
-
-
