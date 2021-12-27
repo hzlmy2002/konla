@@ -1,7 +1,7 @@
 """ PDF text extracter using tika """
 from tika import parser as tikaParser
 
-def saveContent(content):
+def save_content(content):
     # Open in WB to write UTF8 encoded text
     with open("pdf_text_output.txt", "wb") as file:
         content_split = content.split("\n")
@@ -15,7 +15,7 @@ def saveContent(content):
                     pass
 
 
-def displayMetaData(metadata):
+def display_meta_data(metadata):
     print("### METADATA ###")
     for meta in metadata:
         print(f"{meta}\t{metadata[meta]}")
@@ -27,6 +27,6 @@ pdf_data_dict = tikaParser.from_file(paper_filename)
 metadata = pdf_data_dict['metadata']
 content = pdf_data_dict['content']
 
-saveContent(content)
+save_content(content)
 
-displayMetaData(metadata)
+display_meta_data(metadata)
