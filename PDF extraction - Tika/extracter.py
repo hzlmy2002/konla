@@ -23,9 +23,9 @@ def displayMetaData(metadata):
 
 paper_filename = "../shapes.pdf"
 
-pdf_obj = tikaParser.from_file(paper_filename)
-metadata = pdf_obj['metadata']
-content = pdf_obj['content']
+pdf_data_dict = tikaParser.from_file(paper_filename)
+metadata = pdf_data_dict['metadata']
+content = pdf_data_dict['content']
 
 saveContent(content)
 
