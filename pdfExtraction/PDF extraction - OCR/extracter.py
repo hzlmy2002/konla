@@ -14,13 +14,13 @@ import os
 
 def save_images(images, images_dir):
     """ Save images into directory """
-    # Empty the image directory before storing new pdf images
+    # Empty the image directory before storing new PDF images
     for f in os.listdir(images_dir):
         os.remove(os.path.join(images_dir, f))
 
     # Store each image
     for i, img in enumerate(images):
-        # Save pages as images in the pdf
+        # Save pages as images in the PDF
         img.save(f"{images_dir}/{i}.png", 'PNG')
 
 
@@ -70,7 +70,7 @@ def save_content(content):
 
 
 pdf_filename = "../shapes.pdf"
-images_dir = 'pdf_images'
+images_dir = "pdf_images"
 
 # Get images of PDF pages
 images = convert_from_path(pdf_filename)
