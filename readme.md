@@ -33,3 +33,15 @@ pytesseract performs the OCR process on an image
 ```bash
 pip install pytesseract
 ```
+
+## pdftotext installation
+### 1.
+Dependencies that allow pdftotext to work
+```bash
+sudo apt install build-essential libpoppler-cpp-dev pkg-config python3-dev
+```
+
+### 2.
+```bash
+pip install pdftotext
+```
