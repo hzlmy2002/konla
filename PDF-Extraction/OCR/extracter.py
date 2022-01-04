@@ -69,7 +69,7 @@ def save_content(content):
                     pass
 
 
-pdf_filename = "../shapes.pdf"
+pdf_filename = "../../shapes.pdf"
 images_dir = "pdf_images"
 
 # Get images of PDF pages

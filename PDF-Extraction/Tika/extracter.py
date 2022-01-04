@@ -21,7 +21,7 @@ def display_meta_data(metadata):
         print(f"{meta}\t{metadata[meta]}")
 
 
-paper_filename = "../shapes.pdf"
+paper_filename = "../../shapes.pdf"
 
 pdf_data_dict = tikaParser.from_file(paper_filename)
 metadata = pdf_data_dict['metadata']
