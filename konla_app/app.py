@@ -15,9 +15,10 @@ import pandas as pd
 from werkzeug.utils import secure_filename
 # Text extraction
 from tika import parser
+from nlp.ner import BasicNamedEntityRecognizer
+from PDFHelper import PDFHelper
 
-
-# Configuration
+# Pre-Configuration
 nlp = spacy.load('en_core_web_lg')
 
 ALLOWED_EXTENSIONS = {'pdf'}
@@ -44,19 +45,21 @@ def process():
                 file.save(filepath)
                 flash("FILE UPLOADED SUCCESSFULLY")
                 print("FILE UPLOADED SUCCESSFULLY")
-                pdf_output = parser.from_file(filepath)  # this takes some time
-                content = pdf_output['content']  # raw text
-                metadata = pdf_output['metadata']  # raw text
-                print("STARTED ANALYSIS...")
+                pdf_helper = PDFHelper()
+                content = pdf_helper.pdf2text(filepath)
+                author = pdf_helper.getAuthor(filepath)
+                title = pdf_helper.getAuthor(filepath)
+                print(f"TITLE: {title}")
+                print(f"AUTHOR: {author}")
+                # pdf_output = parser.from_file(filepath)  # this takes some time
+                # content = pdf_output['content']  # raw text
+                # metadata = pdf_output['metadata']  # raw text
+                # print("STARTED ANALYSIS...")
                 doc = nlp(content)
-                d = []
-                print(f"NUM OF ENTITIES: {len(list(doc.ents))}")
-                for entity in doc.ents:
-                    d.append((entity.label_, entity.text))
-                df = pd.DataFrame(d, columns=('named entity', 'output'))
-                ner_table = df.to_html()
+                ner_recognizer = BasicNamedEntityRecognizer(doc)
+                ner_table = ner_recognizer.get_html_table()
                 print("FINISHED")
-                return render_template("process.html", content=content, metadata=metadata, ner_table=ner_table)
+                return render_template("process.html", content=content, metadata='metadata', ner_table=ner_table)
         except Exception as e:
             print(e)
             return redirect('/')
