@@ -1,35 +1,33 @@
-#
 import os
+import sys
+sys.path.append(os.path.abspath('.'))
 
-import pandas as pd
+# Flask
 from flask import Flask
 from flask import render_template, url_for, request, redirect
 from flask import flash
 # NLP
 import spacy
+import en_core_web_lg
+import pandas as pd
+
 # PDF upload
 from werkzeug.utils import secure_filename
 # Text extraction
 from tika import parser
-import sys
-sys.path.append(os.path.abspath('.'))
 
 
-import en_core_web_lg
-from NLP.cleaner_1 import *
+# Configuration
 nlp = spacy.load('en_core_web_lg')
-print(nlp.pipe_names)
-nlp.add_pipe("adj_duplicates_removal")
 
 ALLOWED_EXTENSIONS = {'pdf'}
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'konla'
 # app.config['UPLOAD_FOLDER'] = uploads_dir
 uploads_dir = os.path.join(app.instance_path, 'uploads')
 os.makedirs(uploads_dir, exist_ok=True)
 
-
+# Views
 @app.route('/')
 def index():
     return render_template("upload.html")
