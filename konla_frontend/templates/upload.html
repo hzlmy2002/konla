@@ -8,6 +8,8 @@
             rel="stylesheet"
             integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
             crossorigin="anonymous">
+        <!-- Google icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
         <!-- Konla CSS -->
         <link rel="stylesheet" href="/static/main.css">
         <!-- Bootstrap JavaScript bundle -->
@@ -22,6 +24,18 @@
         <title>Konla</title>
     </head>
     <body>
-        <h1>Konla</h1>
+        <a href="/" style="text-decoration: none;">
+            <h1 class="display-3 konla-logo">KONLA</h1>
+        </a>
+
+        <div class="container upload-section">
+            <h2 class="text-center display-5 upload-title">Upload research paper</h2>
+            <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
+            <div id="upload-area" class="drag-drop-section" ondrop="dropHandler(event);">
+                <input id="fileInput" type="file" name="fileInput" style="display: none;">
+                <div class="text-center"><span class="material-icons upload-icon">description</span></div>
+                <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="browse-link" href="#">browse</a> your files</p>
+            </div>
+        </div>
     </body>
 </html>

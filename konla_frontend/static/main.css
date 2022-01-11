@@ -1,0 +1,48 @@
+/* Fonts: Poppins, Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Poppins&family=Roboto&display=swap');
+
+body {
+    background-color: #ECEFF1;
+    font-family: 'Roboto', sans-serif;
+}
+
+.konla-logo {
+    color: #607D8B;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 3px;
+    font-weight: bold;
+    padding: 16px 64px;
+}
+
+.upload-section {
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 24px 64px;
+}
+
+.upload-title {
+    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+.upload-text {
+    color: #616161;
+    font-weight: bold;
+}
+
+.drag-drop-section {
+    padding: 16px 64px;
+    border-radius: 8px;
+    border: 3px dashed #BDBDBD;
+    background-color: #EEEEEE;
+}
+
+.upload-icon {
+    color: #90A4AE;
+    font-size: 100px;
+}
+
+.browse-link {
+    color: #2196F3;
+}
