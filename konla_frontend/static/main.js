@@ -64,3 +64,17 @@ function checkSelection(numTools) {
         }
     }
 }
+
+function extractTextSectionShow() {
+    document.getElementById("extractTextTab").classList.add("active");
+    document.getElementById("extractTextSection").classList.remove("hidden");
+    document.getElementById("extractKeywordsTab").classList.remove("active");
+    document.getElementById("extractKeywordsSection").classList.add("hidden");
+}
+
+function extractKeywordsSectionShow() {
+    document.getElementById("extractKeywordsTab").classList.add("active");
+    document.getElementById("extractKeywordsSection").classList.remove("hidden");
+    document.getElementById("extractTextTab").classList.remove("active");
+    document.getElementById("extractTextSection").classList.add("hidden");
+}

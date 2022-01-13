@@ -17,18 +17,15 @@ body {
     font-family: "Oswald", sans-serif;
     letter-spacing: 3px;
     font-weight: bold;
-    padding: 16px 64px;
+    user-select: none;
 }
 
 .upload-section {
     background-color: #FFF;
     border-radius: 8px;
-    padding: 24px 64px;
-    width: 60%;
 }
 
 .upload-title {
-    margin-bottom: 30px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 }
@@ -40,7 +37,6 @@ body {
 
 .drag-drop-section {
     background-color: #EEEEEE;
-    padding: 64px;
     border-radius: 8px;
     outline: 2px dashed #BDBDBD;
     outline-offset: -10px;
@@ -58,9 +54,7 @@ body {
 }
 
 .analysis-selection-section {
-    margin-top: 40px;
     background-color: #EEEEEE;
-    padding: 16px 64px;
     border-radius: 8px;
 }
 
@@ -75,7 +69,37 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.analysis-btn {
-    margin-top: 20px;
+.sidebar {
+    background-color: #263238;
+    border-radius: 16px;
+}
+
+.analysis-tab {
+    padding: 8px 4px;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #B0BEC5;
+}
+
+.analysis-tab:hover:not(.active) {
+    background-color: #CFD8DC;
+}
+
+.analysis-tab a {
+    text-decoration: none;
+    color: #000;
+}
+
+.active {
+    background-color: #FFCA28;
+}
+
+.analysis-feature-label {
     font-weight: bold;
+    margin: 0;
+    user-select: none;
+}
+
+.frequence-val {
+    font-family: 'Oswald', sans-serif;
 }
