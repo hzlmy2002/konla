@@ -1,3 +1,4 @@
+<!-- KONLA APP - 2022 -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -23,7 +24,7 @@
 
         <title>Konla</title>
     </head>
-    <body>
+    <body onload="initialise()">
         <a href="/" style="text-decoration: none;">
             <h1 class="display-3 konla-logo">KONLA</h1>
         </a>
@@ -31,11 +32,49 @@
         <div class="container upload-section">
             <h2 class="text-center display-5 upload-title">Upload research paper</h2>
             <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
-            <div id="upload-area" class="drag-drop-section" ondrop="dropHandler(event);">
-                <input id="fileInput" type="file" name="fileInput" style="display: none;">
+            <div id="uploadSection" class="drag-drop-section" ondrop="fileDropped(event)" ondragover="fileDragHover(event)" ondragleave="noFileDragHover(event)">
                 <div class="text-center"><span class="material-icons upload-icon">description</span></div>
-                <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="browse-link" href="#">browse</a> your files</p>
+                <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" onclick="uploadFile()">browse</a> your files</p>
+                <p id="uploadError" class="text-center lead hidden" style="color: #F44336;">File uploaded is not a PDF or an image</p>
             </div>
+
+
+            <form id="uploadForm" action="/analysis" method="post" enctype="multipart/form-data">
+                <input id="fileInput" type="file" name="fileInput" class="hidden">
+                <div id="analysisSelectionSection" class="analysis-selection-section hidden">
+                    <p id="fileUploadedText" class="text-center file-uploaded-text"></p>
+                    <h5 style="font-weight:bold;">Select analysis tools for the paper:</h5>
+                    <!-- Analysis tools checkboxes -->
+                    <div class="form-check">
+                        <input id="analysisTool1" class="form-check-input" type="checkbox" value="whole_paper_summarisation">
+                        <label class="form-check-label" for="analysisTool1">Whole paper summarisation</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="analysisTool2" class="form-check-input" type="checkbox" value="partial_paper_summarisation">
+                        <label class="form-check-label" for="analysisTool2">Partial paper summarisation</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="analysisTool3" class="form-check-input" type="checkbox" value="keyword_extraction">
+                        <label class="form-check-label" for="analysisTool3">Keyword extraction</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="analysisTool4" class="form-check-input" type="checkbox" value="extract_references">
+                        <label class="form-check-label" for="analysisTool4">Extract references</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="analysisTool5" class="form-check-input" type="checkbox" value="extract_metadata">
+                        <label class="form-check-label" for="analysisTool5">Extract metadata</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="analysisTool6" class="form-check-input" type="checkbox" value="calculate_metrics">
+                        <label class="form-check-label" for="analysisTool6">Calculate metrics</label>
+                    </div>
+
+                    <!-- Set checkSelection() argument to number of tools -->
+                    <button class="btn btn-success analysis-btn" type="button" name="analyseBtn" onclick="checkSelection(6)">Analyse Paper</button>
+                </div>
+            </form>
+
         </div>
     </body>
 </html>

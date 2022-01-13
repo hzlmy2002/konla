@@ -1,5 +1,6 @@
-""" Konla App """
+""" Konla App - 2022 """
 from flask import Flask, render_template, request, Markup
+from werkzeug.utils import secure_filename
 import os
 
 app = Flask(__name__)
@@ -20,3 +21,15 @@ def upload():
 
     # Initial template when site is started up
     return render_template("upload.html")
+
+
+@app.route('/analysis', methods=['POST', 'GET'])
+def analysis():
+    if request.method == "POST":
+        file = request.files["fileInput"]
+        filename = secure_filename(file.filename)
+        # Save the file in the upload folder
+        file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
+
+    # Initial template when site is started up
+    return render_template("analysis.html")
