@@ -1,0 +1,105 @@
+/* KONLA APP - 2022 */
+
+/* Fonts: Poppins, Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Poppins&family=Roboto&display=swap');
+
+body {
+    background-color: #ECEFF1;
+    font-family: 'Roboto', sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+.konla-logo {
+    color: #607D8B;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 3px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.upload-section {
+    background-color: #FFF;
+    border-radius: 8px;
+}
+
+.upload-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+.upload-text {
+    color: #616161;
+    font-weight: bold;
+}
+
+.drag-drop-section {
+    background-color: #EEEEEE;
+    border-radius: 8px;
+    outline: 2px dashed #BDBDBD;
+    outline-offset: -10px;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+}
+
+.upload-icon {
+    color: #90A4AE;
+    font-size: 100px;
+}
+
+.upload-link {
+    cursor: pointer;
+    color: #2196F3;
+}
+
+.analysis-selection-section {
+    background-color: #EEEEEE;
+    border-radius: 8px;
+}
+
+.file-uploaded-text {
+    color: #66BB6A;
+    font-size: 20px;
+}
+
+.filename {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar {
+    background-color: #263238;
+    border-radius: 16px;
+}
+
+.analysis-tab {
+    padding: 8px 4px;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #B0BEC5;
+}
+
+.analysis-tab:hover:not(.active) {
+    background-color: #CFD8DC;
+}
+
+.analysis-tab a {
+    text-decoration: none;
+    color: #000;
+}
+
+.active {
+    background-color: #FFCA28;
+}
+
+.analysis-feature-label {
+    font-weight: bold;
+    margin: 0;
+    user-select: none;
+}
+
+.frequence-val {
+    font-family: 'Oswald', sans-serif;
+}

@@ -1,0 +1,85 @@
+<!-- KONLA APP - 2022 -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+            crossorigin="anonymous">
+        <!-- Google icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined"
+        <!-- Konla CSS -->
+        <link rel="stylesheet" href="/static/main.css">
+        <!-- Bootstrap JavaScript bundle -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+        <!-- Jquery CDN (Google) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Konla JavaScript -->
+        <script src="static/main.js"></script>
+
+        <title>Konla</title>
+    </head>
+    <body>
+        <a href="/" style="text-decoration: none;">
+            <h1 class="display-3 px-5 py-3 konla-logo">KONLA</h1>
+        </a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col mx-5 px-4 py-5 sidebar">
+                    <div id="extractTextTab" class="mb-5 analysis-tab active">
+                        <h4 class="analysis-feature-label text-center" onclick="extractTextSectionShow()">Extracted text</h4>
+                    </div>
+                    <div id="extractKeywordsTab" class="mb-5 analysis-tab">
+                        <h4 class="analysis-feature-label text-center" onclick="extractKeywordsSectionShow()">Keyword extraction</h4>
+                    </div>
+                </div>
+
+                <div class="col-9 content-section">
+                    <div id="extractTextSection" class="extracted-text-section">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </div>
+                    <div id="extractKeywordsSection" class="keyword-extraction-section hidden">
+                        <table class="table w-50">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Keyword</th>
+                              <th scope="col">Frequency</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>AI</td>
+                              <td class="frequence-val">25</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Hello</td>
+                              <td class="frequence-val">16</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>Test</td>
+                              <td class="frequence-val">5</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </body>
+</html>
