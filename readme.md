@@ -4,5 +4,5 @@ KONLA (Knowledge Organisation through Natural Language Processing) is being deve
 
 ## Documentation
  - [Development Notes](doc/dev_notes.md)
-
+ - Google drive: https://drive.google.com/drive/folders/1JDZ8SehDyxVgiEWYiUXllecXl8tfoHbY?usp=sharing
 ## Features (TBA)
