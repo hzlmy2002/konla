@@ -1,4 +1,4 @@
-""" PDF text extracter using pdgtotext """
+""" PDF text extracter using pdftotext """
 import pdftotext
 import os
 

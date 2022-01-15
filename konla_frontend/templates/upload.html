@@ -30,12 +30,13 @@
         </a>
 
         <div class="container w-75 py-5 px-4 upload-section">
+            <p class="text-center error-text"><strong>{{error_msg}}</strong></p>
             <h2 class="text-center display-5 mb-3 upload-title">Upload research paper</h2>
             <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
             <div id="uploadSection" class="p-5 drag-drop-section" ondrop="fileDropped(event)" ondragover="fileDragHover(event)" ondragleave="noFileDragHover(event)">
                 <div class="text-center"><span class="material-icons upload-icon">description</span></div>
                 <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" onclick="uploadFile()">browse</a> your files</p>
-                <p id="uploadError" class="text-center lead hidden" style="color: #F44336;">File uploaded is not a PDF or an image</p>
+                <p id="uploadError" class="text-center lead hidden error-text">File uploaded is not a PDF or an image</p>
             </div>
 
 

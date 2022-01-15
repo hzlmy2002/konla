@@ -12,6 +12,12 @@ body {
     display: none;
 }
 
+.error-text {
+    color: #F44336;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .konla-logo {
     color: #607D8B;
     font-family: "Oswald", sans-serif;
