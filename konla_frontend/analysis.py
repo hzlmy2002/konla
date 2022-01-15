@@ -1,5 +1,6 @@
 """ Konla App - 2022 """
 import os
+import spacy
 from pdf_to_text import PDFToText
 from keywords import KeywordExtractor
 from text_metrics import TextMetricsCalculator
@@ -15,10 +16,14 @@ class Analyser():
             self.error = "Error: Images cannot be processed currently"
         else:
             try:
+                nlp_model = spacy.load("en_core_web_lg")
+
                 self.content = PDFToText().get_content(filepath)
 
-                # self.keywords_html = KeywordExtractor().extract_keywords(
-                #     self.content, n=10)
+                tokenised_content = nlp_model(self.content)
+
+                self.keywords_html = KeywordExtractor().extract_keywords(
+                    tokenised_content, n=10)
 
                 self.error = None
             except Exception as e:

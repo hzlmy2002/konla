@@ -41,6 +41,7 @@ def analysis():
             extracted_text_bytes = analyser.get_extracted_text().split(b'\n')
             extracted_text = [line.decode("utf-8") for line in extracted_text_bytes]
             keywords_html = None#analyser.get_keywords_html()
+            #print(keywords_html)
 
             return render_template(
                 "analysis.html", extracted_text=extracted_text,
@@ -48,3 +49,6 @@ def analysis():
         else:
             return render_template(
                 "upload.html", error_msg=error)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
