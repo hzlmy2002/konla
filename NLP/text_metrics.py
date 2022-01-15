@@ -18,7 +18,7 @@ class TextMetricsCalculator:
         res = dict()
         word_count = len(words)
         res["Word Count"] = word_count
-        res["Character Count"] = sum([len(word) for word in words])
+        res["Character Count"] = sum([len(token.text) for token in doc])
         res["Reading Time (min)"] = str(word_count // self.READING_SPEED)
         res["Speaking Time (min)"] = word_count // self.SPEAKING_SPEED
         return res
