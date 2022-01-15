@@ -41,9 +41,10 @@
 
                 <div class="col-9 content-section">
                     <div id="extractTextSection" class="extracted-text-section">
-                        {% for line in extracted_text %}
+                        <p> {{extracted_text}} </p>
+                        <!-- {% for line in extracted_text %}
                             <p>{{line}}</p>
-                        {% endfor %}
+                        {% endfor %} -->
                     </div>
                     <div id="extractKeywordsSection" class="keyword-extraction-section hidden">
                         <table class="table w-50">
@@ -55,21 +56,13 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {% for keyword in keywords_table %}
                             <tr>
-                              <th scope="row">1</th>
-                              <td>AI</td>
-                              <td class="frequence-val">25</td>
+                                <th scope="row">{{keyword[0]}}</th>
+                                <td>{{keyword[1]}}</td>
+                                <td class="frequence-val">{{keyword[2]}}</td>
                             </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Hello</td>
-                              <td class="frequence-val">16</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Test</td>
-                              <td class="frequence-val">5</td>
-                            </tr>
+                            {% endfor %}
                           </tbody>
                         </table>
                     </div>

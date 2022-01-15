@@ -5,7 +5,7 @@ import os
 from analysis import Analyser
 
 app = Flask(__name__)
-UPLOAD_PATH = "static/uploads"
+UPLOAD_PATH = "/workspaces/konla/konla_frontend/static/uploads"
 app.config['UPLOAD_PATH'] = UPLOAD_PATH
 
 
@@ -38,17 +38,16 @@ def analysis():
         # Check paper is processed successfully
         error = analyser.get_error()
         if error is None:
-            extracted_text_bytes = analyser.get_extracted_text().split(b'\n')
-            extracted_text = [line.decode("utf-8") for line in extracted_text_bytes]
-            keywords_html = None#analyser.get_keywords_html()
-            #print(keywords_html)
-
+            extracted_text = analyser.get_extracted_text()
+            keywords_html = analyser.get_keywords_html()
             return render_template(
-                "analysis.html", extracted_text=extracted_text,
+                "analysis.html", 
+                extracted_text=extracted_text,
                 keywords_table=keywords_html)
         else:
             return render_template(
-                "upload.html", error_msg=error)
+                "upload.html", 
+                error_msg=error)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run()
