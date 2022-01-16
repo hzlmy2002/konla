@@ -17,7 +17,7 @@ class KeywordExtractor:
         # Remove stop words and punctuation
         # Do we want any Part of Speech filter?
         # TODO: Change spacy tokenizer to ignore whitespace characters                   #TODO: to be removed
-        words = [token.text for token in doc if not token.is_stop and not token.is_punct and token.text != '\n']
+        words = [token.text for token in doc if not token.is_stop and not token.is_punct and token.text != '\n' and token.pos_ != 'NUM' and token.pos_ != 'SYM' and len(token.text) > 1]
         word_freq = Counter(words)
         common_nouns = word_freq.most_common(n)
         res = []
