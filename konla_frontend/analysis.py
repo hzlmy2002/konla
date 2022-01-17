@@ -17,7 +17,7 @@ class Analyser():
             self.error = "Error: Images cannot be processed currently"
         else:
             try:
-                nlp_model = spacy.load("en_core_web_trf")
+                nlp_model = spacy.load("en_core_web_lg")
                 print("Model loaded (1/5)")
                 self.content = PDFHelper().pdf2text(filepath)
                 print("Text extracted (2/5)")
