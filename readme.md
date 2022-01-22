@@ -5,4 +5,11 @@ KONLA (Knowledge Organisation through Natural Language Analysis) is being develo
 ## Documentation
  - [Development Notes](doc/dev_notes.md)
  - Google drive: https://drive.google.com/drive/folders/1JDZ8SehDyxVgiEWYiUXllecXl8tfoHbY?usp=sharing
-## Features (TBA)
+
+## Features
+ - whole text summarization
+ - partial text summarization
+ - extraction and display of metadata
+ - keyword wordcloud image
+ - organisation of references
+ - (?) in-app document view
