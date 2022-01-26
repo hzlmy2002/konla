@@ -1,5 +1,6 @@
 PyPDF2
 flask==2.0.2
+flask-cors
 spacy==2.3.5
 werkzeug==2.0.2
 tika==1.24
