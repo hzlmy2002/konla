@@ -4,7 +4,7 @@ import spacy
 from keywords import KeywordExtractor
 from text_metrics import TextMetricsCalculator
 
-sys.path.append(os.path.abspath('..'))
+sys.path.append(os.path.abspath('.'))
 from PDFHelper import PDFHelper
 
 class Analyser():

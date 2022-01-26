@@ -5,7 +5,7 @@ import os
 from analysis import Analyser
 
 app = Flask(__name__)
-UPLOAD_PATH = os.path.join(os.getcwd(),"static/uploads")
+UPLOAD_PATH = os.path.join(os.getcwd(),"konla_frontend/static/uploads")
 app.config['UPLOAD_PATH'] = UPLOAD_PATH
 
 
