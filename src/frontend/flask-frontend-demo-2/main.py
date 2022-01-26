@@ -1,11 +1,12 @@
-""" Konla App - 2022 """
-from flask import Flask, render_template, request, Markup
-from werkzeug.utils import secure_filename
+"""This is a KONLA application demonstration version 2"""
 import os
+from flask import Flask, render_template, request
+from werkzeug.utils import secure_filename
 from analysis import Analyser
 
 app = Flask(__name__)
-UPLOAD_PATH = os.path.join(os.getcwd(),"konla_frontend/static/uploads")
+PARENT_DIR = os.path.dirname(__file__)
+UPLOAD_PATH = os.path.join(PARENT_DIR, "static/uploads")
 app.config['UPLOAD_PATH'] = UPLOAD_PATH
 
 
@@ -19,7 +20,6 @@ def clear_files():
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
     clear_files()  # Remove files stored in uploads
-
     # Initial template when site is started up
     return render_template("upload.html", error_msg="")
 
@@ -27,15 +27,13 @@ def upload():
 @app.route('/analysis', methods=['POST', 'GET'])
 def analysis():
     if request.method == "POST":
+        # File saving
         file = request.files["fileInput"]
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_PATH'], filename)
-        # Save the file in the upload folder
-        file.save(filepath)
-
-        # Analyser object
+        file.save(filepath)  # Save the file in the upload folder
+        # Paper processing
         analyser = Analyser(filepath)
-        # Check paper is processed successfully
         error = analyser.get_error()
         if error is None:
             extracted_text = analyser.get_extracted_text()

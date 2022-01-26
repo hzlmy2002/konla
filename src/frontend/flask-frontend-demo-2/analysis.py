@@ -1,17 +1,17 @@
-""" Konla App - 2022 """
-import os, sys
+import os 
+import sys
 import spacy
-from keywords import KeywordExtractor
-from text_metrics import TextMetricsCalculator
-
-sys.path.append(os.path.abspath('.'))
-from PDFHelper import PDFHelper
+sys.path.append(os.path.abspath("."))
+from src.backend.apps.nlp.keywords import KeywordExtractor
+from src.backend.apps.nlp.text_metrics import TextMetricsCalculator
+from src.backend.apps.pdf_extraction.PDFHelper import PDFHelper
 
 class Analyser():
     """
     Extracts text from a paper and runs analysis on the content
     """
-    def __init__(self, filepath:str):
+    def __init__(self, filepath: str):
+        self.error = None
         extension = os.path.splitext(filepath)[1].lower()
         if extension != ".pdf":
             self.error = "Error: Images cannot be processed currently"
@@ -21,8 +21,7 @@ class Analyser():
                 print("Model loaded (1/5)")
                 self.content = PDFHelper().pdf2text(filepath)
                 print("Text extracted (2/5)")
-                doc = nlp_model(self.content)  # doc = tokenised_content
-                a=[t for t in doc] 
+                doc = nlp_model(self.content)
                 print("Text analysed (3/5)")
                 self.keywords_html = KeywordExtractor().extract_keywords(doc, n=10)
                 print("Keywords extracted (4/5)")

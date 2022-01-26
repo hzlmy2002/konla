@@ -30,7 +30,7 @@ class Summarizer:
         freq_word = self._get_most_common_tokens(doc, mct)
         sent_strength = self._weigh_sentences(doc, freq_word)
         res = nlargest(n, sent_strength, key=sent_strength.get)
-        print(type(res))
+        print(res)
         return res
 
     def _get_most_common_tokens(self, doc, n=5):
