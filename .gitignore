@@ -248,3 +248,6 @@ cabal.project.local~
 .idea/
 *.iml
 *.csv
+
+# VS Code - Containers
+*.devcontainer
