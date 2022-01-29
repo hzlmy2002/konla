@@ -10,7 +10,7 @@ RUN apt update && \
 COPY . /konla
 
 RUN python3 -m pip install -r /konla/requirements.txt
-RUN python3 -m spacy download en_core_web_lg
+RUN python3 -m pip install pytesseract
+RUN apt install tesseract-ocr -y
 
 EXPOSE 8080
-
