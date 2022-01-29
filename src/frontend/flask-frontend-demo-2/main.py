@@ -1,4 +1,4 @@
-"""This is a KONLA application demonstration version 2"""
+""" This is a KONLA application demonstration version 2 """
 import os
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
@@ -37,14 +37,15 @@ def analysis():
         error = analyser.get_error()
         if error is None:
             extracted_text = analyser.get_extracted_text()
-            keywords_html = analyser.get_keywords_html()
+            keywords_frequencies = analyser.get_keywords_frequencies()
+            print(keywords_frequencies)
             return render_template(
-                "analysis.html", 
+                "analysis.html",
                 extracted_text=extracted_text,
-                keywords_table=keywords_html)
+                keywords_frequencies=keywords_frequencies)
         else:
             return render_template(
-                "upload.html", 
+                "upload.html",
                 error_msg=error)
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@ from collections import Counter
 import pandas as pd
 
 class KeywordExtractor:
-    
+
     @staticmethod
     def extract_keywords(doc, n: int):
         """
@@ -19,4 +19,4 @@ class KeywordExtractor:
         words = [token.text for token in doc if not token.is_stop and not token.is_punct and token.text != '\n']
         word_freq = Counter(words)
         common_nouns = word_freq.most_common(n)
-        return pd.DataFrame(common_nouns).to_html()
+        return pd.DataFrame(common_nouns).values.tolist()
