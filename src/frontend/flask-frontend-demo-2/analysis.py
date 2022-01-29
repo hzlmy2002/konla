@@ -13,7 +13,7 @@ class Analyser():
     """
     def __init__(self, filepath: str):
         self.error = None
-        self.nlp_model_path = "../../backend/apps/nlp/en_core_web_lg"
+        self.nlp_model_path = "en_core_web_lg"
         extension = os.path.splitext(filepath)[1].lower()
 
         try:
