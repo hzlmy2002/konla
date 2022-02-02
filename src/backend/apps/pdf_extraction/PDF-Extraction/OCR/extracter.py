@@ -69,17 +69,18 @@ def save_content(content):
                     pass
 
 
-pdf_filename = "../../shapes.pdf"
-images_dir = "pdf_images"
+if __name__ == '__main__':
+    pdf_filename = "../../shapes.pdf"
+    images_dir = "pdf_images"
 
-# Get images of PDF pages
-images = convert_from_path(pdf_filename)
+    # Get images of PDF pages
+    images = convert_from_path(pdf_filename)
 
-# Save the images
-#save_images(images, images_dir)
+    # Save the images
+    #save_images(images, images_dir)
 
-# Extract text using OCR
-content = extract_text(images_dir)
+    # Extract text using OCR
+    content = extract_text(images_dir)
 
-# Save content from extraction
-save_content(content)
+    # Save content from extraction
+    save_content(content)

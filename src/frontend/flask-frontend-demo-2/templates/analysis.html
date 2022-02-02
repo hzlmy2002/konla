@@ -56,11 +56,11 @@
                             </tr>
                           </thead>
                           <tbody>
-                            {% for keyword in keywords_table %}
+                            {% for keyword in keywords_frequencies %}
                             <tr>
-                                <th scope="row">{{keyword[0]}}</th>
-                                <td>{{keyword[1]}}</td>
-                                <td class="frequence-val">{{keyword[2]}}</td>
+                                <th scope="row">{{loop.index0}}</th>
+                                <td>{{keyword[0]}}</td>
+                                <td class="frequence-val">{{keyword[1]}}</td>
                             </tr>
                             {% endfor %}
                           </tbody>
@@ -69,8 +69,5 @@
                 </div>
             </div>
         </div>
-
-
-
     </body>
 </html>
