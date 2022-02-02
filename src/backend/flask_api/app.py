@@ -2,17 +2,30 @@
 # API Structure inspired by post
 # https://dev.to/paurakhsharma/flask-rest-api-part-2-better-structure-with-blueprint-and-flask-restful-2n93
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_restful import Api
 from resources.routes import initialize_routes
 from settings import UPLOAD_PATH
 # from flask_cors import CORS, cross_origin
 
-app = Flask(__name__)
-app.config['UPLOAD_PATH'] = UPLOAD_PATH
-api = Api(app)
+class VueFlask(Flask):
+    """ Flask application with jinja syntax changed """
+    jinja_options = Flask.jinja_options.copy()
+    # Changed to '%%' because Vue.js uses '{%', '%}'
+    jinja_options.update(dict(
+        variable_start_string='%%',
+        variable_end_string='%%',
+    ))
 
-initialize_routes(api)
+app = VueFlask(__name__)
+app.config['UPLOAD_PATH'] = UPLOAD_PATH
+#api = Api(app)
+
+#initialize_routes(api)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(debug=True, threaded=True)
+    app.run(debug=True, threaded=True, host="0.0.0.0")
