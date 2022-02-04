@@ -6,7 +6,7 @@ from flask import Flask, render_template
 from flask_restful import Api
 from resources.routes import initialize_routes
 from settings import UPLOAD_PATH
-# from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 class VueFlask(Flask):
     """ Flask application with jinja syntax changed """
@@ -19,13 +19,22 @@ class VueFlask(Flask):
 
 app = VueFlask(__name__)
 app.config['UPLOAD_PATH'] = UPLOAD_PATH
+CORS(app)
+
 #api = Api(app)
 
 #initialize_routes(api)
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+# @app.route("/")
+# def index():
+#     return render_template("index.html")
+
+
+@app.route("/analysis")
+def analysis():
+    return {"hello_message": "Hello from FLASK!"}
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True, host="0.0.0.0")
