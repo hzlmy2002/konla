@@ -5,7 +5,7 @@ ENV LANG=C.UTF-8
 ENV TZ="Europe/London"
 
 RUN apt update && \
-	apt install -y poppler-utils python3 python3-pip supervisor
+	apt install -y poppler-utils python3 python3-pip supervisor npm
 
 COPY . /konla
 
