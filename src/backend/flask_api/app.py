@@ -22,18 +22,11 @@ app.config['UPLOAD_PATH'] = UPLOAD_PATH
 CORS(app)
 
 #api = Api(app)
-
 #initialize_routes(api)
-
-# @app.route("/")
-# def index():
-#     return render_template("index.html")
-
 
 @app.route("/analysis")
 def analysis():
-    return {"hello_message": "Hello from FLASK!"}
-
+    return {"hello_message": "Hello from Flask!"}
 
 
 if __name__ == "__main__":
