@@ -14,11 +14,14 @@ class PDFHelper():
             return result[0].decode("utf-8")
 
     @staticmethod
-    def getAuthor(path:str):
-        pdf=PyPDF2.PdfFileReader(open(path,"rb"))
-        return pdf.getDocumentInfo().author
-
-    @staticmethod
-    def getTitle(path:str):
-        pdf=PyPDF2.PdfFileReader(open(path,"rb"))
-        return pdf.getDocumentInfo().title
+    def getMetaData(path:str):
+        with open(path,"rb") as f:
+            pdf=PyPDF2.PdfFileReader(f)
+            info=pdf.getDocumentInfo()
+        data={}
+        data["Author"]=info.author
+        data["Creator"]=info.creator
+        data["Producer"]=info.producer
+        data["Subject"]=info.subject
+        data["Title"]=info.title
+        return data
