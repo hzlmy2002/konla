@@ -6,13 +6,13 @@ const routes = [
   {
     path: "/",
     name: "Upload",
-    component: Upload,
+    component: Upload
   },
 
   {
     path: "/analysis",
     name: "Analysis",
-    component: Analysis,
+    component: Analysis
   },
 ];
 
@@ -21,4 +21,4 @@ const router = createRouter({
   routes
 });
 
-export default router
+export default router;
