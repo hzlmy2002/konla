@@ -3,6 +3,9 @@
 </template>
 
 <script>
+// Add event listeners for window to prevent default opening of a file
+window.addEventListener("dragover", function(e) { e.preventDefault(); }, false);
+window.addEventListener("drop", function(e) { e.preventDefault(); }, false);
 </script>
 
 <style>
@@ -12,5 +15,9 @@
 body {
     background-color: #ECEFF1;
     font-family: 'Roboto', sans-serif;
+}
+
+.hidden {
+    display: none;
 }
 </style>
