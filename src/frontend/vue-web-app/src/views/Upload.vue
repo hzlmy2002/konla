@@ -1,76 +1,86 @@
 <template>
     <PageHeader />
-
-    <div class="container w-75 py-5 px-4 upload-section">
-        <h2 class="text-center display-5 mb-3 upload-title">Upload research paper</h2>
-        <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
-        <div ref="dragDropSection" class="p-5 drag-drop-section" v-bind:style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
-            <div class="text-center"><span class="material-icons upload-icon">description</span></div>
-            <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
-            <p ref="uploadError" class="text-center lead error-text" v-bind:class="{ hidden: isHiddenError }">File uploaded is not a PDF or an image</p>
-        </div>
-
-        <form ref="uploadForm" action="/" method="post" enctype="multipart/form-data">
-            <input ref="fileInput" type="file" name="fileInput" class="hidden" @change="updateUploadSection" />
-            <div ref="analysisSelectionSection" class="mt-5 py-4 px-5 analysis-selection-section" v-bind:class="{ hidden: isHiddenAnalysis }">
-                <p ref="fileUploadedText" class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
-                <h5><strong>Select analysis tools for the paper:</strong></h5>
-                <!-- Analysis tools checkboxes -->
-                <div class="form-check">
-                    <!-- Set selectAllCheckboxes(num) argument to the number of tools -->
-                    <input ref="selectAll" class="form-check-input" type="checkbox" @click="selectAllCheckboxes(6)" />
-                    <label class="form-check-label" for="selectAll"><strong>Select all analysis tools</strong></label>
-                </div>
-                <!-- Analysis tools checkboxes -->
-                <div class="form-check">
-                    <input ref="analysisTool1" class="form-check-input" type="checkbox" value="whole_paper_summarisation" />
-                    <label class="form-check-label" for="analysisTool1">Whole paper summarisation</label>
-                </div>
-                <div class="form-check">
-                    <input ref="analysisTool2" class="form-check-input" type="checkbox" value="partial_paper_summarisation" />
-                    <label class="form-check-label" for="analysisTool2">Partial paper summarisation</label>
-                </div>
-                <div class="form-check">
-                    <input ref="analysisTool3" class="form-check-input" type="checkbox" value="keyword_extraction" />
-                    <label class="form-check-label" for="analysisTool3">Keyword extraction</label>
-                </div>
-                <div class="form-check">
-                    <input ref="analysisTool4" class="form-check-input" type="checkbox" value="extract_references" />
-                    <label class="form-check-label" for="analysisTool4">Extract references</label>
-                </div>
-                <div class="form-check">
-                    <input ref="analysisTool5" class="form-check-input" type="checkbox" value="extract_metadata" />
-                    <label class="form-check-label" for="analysisTool5">Extract metadata</label>
-                </div>
-                <div class="form-check">
-                    <input ref="analysisTool6" class="form-check-input" type="checkbox" value="calculate_metrics" />
-                    <label class="form-check-label" for="analysisTool6">Calculate metrics</label>
-                </div>
-
-                <!-- Set checkSelection(num) argument to the number of tools -->
-                <button class="btn btn-success mt-3 analysis-btn" type="button" name="analyseBtn" @click="checkSelection(6)">
-                    <strong>Analyse Paper</strong>
-                </button>
+    <div clas="container">
+        <div class="container w-75 py-5 px-4 mb-5 upload-section">
+            <h2 class="text-center display-5 mb-3 upload-title">Upload research paper</h2>
+            <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
+            <div ref="dragDropSection" class="p-5 drag-drop-section" v-bind:style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
+                <div class="text-center"><span class="material-icons upload-icon">description</span></div>
+                <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
+                <p ref="uploadError" class="text-center lead error-text" v-bind:class="{ hidden: isHiddenUploadError }">File uploaded is not a PDF or an image</p>
             </div>
-        </form>
-    </div>
 
-    <PageFooter />
+            <form ref="uploadForm" action="/" method="post" enctype="multipart/form-data">
+                <input ref="fileInput" type="file" name="fileInput" class="hidden" @change="updateUploadSection" />
+                <div ref="analysisSelectionSection" class="mt-5 py-4 px-5 analysis-selection-section" v-bind:class="{ hidden: isHiddenAnalysis }">
+                    <p ref="fileUploadedText" class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
+                    <p class="text-center error-text" v-bind:class="{ hidden: isHiddenRequestError }"><strong>Error: Failed to send request to server</strong></p>
+                    <h5><strong>Select analysis tools for the paper:</strong></h5>
+                    <!-- Analysis tools checkboxes -->
+                    <div class="form-check">
+                        <!-- Set selectAllCheckboxes(num) argument to the number of tools -->
+                        <input ref="selectAll" class="form-check-input" type="checkbox" @click="selectAllCheckboxes(6)" />
+                        <label class="form-check-label" for="selectAll"><strong>Select all analysis tools</strong></label>
+                    </div>
+                    <!-- Analysis tools checkboxes -->
+                    <div class="form-check">
+                        <input ref="analysisTool1" class="form-check-input" type="checkbox" name="whole" />
+                        <label class="form-check-label" for="analysisTool1">Whole paper summarisation</label>
+                    </div>
+                    <div class="form-check">
+                        <input ref="analysisTool2" class="form-check-input" type="checkbox" name="partial" />
+                        <label class="form-check-label" for="analysisTool2">Partial paper summarisation</label>
+                    </div>
+                    <div class="form-check">
+                        <input ref="analysisTool3" class="form-check-input" type="checkbox" name="keyword" />
+                        <label class="form-check-label" for="analysisTool3">Keyword extraction</label>
+                    </div>
+                    <div class="form-check">
+                        <input ref="analysisTool4" class="form-check-input" type="checkbox" name="refs" />
+                        <label class="form-check-label" for="analysisTool4">Extract references</label>
+                    </div>
+                    <div class="form-check">
+                        <input ref="analysisTool5" class="form-check-input" type="checkbox" name="meta" />
+                        <label class="form-check-label" for="analysisTool5">Extract metadata</label>
+                    </div>
+                    <div class="form-check">
+                        <input ref="analysisTool6" class="form-check-input" type="checkbox" name="metrics" />
+                        <label class="form-check-label" for="analysisTool6">Calculate metrics</label>
+                    </div>
+
+                    <!-- Set checkSelection(num) argument to the number of tools -->
+                    <button class="btn btn-success mt-3 analysis-btn" type="button" name="analyseBtn" @click="checkSelection(6)">
+                        <strong>Analyse Paper</strong>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <PageFooter />
+    </div>
 </template>
 
 <script>
     import PageHeader from "@/components/Header.vue";
     import PageFooter from "@/components/Footer.vue";
-
     export default {
         data() {
             return {
                 dragDropBackgroundColor: "#EEEEEE",
                 dragDropOutlineOffset: "-10px",
 
-                isHiddenError: true,
+                isHiddenUploadError: true,
+                isHiddenRequestError: true,
                 isHiddenAnalysis: true,
-                fileUploadedText: ""
+                fileUploadedText: "",
+
+                analysisSelection: {
+                    "whole": 0,
+                    "partial": 0,
+                    "keyword": 0,
+                    "refs": 0,
+                    "meta": 0,
+                    "metrics": 0,
+                }
              }
         },
 
@@ -115,7 +125,7 @@
                 // Check extension is valid
                 if (["pdf", "jpg", "png"].includes(extension)) {
                     // Hide error and show analysis selection section
-                    this.isHiddenError = true;
+                    this.isHiddenUploadError = true;
                     this.isHiddenAnalysis = false;
 
                     this.fileUploadedText = "File uploaded: \
@@ -123,7 +133,7 @@
                         + filename + "</span>";
                 } else {
                     // Show error and hide analysis selection section
-                    this.isHiddenError = false;
+                    this.isHiddenUploadError = false;
                     this.isHiddenAnalysis = true;
                 }
             },
@@ -146,14 +156,45 @@
             },
 
             checkSelection(numTools) {
-                // Check that at least one checkboxe is checked
+                // Check that at least one checkbox is checked
+                let isSelected = false;
                 for (let i = 1; i < numTools + 1; i++) {
                     const checkbox = "analysisTool" + i;
                     if (this.$refs[checkbox].checked) {
-                        // Submit form
-                        this.$refs['uploadForm'].submit();
+                        // Set the selection to 1 for the checkboxes that are
+                        // selected
+                        this.analysisSelection[this.$refs[checkbox].name] = 1;
+                        isSelected = true;
                     }
                 }
+
+                // Send data to server if at least one checkbox was selected
+                if (isSelected) {
+                    this.sendData();
+                }
+            },
+
+            async sendData() {
+                const CONFIG = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    mode: "cors",
+                    body: JSON.stringify(this.analysisSelection)
+                };
+
+                const URL = "http://localhost:5000/analysis";
+                const response = await fetch(URL, CONFIG);
+
+                // Check response is successful
+                if (response.status == 200) {
+                    this.$router.push('/analysis');
+                } else {
+                    // Show request error message
+                    this.isHiddenRequestError = false;
+                }
+
             }
         }
     }

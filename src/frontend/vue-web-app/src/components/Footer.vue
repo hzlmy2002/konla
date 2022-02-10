@@ -1,5 +1,5 @@
 <template>
-    <footer class="page-footer fixed-bottom footer-style">
+    <footer class="page-footer footer-style">
         <div class="px-4">
             <p class="small">KONLA | Copyright &copy; 2021-{{ currentYear }} | Team: Suraj Kothari, Bartosz Grabek, Harry Lei</p>
         </div>
@@ -19,8 +19,8 @@ export default {
 
 <style scoped>
 .footer-style {
-    line-height: 60px;
     height: 60px;
+    line-height: 60px;
     background-color: #607D8B;
     color: #ECEFF1;
 }

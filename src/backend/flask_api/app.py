@@ -2,9 +2,8 @@
 # API Structure inspired by post
 # https://dev.to/paurakhsharma/flask-rest-api-part-2-better-structure-with-blueprint-and-flask-restful-2n93
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_restful import Api
-from resources.routes import initialize_routes
 from settings import UPLOAD_PATH
 from flask_cors import CORS
 
@@ -22,11 +21,17 @@ app.config['UPLOAD_PATH'] = UPLOAD_PATH
 CORS(app)
 
 #api = Api(app)
-#initialize_routes(api)
 
-@app.route("/analysis")
-def analysis():
-    return {"hello_message": "Hello from Flask!"}
+@app.route("/analysis", methods=["GET", "POST"])
+def upload():
+    if request.method == "POST":
+        print(request.get_json())
+        return ("Success", 200)
+    #return {"analysis": "Hello from Flask!"}
+
+# @app.route("/analysis", methods=("GET", "POST"))
+# def analysis():
+#     return {"hello_message": "Hello from Flask!"}
 
 
 if __name__ == "__main__":
