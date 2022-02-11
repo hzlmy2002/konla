@@ -1,6 +1,6 @@
 <template>
     <a href="/" style="text-decoration: none;">
-        <h1 class="display-3 py-3 px-5 konla-logo">KONLA <span class="h5 align-middle">- <strong>K</strong>nowledge <strong>O</strong>rganisation through <strong>N</strong>atural <strong>L</strong>anguage <strong>A</strong>nalysis</span></h1>
+        <h2 class="display-3 py-3 px-5 konla-logo">KONLA <span class="h6 align-middle d-none d-md-inline"><strong>&#8212; K</strong>nowledge <strong>O</strong>rganisation using <strong>N</strong>atural <strong>L</strong>anguage <strong>A</strong>nalysis</span></h2>
     </a>
 </template>
 

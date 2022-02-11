@@ -4,25 +4,25 @@
         <div class="container w-75 py-5 px-4 mb-5 upload-section">
             <h2 class="text-center display-5 mb-3 upload-title">Upload research paper</h2>
             <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
-            <div ref="dragDropSection" class="p-5 drag-drop-section" v-bind:style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
+            <div class="p-5 drag-drop-section" :style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
                 <div class="text-center"><span class="material-icons upload-icon">description</span></div>
                 <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
-                <p ref="uploadError" class="text-center lead error-text" v-bind:class="{ hidden: isHiddenUploadError }">File uploaded is not a PDF or an image</p>
+                <p class="text-center lead error-text" :class="{ hidden: isHiddenUploadError }">File uploaded is not a PDF or an image</p>
             </div>
 
-            <form ref="uploadForm" action="/" method="post" enctype="multipart/form-data">
+            <form action="/" method="post" enctype="multipart/form-data">
                 <input ref="fileInput" type="file" name="fileInput" class="hidden" @change="updateUploadSection" />
-                <div ref="analysisSelectionSection" class="mt-5 py-4 px-5 analysis-selection-section" v-bind:class="{ hidden: isHiddenAnalysis }">
-                    <p ref="fileUploadedText" class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
+                <div class="mt-5 py-4 px-5 analysis-selection-section" v-bind:class="{ hidden: isHiddenAnalysis }">
+                    <p class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
                     <p class="text-center error-text" v-bind:class="{ hidden: isHiddenRequestError }"><strong>Error: Failed to send request to server</strong></p>
-                    <h5><strong>Select analysis tools for the paper:</strong></h5>
-                    <!-- Analysis tools checkboxes -->
+                    <h5><strong>Select analysis features for the paper:</strong></h5>
+                    <!-- Analysis features checkboxes -->
                     <div class="form-check">
-                        <!-- Set selectAllCheckboxes(num) argument to the number of tools -->
+                        <!-- Set selectAllCheckboxes(num) argument to the number of featues -->
                         <input ref="selectAll" class="form-check-input" type="checkbox" @click="selectAllCheckboxes(6)" />
-                        <label class="form-check-label" for="selectAll"><strong>Select all analysis tools</strong></label>
+                        <label class="form-check-label" for="selectAll"><strong>Select all analysis features</strong></label>
                     </div>
-                    <!-- Analysis tools checkboxes -->
+                    <!-- Analysis featues checkboxes -->
                     <div class="form-check">
                         <input ref="analysisTool1" class="form-check-input" type="checkbox" name="whole" />
                         <label class="form-check-label" for="analysisTool1">Whole paper summarisation</label>
@@ -48,23 +48,35 @@
                         <label class="form-check-label" for="analysisTool6">Calculate metrics</label>
                     </div>
 
-                    <!-- Set checkSelection(num) argument to the number of tools -->
+                    <!-- Set checkSelection(num) argument to the number of featues -->
                     <button class="btn btn-success mt-3 analysis-btn" type="button" name="analyseBtn" @click="checkSelection(6)">
                         <strong>Analyse Paper</strong>
                     </button>
                 </div>
             </form>
         </div>
-        <PageFooter />
     </div>
+    <PageFooter :footer-style="footerStyle" />
 </template>
 
 <script>
     import PageHeader from "@/components/Header.vue";
     import PageFooter from "@/components/Footer.vue";
+
     export default {
+        components: {
+            PageHeader,
+            PageFooter
+        },
+
         data() {
             return {
+                footerStyle: {
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                },
                 dragDropBackgroundColor: "#EEEEEE",
                 dragDropOutlineOffset: "-10px",
 
@@ -73,7 +85,7 @@
                 isHiddenAnalysis: true,
                 fileUploadedText: "",
 
-                analysisSelection: {
+                analysisFeatures: {
                     "whole": 0,
                     "partial": 0,
                     "keyword": 0,
@@ -82,11 +94,6 @@
                     "metrics": 0,
                 }
              }
-        },
-
-        components: {
-            PageHeader,
-            PageFooter
         },
 
         methods: {
@@ -122,9 +129,15 @@
                 const filename = this.$refs['fileInput'].files[0].name;
                 const extension = filename.split('.').pop().toLowerCase();
 
+                // Change position of footer
+                this.footerStyle = {
+                    position: "relative",
+                    bottom: 0,
+                }
+
                 // Check extension is valid
                 if (["pdf", "jpg", "png"].includes(extension)) {
-                    // Hide error and show analysis selection section
+                    // Hide error and show analysis feature selection section
                     this.isHiddenUploadError = true;
                     this.isHiddenAnalysis = false;
 
@@ -132,38 +145,38 @@
                         <span class='filename'>"
                         + filename + "</span>";
                 } else {
-                    // Show error and hide analysis selection section
+                    // Show error and hide analysis feature selection section
                     this.isHiddenUploadError = false;
                     this.isHiddenAnalysis = true;
                 }
             },
 
-            selectAllCheckboxes(numTools) {
+            selectAllCheckboxes(numfeatues) {
                 // If select all is checked
                 if(this.$refs['selectAll'].checked) {
                     // Check all checkboxes
-                    for (let i = 1; i < numTools + 1; i++) {
+                    for (let i = 1; i < numfeatues + 1; i++) {
                         const checkbox = "analysisTool" + i;
                         this.$refs[checkbox].checked = true;
                     }
                 } else {
                     // Uncheck all checkboxes
-                    for (let i = 1; i < numTools + 1; i++) {
+                    for (let i = 1; i < numfeatues + 1; i++) {
                         const checkbox = "analysisTool" + i;
                         this.$refs[checkbox].checked = false;
                     }
                 }
             },
 
-            checkSelection(numTools) {
+            checkSelection(numfeatues) {
                 // Check that at least one checkbox is checked
                 let isSelected = false;
-                for (let i = 1; i < numTools + 1; i++) {
+                for (let i = 1; i < numfeatues + 1; i++) {
                     const checkbox = "analysisTool" + i;
                     if (this.$refs[checkbox].checked) {
                         // Set the selection to 1 for the checkboxes that are
                         // selected
-                        this.analysisSelection[this.$refs[checkbox].name] = 1;
+                        this.analysisFeatures[this.$refs[checkbox].name] = 1;
                         isSelected = true;
                     }
                 }
@@ -181,7 +194,7 @@
                         "Content-Type": "application/json",
                     },
                     mode: "cors",
-                    body: JSON.stringify(this.analysisSelection)
+                    body: JSON.stringify(this.analysisFeatures)
                 };
 
                 const URL = "http://localhost:5000/analysis";
@@ -189,7 +202,13 @@
 
                 // Check response is successful
                 if (response.status == 200) {
-                    this.$router.push('/analysis');
+                    this.$router.push({
+                        path: "/analysis",
+                        name: "Analysis",
+                        params: {
+                            analysisFeaturesJSONString: JSON.stringify(this.analysisFeatures)
+                        }
+                    });
                 } else {
                     // Show request error message
                     this.isHiddenRequestError = false;

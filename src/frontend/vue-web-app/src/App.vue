@@ -3,9 +3,13 @@
 </template>
 
 <script>
-// Add event listeners for window to prevent default opening of a file
-window.addEventListener("dragover", function(e) { e.preventDefault(); }, false);
-window.addEventListener("drop", function(e) { e.preventDefault(); }, false);
+export default {
+    mounted() {
+        // Add event listeners for window to prevent default opening of a file
+        window.addEventListener("dragover", function(e) { e.preventDefault(); }, false);
+        window.addEventListener("drop", function(e) { e.preventDefault(); }, false);
+    }
+}
 </script>
 
 <style>

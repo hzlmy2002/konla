@@ -12,6 +12,7 @@ const routes = [
   {
     path: "/analysis",
     name: "Analysis",
+    props: true,
     component: Analysis
   },
 ];

@@ -1,5 +1,5 @@
 <template>
-    <footer class="page-footer footer-style">
+    <footer class="page-footer footer-style" :style="footerStyle">
         <div class="px-4">
             <p class="small">KONLA | Copyright &copy; 2021-{{ currentYear }} | Team: Suraj Kothari, Bartosz Grabek, Harry Lei</p>
         </div>
@@ -9,6 +9,10 @@
 <script>
 export default {
     name: "PageFooter",
+    props: {
+        footerStyle: Object
+    },
+
     data() {
         return {
             currentYear: new Date().getFullYear()
