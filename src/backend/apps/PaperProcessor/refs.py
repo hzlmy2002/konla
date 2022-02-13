@@ -7,7 +7,18 @@ class Ref():
         self.doc=doc
         self.refs=[]
         self.nlp=spacy.load("en_core_web_trf")
-        self.rules=[
+        self.tightRules=[
+            {"IS_SPACE":True,"OP":"*"},
+            {"IS_PUNCT":True,"OP":"?"},
+            {"IS_DIGIT":True,"LENGTH":1},
+            {"IS_PUNCT":True,"OP":"?"},
+            {"ENT_TYPE":"PERSON","OP":"+"},
+            {"IS_PUNCT":True,"OP":"?"},
+            {"OP":"*"},
+            {"ENT_TYPE":"DATE"},
+            {"IS_PUNCT":True,"OP":"?"}
+        ]
+        self.looseRules=[
             {"IS_SPACE":True,"OP":"*"},
             {"IS_PUNCT":True,"OP":"?"},
             {"IS_DIGIT":True},
@@ -16,19 +27,19 @@ class Ref():
             {"IS_PUNCT":True,"OP":"?"},
             {"OP":"*"},
             {"ENT_TYPE":"DATE"},
-            {"IS_PUNCT":True}
+            {"IS_PUNCT":True,"OP":"?"}
         ]
         self.refRegion=""
 
     def getRefRegion(self):
         matcher=spacy.matcher.Matcher(self.nlp.vocab)
-        matcher.add("ref",[self.rules],greedy="LONGEST")
+        matcher.add("ref",[self.tightRules],greedy="LONGEST")
         matches=matcher(self.doc)
         self.refRegion=str(self.doc[matches[0][1]:matches[0][2]])
 
     def parseRef(self):
         matcher=spacy.matcher.Matcher(self.nlp.vocab)
-        matcher.add("ref",[self.rules],greedy="LONGEST")
+        matcher.add("ref",[self.looseRules],greedy="LONGEST")
         lines=self.refRegion.split("\n")
         tmp=""
         for i in lines:
@@ -51,7 +62,7 @@ class Ref():
 
 
 def test():
-    doc=pickle.load(open("doc2.pkl","rb"))
+    doc=pickle.load(open("doc.pkl","rb"))
     r=Ref(doc)
     r.run()
     print(r.refRegion)
