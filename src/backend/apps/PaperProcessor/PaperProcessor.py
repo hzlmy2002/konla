@@ -9,7 +9,7 @@ class PaperProcessor():
     def __init__(self,path:str) -> None:
         text=PDFHelper.pdf2text(path)
         self.metadata=PDFHelper.getMetaData(path)
-        self.doc=spacy.load("en_core_web_lg")(text)
+        self.doc=spacy.load("en_core_web_trf")(text)
     
     def wordFrequency(self,max=10,ignoreCase=False,useLemma=False) -> dict:
         wf=wordFrequency(self.doc,max,ignoreCase,useLemma)
