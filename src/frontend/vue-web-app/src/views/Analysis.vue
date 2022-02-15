@@ -1,29 +1,29 @@
 <template>
     <PageHeader />
-    <div ref="hello" class="container-fluid">
+    <div class="container-fluid mt-4">
         <div class="row mb-5 px-5">
             <div class="col-lg-3 col-md-4 col-sm-12 mb-md-0 mb-5 px-4 py-3 sidebar">
                 <div v-for="(isSelected, feature) in analysisFeatures" :key="feature">
                     <!-- If feature is selected (its value is 1) -->
                     <div :ref="feature + 'AnalysisTab'"
                          class="row mb-md-4 mb-3 px-2 py-3 align-items-center analysis-tab"
-                         :class="{'completed': analysisFeaturesCompleted.includes(feature), 'active': analysisFeatureSelected == feature  }"
+                         :class="{'completed': analysisFeaturesCompleted.includes(feature), 'active': analysisTabSelected == feature  }"
                          v-if="isSelected" @click="
                             analysisFeaturesCompleted.includes(feature)
-                            ? analysisFeatureSelected = feature : null">
+                            ? analysisTabSelected = feature : null">
                         <h6 class="col-9 analysis-feature-label" @click="extractTextSectionShow">{{ this.analysisFeaturesMap[feature] }}</h6>
                         <LoadingIcon :ref="feature + 'LoadingIcon'" class="col" />
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-9 col-md-8 col-sm-12 p-5 content-section">
-                <WholeContent v-if="analysisFeatureSelected == 'whole'" />
-                <PartialContent v-if="analysisFeatureSelected == 'partial'" />
-                <KeywordContent v-if="analysisFeatureSelected == 'keyword'" />
-                <ReferencesContent v-if="analysisFeatureSelected == 'refs'" />
-                <MetadataContent v-if="analysisFeatureSelected == 'meta'" />
-                <MetricsContent v-if="analysisFeatureSelected == 'metrics'" />
+            <div class="col-lg-9 col-md-8 col-sm-12 px-5 py-3 content-section">
+                <WholeContent v-if="analysisTabSelected == 'whole'" :content="analysisFeaturesContent.whole" />
+                <PartialContent v-if="analysisTabSelected == 'partial'" :content="analysisFeaturesContent.partial" />
+                <KeywordContent v-if="analysisTabSelected == 'keywords'" :content="analysisFeaturesContent.keywords" />
+                <ReferencesContent v-if="analysisTabSelected == 'refs'" :content="analysisFeaturesContent.refs" />
+                <MetadataContent v-if="analysisTabSelected == 'metadata'" :content="analysisFeaturesContent.metadata" />
+                <MetricsContent v-if="analysisTabSelected == 'metrics'" :content="analysisFeaturesContent.metrics" />
             </div>
         </div>
     </div>
@@ -69,23 +69,67 @@
                     left: 0,
                 },
 
+                // Stores the analysis features that were chosen
                 analysisFeatures: {},
 
                 analysisFeaturesMap: {
-                    "whole": "Whole paper summarisation",
-                    "partial": "Partial paper summarisation",
-                    "keyword": "Keyword extraction",
-                    "refs": "References extraction",
-                    "meta": "Metadata extraction",
-                    "metrics": "Calculate metrics",
+                    "whole": "Whole Paper Summarisation",
+                    "partial": "Partial Paper Summarisation",
+                    "keywords": "Keyword Extraction",
+                    "refs": "References Extraction",
+                    "metadata": "Metadata Extraction",
+                    "metrics": "Calculate Metrics",
                 },
 
-                analysisFeatureSelected: "",
+                analysisTabSelected: "",
 
-                analysisFeaturesNotCompleted: ["whole", "partial", "keyword",
-                    "refs", "meta", "metrics"],
+                // List of features not yet completed. Continually request for
+                // content from these features
+                analysisFeaturesNotCompleted: [],
 
-                analysisFeaturesCompleted: ["whole", "meta", "metrics"]
+                analysisFeaturesCompleted: ["whole", "partial", "keywords",
+                    "refs", "metadata", "metrics"],
+
+                analysisFeaturesContent: {
+                    "whole": "Whole summarised content",
+                    "partial": "Partial summarised content",
+                    "keywords": {"A": 10, "B": 6, "C": 3},
+                    "refs": ["Mitchell, J.A. ‘How citation changed the research \
+                             world’, The Mendeley, 62(9), p70-81",
+
+                             "Mitchell, J.A. (2017) ‘Changes to citation formats \
+                             shake the research world’, The Mendeley Telegraph \
+                             (Weekend edition), 6 July, pp.9-12 pp.9-12 pp.9-12",
+
+                             "Troy B.N. (2015) ‘Harvard citation rules’ in \
+                             Williams, S.T. (ed.) A guide to citation rules. \
+                             New York: NY Publishers, pp. 34-89",
+
+                             "Mitchell, J.A. ‘How citation changed the research \
+                                      world’, The Mendeley, 62(9), p70-81",
+
+                                      "Mitchell, J.A. (2017) ‘Changes to citation formats \
+                                      shake the research world’, The Mendeley Telegraph \
+                                      (Weekend edition), 6 July, pp.9-12 pp.9-12 pp.9-12",
+
+                                      "Troy B.N. (2015) ‘Harvard citation rules’ in \
+                                      Williams, S.T. (ed.) A guide to citation rules. \
+                                      New York: NY Publishers, pp. 34-89"],
+
+                    "metadata": {
+                        "Author": "Alice A, Bob B, David D",
+                        "Creator": "",
+                        "Producer": "",
+                        "Subject": "Subheading of research paper",
+                        "Title": "Title Of Research Paper"
+                    },
+
+                    "metrics": {
+                        "wordcount": 1920,
+                        "readingtime": "120",
+                        "speakingtime": "243"
+                    },
+                }
             }
         },
 
@@ -111,8 +155,11 @@
 
             getAnalysisFeatureData() {
                 this.markAnalysisFeatureCompleted("whole");
-                this.markAnalysisFeatureCompleted("meta");
+                this.markAnalysisFeatureCompleted("metadata");
                 this.markAnalysisFeatureCompleted("metrics");
+                this.markAnalysisFeatureCompleted("keywords");
+                this.markAnalysisFeatureCompleted("partial");
+                this.markAnalysisFeatureCompleted("refs");
             },
 
             markAnalysisFeatureCompleted(analysisFeature) {
@@ -120,7 +167,7 @@
                 // corresponding content section
                 const analysisTab = analysisFeature + "AnalysisTab"
                 const loadingIcon = analysisFeature + "LoadingIcon"
-                //console.log(this.$refs[analysisTab]);
+
                 this.$refs[analysisTab][0].classList.add("completed");
                 this.$refs[loadingIcon][0].$el.classList.add("d-none");
             }

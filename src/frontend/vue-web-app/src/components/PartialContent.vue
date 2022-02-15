@@ -1,10 +1,14 @@
 <template>
-    <h1>Partial Paper Summarisation</h1>
+    <p>{{ content }}</p>
 </template>
 
 <script>
 export default {
-    name: "PartialContent"
+    name: "PartialContent",
+
+    props: {
+        content: String
+    }
 };
 </script>
 

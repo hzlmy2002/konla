@@ -1,10 +1,14 @@
 <template>
-    <h1>Whole Paper Summarisation</h1>
+    <p>{{ content }}</p>
 </template>
 
 <script>
 export default {
-    name: "WholeContent"
+    name: "WholeContent",
+
+    props: {
+        content: String
+    }
 };
 </script>
 
