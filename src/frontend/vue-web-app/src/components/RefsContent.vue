@@ -1,9 +1,8 @@
 <template>
-    <h2>References</h2>
-    <div v-for="(reference, index) in content" :key="reference" class="ref-section mb-3">
+    <div v-for="(reference, index) in referencesList" :key="reference" class="ref-section mb-3">
         <!-- Index + 1 to start counting from 1 -->
         <h5 class="ref-index">[{{ index+1 }}]</h5>
-        <p class="ref-content">{{ reference }}</p>
+        <p class="ref-content lead">{{ reference }}</p>
     </div>
 </template>
 
@@ -12,6 +11,12 @@ export default {
     name: "ReferencesContent",
     props: {
         content: Object
+    },
+
+    data() {
+        return {
+            referencesList: this.content.refs
+        }
     }
 };
 </script>

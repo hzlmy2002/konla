@@ -8,7 +8,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(frequency, keyword, index) in content" :key="keyword">
+        <tr v-for="(frequency, keyword, index) in keywordsData" :key="keyword">
             <!-- Index + 1 to start counting from 1 -->
             <th scope="row">{{ index+1 }}</th>
             <td>{{ keyword }}</td>
@@ -24,6 +24,12 @@ export default {
 
     props: {
         content: Object
+    },
+
+    data() {
+        return {
+            keywordsData: this.content.keywords
+        }
     }
 };
 </script>

@@ -24,4 +24,10 @@ body {
 .hidden {
     display: none;
 }
+
+.error-text {
+    color: #F44336;
+    font-weight: bold;
+    font-size: 20px;
+}
 </style>

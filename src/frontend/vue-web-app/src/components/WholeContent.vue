@@ -1,5 +1,5 @@
 <template>
-    <p>{{ content }}</p>
+    <p>{{ wholeSummarisation }}</p>
 </template>
 
 <script>
@@ -7,7 +7,13 @@ export default {
     name: "WholeContent",
 
     props: {
-        content: String
+        content: Object
+    },
+
+    data() {
+        return {
+            wholeSummarisation: this.content.summarisation
+        }
     }
 };
 </script>

@@ -25,27 +25,27 @@
                     <!-- Analysis featues checkboxes -->
                     <div class="form-check">
                         <input ref="analysisTool1" class="form-check-input" type="checkbox" name="whole" />
-                        <label class="form-check-label" for="analysisTool1">Whole paper summarisation</label>
+                        <label class="form-check-label" for="analysisTool1">Whole Paper Summarisation</label>
                     </div>
                     <div class="form-check">
                         <input ref="analysisTool2" class="form-check-input" type="checkbox" name="partial" />
-                        <label class="form-check-label" for="analysisTool2">Partial paper summarisation</label>
+                        <label class="form-check-label" for="analysisTool2">Partial Paper Summarisation</label>
                     </div>
                     <div class="form-check">
-                        <input ref="analysisTool3" class="form-check-input" type="checkbox" name="keyword" />
-                        <label class="form-check-label" for="analysisTool3">Keyword extraction</label>
+                        <input ref="analysisTool3" class="form-check-input" type="checkbox" name="keywords" />
+                        <label class="form-check-label" for="analysisTool3">Keyword Extraction</label>
                     </div>
                     <div class="form-check">
                         <input ref="analysisTool4" class="form-check-input" type="checkbox" name="refs" />
-                        <label class="form-check-label" for="analysisTool4">Extract references</label>
+                        <label class="form-check-label" for="analysisTool4">Extract References</label>
                     </div>
                     <div class="form-check">
-                        <input ref="analysisTool5" class="form-check-input" type="checkbox" name="meta" />
-                        <label class="form-check-label" for="analysisTool5">Extract metadata</label>
+                        <input ref="analysisTool5" class="form-check-input" type="checkbox" name="metadata" />
+                        <label class="form-check-label" for="analysisTool5">Extract Metadata</label>
                     </div>
                     <div class="form-check">
                         <input ref="analysisTool6" class="form-check-input" type="checkbox" name="metrics" />
-                        <label class="form-check-label" for="analysisTool6">Calculate metrics</label>
+                        <label class="form-check-label" for="analysisTool6">Calculate Metrics</label>
                     </div>
 
                     <!-- Set checkSelection(num) argument to the number of featues -->
@@ -77,6 +77,7 @@
                     right: 0,
                     left: 0,
                 },
+
                 dragDropBackgroundColor: "#EEEEEE",
                 dragDropOutlineOffset: "-10px",
 
@@ -88,9 +89,9 @@
                 analysisFeatures: {
                     "whole": 0,
                     "partial": 0,
-                    "keyword": 0,
+                    "keywords": 0,
                     "refs": 0,
-                    "meta": 0,
+                    "metadata": 0,
                     "metrics": 0,
                 }
              }
@@ -233,12 +234,6 @@
     .upload-text {
         color: #616161;
         font-weight: bold;
-    }
-
-    .error-text {
-        color: #F44336;
-        font-weight: bold;
-        font-size: 20px;
     }
 
     .drag-drop-section {
