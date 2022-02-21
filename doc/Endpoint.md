@@ -47,7 +47,7 @@ https://konla.thinktank007.com/api/v1/
 
 * binary: POST the content directly, endpoint is /api/v1/upload/binary
 
-* url: Using html form with key "url=". E.g. "url=https://ucl.ac.uk/cs/shapes.pdf". Endpoint is /api/v1/upload/url.
+* url: Using html form with key "link=". E.g. "/api/v1/upload/url?link=https://ucl.ac.uk/cs/shapes.pdf". Endpoint is /api/v1/upload/url.
 
 **Response**: 
 
