@@ -1,3 +1,4 @@
+from time import time
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
@@ -13,15 +14,27 @@ from pathlib import Path
 import json
 import os
 
+import time
+
+from django.core.cache import cache
+
 # Create your views here.
 
-def index(request):
-    if "times" not in request.session:
-        request.session["times"] = 0
-        return HttpResponse("Hello World!")
+def testSessionInThread(checksum):
+    if cache.get(checksum)==None:
+        cache.set(checksum,0,timeout=300)
     else:
-        request.session["times"] += 1
-        return HttpResponse("Hello World! {}".format(request.session["times"]))
+        cache.incr(checksum)
+
+def stat(request):
+    return HttpResponse("{}".format(cache.get("1")))
+
+def index(request):
+    for i in range(100):
+        testSessionInThread("1")
+        time.sleep(1)
+
+    return HttpResponse("Hello, world. You're at the index.")
 
 @csrf_exempt
 def acceptFile(request):
