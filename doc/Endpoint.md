@@ -14,13 +14,16 @@ https://konla.thinktank007.com/api/v1/
          |       |--- url
          |       |--- start
          |
-         |--- summarization 
+         |--- summarisation 
          |          |--- whole
          |          |--- partial
          |
-         |--- keyword
+         |--- keywords
          |
          |--- info
+	 |	|--- refs
+	 |	|--- metadata
+	 |	|--- metrics
          |
          |--- images
          |
@@ -32,7 +35,7 @@ https://konla.thinktank007.com/api/v1/
 
 **Endpoint**: /api/v1/upload
 
-**Description**: The upload api is used for uploading binaries like pdf or images. The user can also submit an url so that the server can download and analyze it. 
+**Description**: The upload api is used for uploading binaries like pdf or images. The user can also submit an url so that the server can download and analyse it. 
 
 **Methods**: POST
 
@@ -44,18 +47,18 @@ https://konla.thinktank007.com/api/v1/
 
 * binary: POST the content directly, endpoint is /api/v1/upload/binary
 
-* url: Using html form with key "url=". E.g. "url=https://ucl.ac.uk/cs/shapes.pdf". Endpoint is /api/v1/upload/url.
+* url: Using html form with key "link=". E.g. "/api/v1/upload/url?link=https://ucl.ac.uk/cs/shapes.pdf". Endpoint is /api/v1/upload/url.
 
 **Response**: 
 
 ```json
 {
-    "success":true,
-    "errors":[],
-    "messages":[],
-    "result":{
-    	"sha256":"5c061a8549a38daee917491da054ad37c3edf8dd06656c5e0743a1f4dfb42f5a",
-    	"text":"content of the paper"
+    "success": true,
+    "errors": [],
+    "messages": [],
+    "result": {
+    	"sha256": "5c061a8549a38daee917491da054ad37c3edf8dd06656c5e0743a1f4dfb42f5a",
+    	"text": "content of the paper"
     }
 }
 ```
@@ -70,9 +73,9 @@ https://konla.thinktank007.com/api/v1/
 
 **Parameters** (For all the following parameters they are all either 0 or 1,where 0 represents disabled and 1 represents enabled):
 
-* whole: Control whether enable whole summarization
-* partial: Control whether enable partial summarization
-* keyword: Control whether enable keyword extraction
+* whole: Control whether enable whole summarisation
+* partial: Control whether enable partial summarisation
+* keywords: Control whether enable keywords extraction
 * refs: Control whether enable references extraction
 * meta: Control whether enable meta data extraction
 * metrics: Control whether enable metrics calculation
@@ -82,29 +85,25 @@ https://konla.thinktank007.com/api/v1/
 Request body:
 
 ```
-whole=1&partial=1&keyword=1&refs=1&meta=1&metrics=1
+whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 ```
 
 **Response**:
 
 ```json
 {
-    "success":true,
-    "errors":[],
-    "messages":[],
-    "result":{}
+    "success": true,
+    "errors": [],
+    "messages": [],
+    "result": {}
 }
 ```
 
+### Whole Summarisation
 
+**Endpoint**:/api/v1/summarisation/whole
 
-
-
-### Whole Summarization
-
-**Endpoint**:/api/v1/summarization/whole
-
-**Description**: The whole summarization function is used to get summarized paper.
+**Description**: The whole summarisation function is used to get summarised paper.
 
 **Methods**: GET
 
@@ -120,26 +119,26 @@ whole=1&partial=1&keyword=1&refs=1&meta=1&metrics=1
 
 ```json
 {
-	"success":true,
-    "errors":[],
-    "messages":[],
-    "result":{
-    	"summarization":"Summarized paper content"
-    }
+	"success": true,
+ 	"errors": [],
+    	"messages": [],
+    	"result": {
+    		"summarisation": "Whole summarised paper content"
+    	}
 }
 ```
 
 
 
-### Partial Summarization
+### Partial Summarisation
 
-**Endpoint**: /api/v1/summarization/partial
+**Endpoint**: /api/v1/summarisation/partial
 
 **Parameters**:
 
 * TBC
 
-**Description**: The partial summarization function is used to summarize the paragraphs of the paper.
+**Description**: The partial summarisation function is used to summarise the paragraphs of the paper.
 
 **Methods**: GET
 
@@ -149,13 +148,20 @@ whole=1&partial=1&keyword=1&refs=1&meta=1&metrics=1
 
 **Response**:
 
-```
-TBC
+```json
+{
+	"success": true,
+ 	"errors": [],
+    	"messages": [],
+    	"result": {
+    		"summarisation": "Partial summarised paper content"
+    	}
+}
 ```
 
-### Keyword Extraction
+### Keywords Extraction
 
-**Endpoint**: /api/v1/keyword
+**Endpoint**: /api/v1/keywords
 
 **Description**: This api return a list of most frequent keywords with their occurrences.
 
@@ -169,26 +175,28 @@ TBC
 
 **Request**:
 
-* get https://konla.thinktank007.com/api/v1/keyword?max=10&ignorecase=0&extractlemma=0
+* get https://konla.thinktank007.com/api/v1/keywords?max=10&ignorecase=0&extractlemma=0
 
 **Response**:
 
 ```
 {
-	"success":true,
-    "errors":[],
-    "messages":[],
-    "result":{
-    	"keywords":{"A":10,"b":6,"C":"3"}
-    }
+	"success": true,
+    	"errors": [],
+    	"messages": [],
+    	"result": {
+    		"keywords": {"Hello": 10, "World": 6, "KONLA": "3"}
+    	}
 }
 ```
 
-### Information
+## Information
 
-**Endpoint**: /api/v1/info
+### References
 
-**Description**: This api returns the information of the paper and the pdf file. Note, if one feature has not been enabled, this api will return an empty value
+**Endpoint**: /api/v1/info/refs
+
+**Description**: This API returns the information of extracted references in the paper.
 
 **Methods**: GET
 
@@ -198,34 +206,92 @@ TBC
 
 **Request**:
 
-* get https://konla.thinktank007.com/api/v1/info
-* Enabled Features: references, meta data, metrics (all)
+* get https://konla.thinktank007.com/api/v1/info/refs
 
 **Response**:
 
 ```
 {
-	"success":true,
-    "errors":[],
-    "messages":[],
-    "result":{
-    	"refs":["ref1","ref2"],
-    	"metadata":{
-    				"Author": "Nikhil Parasaram; Earl T. Barr; Sergey Mechtaev", 
-    				"Creator": "Appligent AppendPDF Pro 5.5", 
-    				"Producer": "pdfTeX-1.40.21; modified using iText® 7.1.16 ©2000-2021 iText Group NV (IEEE; licensed version)", 
-    				"Subject": "IEEE Transactions on Software Engineering; ;PP;99;10.1109/TSE.2021.3124323", 
-    				"Title": "Trident: Controlling Side Effects in Automated Program Repair"
-    				},
-    	"authors":["Nikhil Parasaram", "Earl T. Barr", "Sergey Mechtaev"],
-    	"metrics":{
-    		"wordcount":1920,
-    		"readingtime":"120", # unit: seconds
-    		"speakingtime":"243"
+	"success": true,
+    	"errors": [],
+    	"messages": [],
+    	"result": {
+    		"refs": ["ref1", "ref2"]
     	}
     }
 }
 ```
+
+### Metadata
+
+**Endpoint**: /api/v1/info/metadata
+
+**Description**: This API returns the metadata from the paper. This includes authors, title, and other file information
+
+**Methods**: GET
+
+**Parameters**:
+
+* None
+
+**Request**:
+
+* get https://konla.thinktank007.com/api/v1/info/metadata
+
+**Response**:
+
+```
+{
+	"success": true,
+    	"errors": [],
+    	"messages": [],
+    	"result": {
+    		
+    		"metadata": {
+			"authors": ["Nikhil Parasaram", "Earl T. Barr", "Sergey Mechtaev"],
+    			"creator": "Appligent AppendPDF Pro 5.5", 
+    			"producer": "pdfTeX-1.40.21; modified using iText® 7.1.16 ©2000-2021 iText Group NV (IEEE; licensed version)", 
+    			"subject": "IEEE Transactions on Software Engineering; ;PP;99;10.1109/TSE.2021.3124323", 
+    			"title": "Title Of Research Paper"
+    		},
+    	}
+}
+```
+
+### Metrics
+
+**Endpoint**: /api/v1/info/metrics
+
+**Description**: This API returns the metrics calculated from the text. This includes character count, word count, reading and speaking times.
+
+**Methods**: GET
+
+**Parameters**:
+
+* None
+
+**Request**:
+
+* get https://konla.thinktank007.com/api/v1/info/metrics
+
+**Response**:
+
+```
+{
+	"success": true,
+    	"errors": [],
+    	"messages": [],
+    	"result": {
+    		"metrics": {
+    			"wordCount": 1920,
+    			"readingTime": 120,
+    			"speakingTime": 243
+    		}
+    	}
+}
+```
+
+
 
 ### Images
 
@@ -253,7 +319,7 @@ TBC
 
 **Endpoint**: /api/v1/status/process
 
-**Description**: Return the status of each task, where 0 represents not completed and 1 represents completed. -1 represents feature not enabled.
+**Description**: Return the status of each task.
 
 **Methods**: GET
 
@@ -264,24 +330,28 @@ TBC
 **Request**:
 
 * get  https://konla.thinktank007.com/api/v1/info/process
-* Disabled partial summarization
+* Disabled partial summarisation
 
 **Response**:
 
+* -1 - Feature not selected
+* 0 - Feature not completed yet
+* 1 - Feature completed
+
 ```
 {
-	"success":true,
-    "errors":[],
-    "messages":[],
-    "result":{
-    	"whole":0,
-    	"partial":-1,
-    	"keyword":1,
-    	"refs":1,
-    	"meta":1,
-    	"metrics":1,
-    	# TBC: images
-    }
+	"success": true,
+    	"errors": [],
+    	"messages": [],
+    	"result": {
+		"whole": 0,
+		"partial": -1,
+		"keywords": 1,
+		"refs": 1,
+		"meta": 1,
+		"metrics": 1,
+		# TBC: images
+    	}
 }
 ```
 
