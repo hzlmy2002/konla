@@ -53,7 +53,7 @@ https://konla.thinktank007.com/api/v1/
 
 ```json
 {
-    "success": true,
+    "status": 1, # -1 means incomplete, 0 means failed, 1 means completed and success
     "errors": [],
     "messages": [],
     "result": {
@@ -92,7 +92,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```json
 {
-    "success": true,
+    "status": 1,
     "errors": [],
     "messages": [],
     "result": {}
@@ -119,7 +119,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```json
 {
-	"success": true,
+	"status": 1,
  	"errors": [],
     	"messages": [],
     	"result": {
@@ -150,7 +150,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```json
 {
-	"success": true,
+	"status": 1,
  	"errors": [],
     	"messages": [],
     	"result": {
@@ -181,7 +181,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```
 {
-	"success": true,
+	"status": 1,
     	"errors": [],
     	"messages": [],
     	"result": {
@@ -212,7 +212,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```
 {
-	"success": true,
+	"success": 1,
     	"errors": [],
     	"messages": [],
     	"result": {
@@ -242,7 +242,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```
 {
-	"success": true,
+	"success": 1,
     	"errors": [],
     	"messages": [],
     	"result": {
@@ -278,7 +278,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```
 {
-	"success": true,
+	"success": 1,
     	"errors": [],
     	"messages": [],
     	"result": {
@@ -340,7 +340,7 @@ TBC
 
 ```
 {
-	"success": true,
+	"status": 1,
     	"errors": [],
     	"messages": [],
     	"result": {
