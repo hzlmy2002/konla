@@ -17,6 +17,7 @@ class PaperProcessor():
         return wf.getWordFrequency()
 
     def metaData(self) -> dict:
+        self.metadata["author"]=self.getAuthor()
         return self.metadata
 
     def getAuthor(self) -> List[str]:
@@ -45,7 +46,6 @@ class PaperProcessor():
 def test():
     pp=PaperProcessor("typestudy.pdf")
     print(pp.wordFrequency(max=20,useLemma=True))
-    print(pp.getAuthor())
     print(pp.wordCount())
     print(pp.metaData())
     print(pp.metrics())

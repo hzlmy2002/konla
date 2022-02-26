@@ -19,9 +19,9 @@ class PDFHelper():
             pdf=PyPDF2.PdfFileReader(f)
             info=pdf.getDocumentInfo()
         data={}
-        data["Author"]=info.author
-        data["Creator"]=info.creator
-        data["Producer"]=info.producer
-        data["Subject"]=info.subject
-        data["Title"]=info.title
+        data["author"]=""
+        data["creator"]=info.creator if info.creator else ""
+        data["producer"]=info.producer if info.producer else ""
+        data["subject"]=info.subject if info.subject else ""
+        data["title"]=info.title if info.title else ""
         return data

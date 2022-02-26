@@ -54,3 +54,15 @@ class Ref():
         self.getRefRegion()
         self.parseRef()
         return self.refs
+
+
+def test():
+    nlp=spacy.load("en_core_web_trf")
+    with open("/tmp/typestudy.txt") as file:
+        text=file.read()
+    doc=nlp(text)
+    ref=Ref(doc,nlp)
+    r=ref.run()
+    pass
+
+#test()
