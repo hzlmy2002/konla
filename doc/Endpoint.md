@@ -212,7 +212,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```
 {
-	"success": 1,
+	"status": 1,
     	"errors": [],
     	"messages": [],
     	"result": {
@@ -242,7 +242,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```
 {
-	"success": 1,
+	"status": 1,
     	"errors": [],
     	"messages": [],
     	"result": {
@@ -278,7 +278,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 ```
 {
-	"success": 1,
+	"status": 1,
     	"errors": [],
     	"messages": [],
     	"result": {
