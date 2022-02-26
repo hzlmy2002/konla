@@ -1,27 +1,27 @@
 from typing import List
 import spacy
-import sys
 from .wordFrequency import wordFrequency
-sys.path.append("../")
 from .PDFHelper.PDFHelper import PDFHelper
 from .refs import Ref
-
+from .authors import AuthorParser
 
 class PaperProcessor():
     def __init__(self,path:str) -> None:
         text=PDFHelper.pdf2text(path)
         self.metadata=PDFHelper.getMetaData(path)
-        self.doc=spacy.load("en_core_web_trf")(text)
+        self.nlpTRF=spacy.load("en_core_web_trf")
+        self.doc=self.nlpTRF(text)
     
     def wordFrequency(self,max=10,ignoreCase=False,useLemma=False) -> dict:
         wf=wordFrequency(self.doc,max,ignoreCase,useLemma)
         return wf.getWordFrequency()
 
-    def MetaData(self) -> dict:
+    def metaData(self) -> dict:
         return self.metadata
 
     def getAuthor(self) -> List[str]:
-        pass
+        ap=AuthorParser(self.doc)
+        return ap.run()
 
     def wordCount(self)-> int:
         count=0
@@ -39,13 +39,16 @@ class PaperProcessor():
         return result
 
     def references(self)->List[str]:
-        refs=Ref(self.doc)
+        refs=Ref(self.doc,self.nlpTRF)
         return refs.run()
 
 def test():
-    pp=PaperProcessor("shapes.pdf")
+    pp=PaperProcessor("typestudy.pdf")
     print(pp.wordFrequency(max=20,useLemma=True))
-    print(pp.MetaData())
+    print(pp.getAuthor())
+    print(pp.wordCount())
+    print(pp.metaData())
     print(pp.metrics())
+    print(pp.references())
 
 #test()

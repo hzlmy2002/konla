@@ -20,13 +20,3 @@ class AuthorParser():
     def run(self):
         self.getConsecutiveNames()
         return self.names
-
-
-def test():
-    doc=pickle.load(open("doc2.pkl","rb"))
-    ap=AuthorParser(doc)
-    ap.getConsecutiveNames()
-    pass
-
-
-test()

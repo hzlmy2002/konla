@@ -2,10 +2,10 @@ import spacy
 import pickle
 
 class Ref():
-    def __init__(self,doc):
+    def __init__(self,doc,nlp):
         self.doc=doc
         self.refs=[]
-        self.nlp=spacy.load("en_core_web_trf")
+        self.nlp=nlp
         self.tightRules=[
             {"IS_SPACE":True,"OP":"*"},
             {"IS_PUNCT":True,"OP":"?"},
@@ -54,19 +54,3 @@ class Ref():
         self.getRefRegion()
         self.parseRef()
         return self.refs
-            
-            
-
-
-
-
-def test():
-    doc=pickle.load(open("doc3.pkl","rb"))
-    r=Ref(doc)
-    r.run()
-    print(r.refRegion)
-    print(r.refs)
-    pass
-
-#test()
-    

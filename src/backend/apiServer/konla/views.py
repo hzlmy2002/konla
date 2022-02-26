@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.files import File
 from django.views.decorators.csrf import csrf_exempt
 
-from konla.PaperProcessor.PaperProcessor import PaperProcessor
+from .PaperProcessor.PaperProcessor import PaperProcessor
 from .PaperProcessor.PDFHelper.PDFHelper import PDFHelper
 import requests
 from .models import PaperFile
@@ -15,24 +15,26 @@ import json
 import os
 
 import time
-
+from threading import Thread
 from django.core.cache import cache
 
 # Create your views here.
 
 def testSessionInThread(checksum):
-    if cache.get(checksum)==None:
-        cache.set(checksum,0,timeout=300)
-    else:
-        cache.incr(checksum)
+    for i in range(100):
+        if cache.get(checksum)==None:
+            cache.set(checksum,0,timeout=3000)
+        else:
+            cache.incr(checksum)
+        time.sleep(1)
 
 def stat(request):
     return HttpResponse("{}".format(cache.get("1")))
 
 def index(request):
-    for i in range(100):
-        testSessionInThread("1")
-        time.sleep(1)
+    thread=Thread(target=testSessionInThread,args=("1",))
+    thread.start()
+        
 
     return HttpResponse("Hello, world. You're at the index.")
 
