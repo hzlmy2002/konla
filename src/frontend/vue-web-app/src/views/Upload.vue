@@ -7,14 +7,14 @@
             <div class="p-5 drag-drop-section" :style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
                 <div class="text-center"><span class="material-icons upload-icon">description</span></div>
                 <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
-                <p class="text-center lead error-text" :class="{ hidden: isHiddenUploadError }">File uploaded is not a PDF or an image</p>
+                <p class="text-center lead error-text" :class="{ 'd-none': isHiddenUploadError }">File uploaded is not a PDF or an image</p>
             </div>
 
             <form action="/" method="post" enctype="multipart/form-data">
-                <input ref="fileInput" type="file" name="fileInput" class="hidden" @change="updateUploadSection" />
-                <div class="mt-5 py-4 px-5 analysis-selection-section" v-bind:class="{ hidden: isHiddenAnalysis }">
+                <input ref="fileInput" type="file" name="fileInput" class="d-none" @change="updateUploadSection" />
+                <div class="mt-5 py-4 px-5 analysis-selection-section" v-bind:class="{ 'd-none': isHiddenAnalysis }">
                     <p class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
-                    <p class="text-center error-text" v-bind:class="{ hidden: isHiddenRequestError }"><strong>Error: Failed to send request to server</strong></p>
+                    <p class="text-center error-text" v-bind:class="{ 'd-none': isHiddenRequestError }"><strong>Error: Failed to send request to server</strong></p>
                     <h5><strong>Select analysis features for the paper:</strong></h5>
                     <!-- Analysis features checkboxes -->
                     <div class="form-check">
@@ -198,7 +198,7 @@
                     body: JSON.stringify(this.analysisFeatures)
                 };
 
-                const URL = "http://localhost:5000/analysis";
+                const URL = "http://localhost:5000/api/v1/upload";
                 const response = await fetch(URL, CONFIG);
 
                 // Check response is successful

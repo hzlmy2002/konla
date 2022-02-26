@@ -1,21 +1,37 @@
 <template>
     <PageHeader />
     <div class="container-fluid mt-4">
-        <p class="text-center error-text" v-bind:class="{ hidden: isHiddenRequestError }"><strong>Error: Failed to get request from server</strong></p>
         <div class="row mb-5 px-5">
             <div class="col-lg-3 col-md-4 col-sm-12 mb-md-0 mb-5 px-4 py-3 sidebar">
                 <div v-for="(isSelected, feature) in analysisFeaturesSelected" :key="feature">
                     <!-- If feature is selected (its value is 1) -->
                     <div :ref="feature + 'AnalysisTab'"
                          class="row mb-md-4 mb-3 px-2 py-3 align-items-center analysis-tab"
-                         :class="{'completed': analysisFeaturesCompleted.includes(feature), 'active': analysisTabSelected === feature  }"
+                         :class="{
+                             'completed-tab': analysisFeaturesCompleted.includes(feature),
+                             'error-tab': analysisFeaturesError.includes(feature),
+                             'active': analysisTabSelected === feature  }"
+
                          v-if="isSelected" @click="
-                            analysisFeaturesCompleted.includes(feature)
+                            analysisFeaturesCompleted.includes(feature) ||
+                            analysisFeaturesError.includes(feature)
                             ? analysisTabSelected = feature : null">
+
                         <h6 class="col-9 analysis-feature-label" @click="extractTextSectionShow">
                             {{ this.analysisFeaturesMap[feature] }}
                         </h6>
-                        <LoadingIcon :ref="feature + 'LoadingIcon'" class="col" />
+
+                        <!-- Hide loading icon if feature is completed or has errors -->
+                        <LoadingIcon :ref="feature + 'LoadingIcon'" class="col"
+                            :class="{
+                                'd-none': analysisFeaturesCompleted.includes(feature) ||
+                                analysisFeaturesError.includes(feature)}" />
+
+                        <!-- Hide error icon if feature is not in error list -->
+                        <span :ref="feature + 'ErrorIcon'" class="col material-icons"
+                            :class="{'d-none': !analysisFeaturesError.includes(feature)}">
+                            error
+                        </span>
                     </div>
                 </div>
             </div>
@@ -65,7 +81,7 @@
 
         data() {
             return {
-                getStatusLoop: null,
+                mainloop: null,
 
                 footerStyle: {
                     position: "absolute",
@@ -73,8 +89,6 @@
                     right: 0,
                     left: 0,
                 },
-
-                isHiddenRequestError: true,
 
                 analysisFeaturesMap: {
                     "whole": "Whole Paper Summarisation",
@@ -85,68 +99,25 @@
                     "metrics": "Calculate Metrics",
                 },
 
+                // The set of features selected during upload
                 analysisFeaturesSelected: {},
 
+                // The current tab that is active
                 analysisTabSelected: "",
 
+                // The features that haven't returned data yet
                 analysisFeaturesNotCompleted: [],
 
+                // The features where data has been received
                 analysisFeaturesCompleted: [],
-                analysisFeaturesContent: {}
-                // analysisFeaturesContent: {
-                //     "whole": "Whole summarised content",
-                //     "partial": "Partial summarised content",
-                //     "keywords": {"A": 10, "B": 6, "C": 3},
-                //     "refs": ["Mitchell, J.A. ‘How citation changed the research \
-                //              world’, The Mendeley, 62(9), p70-81",
-                //
-                //              "Mitchell, J.A. (2017) ‘Changes to citation formats \
-                //              shake the research world’, The Mendeley Telegraph \
-                //              (Weekend edition), 6 July, pp.9-12 pp.9-12 pp.9-12",
-                //
-                //              "Troy B.N. (2015) ‘Harvard citation rules’ in \
-                //              Williams, S.T. (ed.) A guide to citation rules. \
-                //              New York: NY Publishers, pp. 34-89",
-                //
-                //              "Mitchell, J.A. ‘How citation changed the research \
-                //               world’, The Mendeley, 62(9), p70-81",
-                //
-                //               "Mitchell, J.A. (2017) ‘Changes to citation formats \
-                //               shake the research world’, The Mendeley Telegraph \
-                //               (Weekend edition), 6 July, pp.9-12 pp.9-12 pp.9-12",
-                //
-                //               "Troy B.N. (2015) ‘Harvard citation rules’ in \
-                //               Williams, S.T. (ed.) A guide to citation rules. \
-                //               New York: NY Publishers, pp. 34-89"],
-                //
-                //     "metadata": {
-                //         "authors": ["Bob B", "Alice A", "Bob B", "Elly E", "David D"],
-                //         "creator": "",
-                //         "producer": "",
-                //         "subject": "Subject of research paper",
-                //         "title": "Title Of Research Paper"
-                //     },
-                //
-                //     "metrics": {
-                //         "wordcount": 1920,
-                //         "readingtime": "120",
-                //         "speakingtime": "243"
-                //     },
-                //}
-            }
-        },
 
-        watch: {
-            // Watch for changes to the array
-            analysisFeaturesNotCompleted: {
-                handler: function(array) {
-                    if (array.length === 0) {
-                        // Stop get status loop
-                        clearInterval(this.getStatusLoop);
-                    }
-                },
+                // The features which returned an error
+                analysisFeaturesError: [],
 
-                deep: true  // Checks array element changes
+                // The data from each feature
+                analysisFeaturesContent: {},
+
+                analysisFeaturesErrors: {}
             }
         },
 
@@ -160,9 +131,9 @@
                 const analysisFeaturesObject = JSON.parse(this.analysisFeaturesJSONString);
                 this.analysisFeaturesSelected = analysisFeaturesObject;
 
-                // Populate list of not completed features
+                // Initialise list of not completed features
                 for (const [feature, value] of Object.entries(analysisFeaturesObject)) {
-                    // If analysis feature is selected
+                    // Check if analysis feature is selected
                     if (value === 1) {
                         this.analysisFeaturesNotCompleted.push(feature);
                     }
@@ -172,9 +143,24 @@
 
         mounted() {
             // Call function continuously
-            this.getStatusLoop = window.setInterval(() => {
-                this.getAnalysisFeaturesStatus();
+            this.mainloop = window.setInterval(() => {
+                console.log("Fetching data...");
+                this.getAnalysisFeaturesData();
             }, 1000);
+        },
+
+        watch: {
+            // Watch for changes to the array
+            analysisFeaturesNotCompleted: {
+                handler: function(array) {
+                    if (array.length === 0) {
+                        // Stop main loop
+                        clearInterval(this.mainloop);
+                    }
+                },
+
+                deep: true  // Checks changes to array element s
+            }
         },
 
         methods: {
@@ -182,27 +168,27 @@
                this.$router.push('/');
             },
 
-            async getAnalysisFeaturesStatus() {
-                /*
-                Fetches the status of each analysis feature selected and
-                if a feature is completed, then it is moved into the completed
-                list
-                */
+            // async getAnalysisFeaturesStatus() {
+            //     /*
+            //     Fetches the status of each analysis feature selected and
+            //     if a feature is completed, then it is moved into the completed
+            //     list
+            //     */
+            //
+            //     const URL = "http://localhost:5000/api/v1/status/process";
+            //     const getObject = await fetch(URL);
+            //     const response = await getObject.json();
+            //
+            //     if (response.success === true) {
+            //         const result = response.result;
+            //         this.markAnalysisFeaturesAsCompleted(result);
+            //     } else {
+            //         // Show request error message
+            //         this.isHiddenRequestError = false;
+            //     }
+            // },
 
-                const URL = "http://localhost:5000/api/v1/status/process";
-                const getObject = await fetch(URL);
-                const response = await getObject.json();
-
-                if (response.success === true) {
-                    const result = response.result;
-                    this.markAnalysisFeaturesAsCompleted(result);
-                } else {
-                    // Show request error message
-                    this.isHiddenRequestError = false;
-                }
-            },
-
-            async getAnalysisFeaturesData(feature) {
+            async getAnalysisFeaturesData() {
                 /*
                 Fetches the data of each analysis feature process
                 */
@@ -216,46 +202,89 @@
                     "metrics": "http://localhost:5000/api/v1/info/metrics",
                 }
 
-                const URL = URL_MAP[feature];
-                const getObject = await fetch(URL);
-                const response = await getObject.json();
+                for (const feature of this.analysisFeaturesNotCompleted) {
+                    const URL = URL_MAP[feature];
 
-                if (response.success === true) {
-                    const result = response.result;
-                    // Sets the result as the content for that feature
-                    this.analysisFeaturesContent[feature] = result;
-                } else {
-                    // Show request error message
-                    this.isHiddenRequestError = false;
-                }
-            },
+                    const getObject = await fetch(URL);
+                    const response = await getObject.json();
 
-            markAnalysisFeaturesAsCompleted(result) {
-                // Populate list of completed features
-                for (const [feature, value] of Object.entries(result)) {
-                    // If analysis feature is completed
-                    if (value === 1) {
-                        const indexOfFeature = this.analysisFeaturesNotCompleted.indexOf(feature);
-                        if (indexOfFeature > -1) {
-                            // Remove feature from not completed array
-                            this.analysisFeaturesNotCompleted.splice(indexOfFeature, 1);
-                            this.analysisFeaturesCompleted.push(feature);
-                            this.markAnalysisTabCompleted(feature);
-                            this.getAnalysisFeaturesData(feature);
+                    switch (response.success) {
+                        // Feature completed with errors
+                        case 0: {
+                            const errors = response.errors;
+                            // Mark the analysis feature tab to indicate an error
+                            this.markAnalysisFeatureAsError(feature);
+                            // Sets the content to be an object containing the errors
+                            this.analysisFeaturesContent[feature] = {"errors": errors};
+                            break;
+                        }
+
+                        // Feature completed successfully
+                        case 1: {
+                            const result = response.result;
+                            // Mark the analysis feature tab as completed
+                            this.markAnalysisFeatureAsCompleted(feature);
+                            // Sets the result response as the content for that feature
+                            this.analysisFeaturesContent[feature] = result;
+                            break;
                         }
                     }
                 }
             },
 
-            markAnalysisTabCompleted(analysisFeature) {
-                // Marks the analysis tab as completed and puts the data in the
-                // corresponding content section
-                const analysisTab = analysisFeature + "AnalysisTab"
-                const loadingIcon = analysisFeature + "LoadingIcon"
+            // markAnalysisFeaturesAsCompleted(result) {
+            //     // Populate list of completed features
+            //     for (const [feature, value] of Object.entries(result)) {
+            //         // If analysis feature is completed
+            //         if (value === 1) {
+            //             const indexOfFeature = this.analysisFeaturesNotCompleted.indexOf(feature);
+            //             if (indexOfFeature > -1) {
+            //                 // Remove feature from not completed array
+            //                 this.analysisFeaturesNotCompleted.splice(indexOfFeature, 1);
+            //                 this.analysisFeaturesCompleted.push(feature);
+            //                 this.markAnalysisTabCompleted(feature);
+            //                 this.getAnalysisFeaturesData(feature);
+            //             }
+            //         }
+            //     }
+            // },
+            markAnalysisFeatureAsCompleted(feature) {
+                const indexOfFeature = this.analysisFeaturesNotCompleted.indexOf(feature);
+                if (indexOfFeature > -1) {
+                    // Remove feature from not completed array
+                    this.analysisFeaturesNotCompleted.splice(indexOfFeature, 1);
+                    this.analysisFeaturesCompleted.push(feature);
+                }
+            },
 
-                this.$refs[analysisTab][0].classList.add("completed");
-                this.$refs[loadingIcon][0].$el.classList.add("d-none");
-            }
+            markAnalysisFeatureAsError(feature) {
+                const indexOfFeature = this.analysisFeaturesNotCompleted.indexOf(feature);
+                if (indexOfFeature > -1) {
+                    // Remove feature from not completed array
+                    this.analysisFeaturesNotCompleted.splice(indexOfFeature, 1);
+                    this.analysisFeaturesError.push(feature);
+                }
+            },
+
+            // markAnalysisTabCompleted(analysisFeature) {
+            //     // Marks the analysis tab as completed
+            //     // const analysisTab = analysisFeature + "AnalysisTab"
+            //     const loadingIcon = analysisFeature + "LoadingIcon"
+            //
+            //     // this.$refs[analysisTab][0].classList.add("completed-tab");
+            //     this.$refs[loadingIcon][0].$el.classList.add("d-none");
+            // },
+            //
+            // markAnalysisTabError(analysisFeature) {
+            //     // Marks the analysis tab as error
+            //     const analysisTab = analysisFeature + "AnalysisTab"
+            //     const loadingIcon = analysisFeature + "LoadingIcon"
+            //     const errorIcon = analysisFeature + "ErrorIcon"
+            //
+            //     this.$refs[analysisTab][0].classList.add("error");
+            //     this.$refs[loadingIcon][0].$el.classList.add("d-none");
+            //     this.$refs[errorIcon][0].$el.classList.remove("d-none");
+            // }
         }
     }
 </script>
@@ -287,17 +316,26 @@
         font-size: 16px;
     }
 
-    .completed {
+    .completed-tab {
         background-color: #8BC34A;
         cursor: pointer;
     }
 
-    .completed:hover {
+    .completed-tab:hover {
         background-color: #7CB342;
     }
 
+    .error-tab {
+        background-color: #F44336;
+        cursor: pointer;
+    }
+
+    .error-tab:hover {
+        background-color: #E53935;
+    }
+
     .active {
-        border: 4px solid #33691E;
+        border: 4px solid #212121;
     }
 
     .analysis-feature-label {

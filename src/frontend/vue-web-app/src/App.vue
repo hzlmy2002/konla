@@ -21,10 +21,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.hidden {
-    display: none;
-}
-
 .error-text {
     color: #F44336;
     font-weight: bold;

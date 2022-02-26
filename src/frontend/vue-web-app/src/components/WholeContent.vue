@@ -1,10 +1,20 @@
 <template>
-    <p>{{ wholeSummarisation }}</p>
+    <div v-if="errors">
+        <ErrorContent  :errors-content="errors" />
+    </div>
+    <div v-else>
+        <p>{{ summary }}</p>
+    </div>
 </template>
 
 <script>
+import ErrorContent from "@/components/ErrorContent.vue";
 export default {
     name: "WholeContent",
+
+    components: {
+        ErrorContent
+    },
 
     props: {
         content: Object
@@ -12,11 +22,9 @@ export default {
 
     data() {
         return {
-            wholeSummarisation: this.content.summarisation
+            summary: this.content.summarisation,
+            errors: this.content.errors
         }
     }
 };
 </script>
-
-<style scoped>
-</style>

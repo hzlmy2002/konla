@@ -20,9 +20,7 @@ app = VueFlask(__name__)
 app.config['UPLOAD_PATH'] = UPLOAD_PATH
 CORS(app)
 
-#api = Api(app)
-
-@app.route("/analysis", methods=["GET", "POST"])
+@app.route("/api/v1/upload", methods=["GET", "POST"])
 def upload():
     if request.method == "POST":
         #print(request.get_json())
@@ -31,8 +29,8 @@ def upload():
 @app.route("/api/v1/summarisation/whole", methods=["GET"])
 def whole_summarisation():
     response = {
-    	"success": True,
-        "errors": [],
+    	"success": 1,
+        "errors": ["Error 1", "Error 2", "Error 3"],
         "messages": [],
         "result": {
         	"summarisation":
@@ -52,8 +50,8 @@ def whole_summarisation():
 @app.route("/api/v1/summarisation/partial", methods=["GET"])
 def partial_summarisation():
     response = {
-    	"success": True,
-        "errors": [],
+    	"success": 1,
+        "errors": ["Error A", "Error B", "Error C"],
         "messages": [],
         "result": {
         	"summarisation":
@@ -73,8 +71,8 @@ def partial_summarisation():
 @app.route("/api/v1/keywords", methods=["GET"])
 def keywords():
     response = {
-    	"success": True,
-        "errors": [],
+    	"success": 1,
+        "errors": ["Error 10", "Error 20", "Error 30"],
         "messages": [],
         "result": {
         	"keywords": {"Hello": 10, "World": 6, "KONLA": 3}
@@ -86,8 +84,8 @@ def keywords():
 @app.route("/api/v1/info/refs", methods=["GET"])
 def refs():
     response = {
-    	"success": True,
-        "errors": [],
+    	"success": 1,
+        "errors": ["Error 100", "Error 200", "Error 300"],
         "messages": [],
         "result": {
         	"refs": [
@@ -121,8 +119,8 @@ def refs():
 @app.route("/api/v1/info/metadata", methods=["GET"])
 def metadata():
     response = {
-    	"success": True,
-        "errors": [],
+    	"success": 1,
+        "errors": ["Error 1K", "Error 2K", "Error 3K"],
         "messages": [],
         "result": {
         	"metadata": {
@@ -140,8 +138,8 @@ def metadata():
 @app.route("/api/v1/info/metrics", methods=["GET"])
 def metrics():
     response = {
-    	"success": True,
-        "errors": [],
+    	"success": 1,
+        "errors": ["Error 1M", "Error 2M", "Error 3M"],
         "messages": [],
         "result": {
         	"metrics": {
@@ -154,23 +152,23 @@ def metrics():
 
     return response
 
-@app.route("/api/v1/status/process", methods=["GET"])
-def process_status():
-    response = {
-    	"success": True,
-        "errors": [],
-        "messages": [],
-        "result": {
-        	"whole": 1,
-        	"partial": 1,
-        	"keywords": 1,
-        	"refs": 1,
-        	"metadata": 1,
-        	"metrics": 1,
-        }
-    }
-
-    return response
+# @app.route("/api/v1/status/process", methods=["GET"])
+# def process_status():
+#     response = {
+#     	"success": 1,
+#         "errors": [],
+#         "messages": [],
+#         "result": {
+#         	"whole": 1,
+#         	"partial": 1,
+#         	"keywords": 1,
+#         	"refs": 1,
+#         	"metadata": 1,
+#         	"metrics": 1,
+#         }
+#     }
+#
+#     return response
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True, host="0.0.0.0")

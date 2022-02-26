@@ -1,20 +1,33 @@
 <template>
-    <p><strong>Words:</strong> {{ wordCount }}</p>
-    <p><strong>Reading Time:</strong> {{ readingTimeFormatted }}</p>
-    <p><strong>Speaking Time:</strong> {{ speakingTimeFormatted }}</p>
+    <div v-if="errors">
+        <ErrorContent  :errors-content="errors" />
+    </div>
+    <div v-else>
+        <p><strong>Words:</strong> {{ wordCount }}</p>
+        <p><strong>Reading Time:</strong> {{ readingTimeFormatted }}</p>
+        <p><strong>Speaking Time:</strong> {{ speakingTimeFormatted }}</p>
+    </div>
 </template>
 
 <script>
+import ErrorContent from "@/components/ErrorContent.vue";
 export default {
     name: "MetricsContent",
+
+    components: {
+        ErrorContent
+    },
 
     props: {
         content: Object
     },
 
     created() {
-        this.formatReadingTime();
-        this.formatSpeakingTime();
+        if (this.errors === undefined) {
+            this.getWordCount();
+            this.formatReadingTime();
+            this.formatSpeakingTime();
+        }
     },
 
     data() {
@@ -22,14 +35,16 @@ export default {
             metricsData: this.content.metrics,
             readingTimeFormatted: 0,
             speakingTimeFormatted: 0,
-            wordCount: this.content.metrics.wordCount
-
-            //readingTimeFormatted: this.formatReadingTime(),
-            //speakingTimeFormatted: this.formatSpeakingTime(),
+            wordCount: 0,
+            errors: this.content.errors
         }
     },
 
     methods: {
+        getWordCount() {
+            this.wordCount = this.metricsData.wordCount;
+        },
+
         formatReadingTime() {
             let readingTimeMinutes = Math.floor(this.metricsData.readingTime / 60);
             let readingTimeSeconds = this.metricsData.readingTime % 60;
