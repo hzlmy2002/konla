@@ -6,4 +6,5 @@ urlpatterns = [
     path("stat",views.stat),
     path("upload/binary",views.uploadFile,name="acceptFile"),
     path("upload/url",views.uploadURL,name="acceptURL"),
+    path("upload/start",views.uploadStart,name="startProcessing"),
 ]

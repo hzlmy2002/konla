@@ -12,6 +12,7 @@ from threading import Thread
 from django.core.cache import cache
 
 from . import uploadingView
+from . import startView
 
 # Create your views here.
 
@@ -43,6 +44,16 @@ def uploadFile(request):
 
 def uploadURL(request):
     response=uploadingView.acceptURL(request)
+    if response["status"] == 1:
+        return HttpResponse(json.dumps(response),content_type="application/json")
+    else:
+        httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
+        httpResponse.status_code=400
+        return httpResponse
+
+@csrf_exempt
+def uploadStart(request):
+    response=startView.startProcessing(request)
     if response["status"] == 1:
         return HttpResponse(json.dumps(response),content_type="application/json")
     else:

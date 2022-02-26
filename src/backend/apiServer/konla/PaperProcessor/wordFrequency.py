@@ -2,9 +2,9 @@ import collections
 import spacy
 
 class wordFrequency():
-    def __init__(self,doc:"spacy.tokens.doc.Doc",max=10,ignoreCase=False,useLemma=False) -> None:
+    def __init__(self,doc:"spacy.tokens.doc.Doc",maxNumber=10,ignoreCase=False,useLemma=False) -> None:
         self.doc = doc
-        self.max = max
+        self.max = maxNumber if maxNumber <= 100 else 100
         self.ignoreCase = ignoreCase
         self.useLemma = useLemma
 
