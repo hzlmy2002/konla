@@ -1,19 +1,10 @@
-from ast import keyword
 from django.core.cache import cache
 from .form import selectionForm
 
 from .PaperProcessor.PaperProcessor import PaperProcessor
-from threading import Thread,Lock
+from threading import Thread
 
-
-class Container():
-    def __init__(self,content) -> None:
-        self.ccontent=content
-    def load(self,content):
-        self.ccontent=content
-    def get(self):
-        return self.ccontent
-
+import time
 
 def startProcessing(request):
     try:
@@ -34,6 +25,7 @@ def startProcessing(request):
         if request.session["uploadedFile"] == None:
             raise Exception("No file uploaded!")
         checksum=request.session["paperFingerprint"]
+        cache.set(checksum+"_featureTable",featureTable,timeout=3600)
         threadMain=Thread(target=mainThread,args=(request.session["uploadedFile"],checksum,featureTable))
         threadMain.start()
 
@@ -55,10 +47,8 @@ def startProcessing(request):
         return response
 
 def mainThread(path,prefix,featureTable):
-    cache.set(prefix+"_initialized",0)
+    cache.set(prefix+"_initialized",False,timeout=3600)
     pp=PaperProcessor(path)
-
-    print("Init done")
 
     if featureTable["enableWholeSummarisation"]:
         pass
@@ -70,29 +60,25 @@ def mainThread(path,prefix,featureTable):
         pass
     if featureTable["enableKeywords"]:
         keyword=Thread(target=keywordThread,args=(prefix,pp))
-        cache.set(prefix+"_keywords_completed",0)
+        cache.set(prefix+"_keywords_completed",False,timeout=3600) # 0: in progress, 1: completed, -1: disabled
         keyword.start()
-    else:
-        cache.set(prefix+"_keywords_completed",-1)
+
     if featureTable["enableRefs"]:
         refs=Thread(target=referencesThread,args=(prefix,pp))
-        cache.set(prefix+"_refs_completed",0)
+        cache.set(prefix+"_refs_completed",False,timeout=3600)
         refs.start()
-    else:
-        cache.set(prefix+"_refs_completed",-1)
+    
     if featureTable["enableMeta"]:
         meta=Thread(target=metadataThread,args=(prefix,pp))
-        cache.set(prefix+"_meta_completed",0)
+        cache.set(prefix+"_meta_completed",False,timeout=3600)
         meta.start()
-    else:
-        cache.set(prefix+"_meta_completed",-1)
+    
     if featureTable["enableMetrics"]:
         metrics=Thread(target=metricsThread,args=(prefix,pp))
-        cache.set(prefix+"_metrics_completed",0)
+        cache.set(prefix+"_metrics_completed",False,timeout=3600)
         metrics.start()
-    else:
-        cache.set(prefix+"_metrics_completed",-1)
-    cache.set(prefix+"_initialized",1)
+    
+    cache.set(prefix+"_initialized",True,timeout=3600)
 
     """
     ### debug only, delete before submission
@@ -121,22 +107,23 @@ def keywordThread(prefix,paperProcessor):
         "ignoreCase": ignoreCaseResult,
         "lemma": lemmaResult
     }
-    cache.set(prefix+"_keywords",result)
-    cache.set(prefix+"_keywords_completed",1) # -1 means feature disabled, 0 means feature in progress, 1 means feature completed
+    #time.sleep(60)
+    cache.set(prefix+"_keywords",result,timeout=3600)
+    cache.set(prefix+"_keywords_completed",True,timeout=3600) # -1 means feature disabled, 0 means feature in progress, 1 means feature completed
 
 def referencesThread(prefix,paperProcessor):
     refs=paperProcessor.references()
-    cache.set(prefix+"_refs",refs)
-    cache.set(prefix+"_refs_completed",1)
+    cache.set(prefix+"_refs",refs,timeout=3600)
+    cache.set(prefix+"_refs_completed",True,timeout=3600)
 
 def metadataThread(prefix,paperProcessor):
     meta=paperProcessor.metaData()
-    cache.set(prefix+"_meta",meta)
-    cache.set(prefix+"_meta_completed",1)
+    cache.set(prefix+"_meta",meta,timeout=3600)
+    cache.set(prefix+"_meta_completed",True,timeout=3600)
 
 def metricsThread(prefix,paperProcessor):
     metrics=paperProcessor.metrics()
-    cache.set(prefix+"_metrics",metrics)
-    cache.set(prefix+"_metrics_completed",1)
+    cache.set(prefix+"_metrics",metrics,timeout=3600)
+    cache.set(prefix+"_metrics_completed",True,timeout=3600)
 
 
