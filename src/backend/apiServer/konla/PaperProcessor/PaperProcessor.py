@@ -44,7 +44,7 @@ class PaperProcessor():
         return refs.run()
 
 def test():
-    pp=PaperProcessor("typestudy.pdf")
+    pp=PaperProcessor("/tmp/typestudy.pdf")
     print(pp.wordFrequency(max=20,useLemma=True))
     print(pp.wordCount())
     print(pp.metaData())

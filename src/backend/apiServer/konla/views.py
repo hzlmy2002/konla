@@ -1,3 +1,4 @@
+from urllib import response
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -53,10 +54,28 @@ def keywords(request):
         return httpResponse
 
 def infoRefs(request):
-    pass
+    response=dataProviderView.provideRefs(request)
+    if response["status"] != 0:
+        return HttpResponse(json.dumps(response),content_type="application/json")
+    else:
+        httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
+        httpResponse.status_code=400
+        return httpResponse
 
 def infoMeta(request):
-    pass
+    response=dataProviderView.provideMeta(request)
+    if response["status"] != 0:
+        return HttpResponse(json.dumps(response),content_type="application/json")
+    else:
+        httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
+        httpResponse.status_code=400
+        return httpResponse
 
 def infoMetrics(request):
-    pass
+    response=dataProviderView.provideMetric(request)
+    if response["status"] != 0:
+        return HttpResponse(json.dumps(response),content_type="application/json")
+    else:
+        httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
+        httpResponse.status_code=400
+        return httpResponse
