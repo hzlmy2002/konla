@@ -169,7 +169,7 @@ whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
 
 **Parameters**:
 
-* max: int. This parameter indicates the max number of most frequent key words, should within [1,100].
+* max: int. This parameter indicates the max number of most frequent key words, should within [1,100]. Default value is 100.
 * ignorecase: int. The default value is 0. This parameter indicates whether ignore uppercase. 0 represents not ignore, 1 represents ignore
 * extractlemma: int. The default value is 0. This parameter indicates whether extract the lemmas instead of exact words. 0 represents disable, 1 represents ignore.
 
