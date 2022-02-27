@@ -3,7 +3,15 @@ from django.core.cache import cache
 
 
 def provideKeywords(request):
-    prefix=request.session["paperFingerprint"]
+    try:
+        prefix=request.session["paperFingerprint"]
+    except KeyError:
+        return {
+            "status": 0,
+            "errors": ["No file uploaded!"],
+            "messages": [],
+            "result": {}
+        }
     if cache.get(prefix+"_initialized")==None: # avoid key error
         return {
             "status": 0,
@@ -69,7 +77,15 @@ def provideKeywords(request):
 
 
 def provideRefs(request):
-    prefix=request.session["paperFingerprint"]
+    try:
+        prefix=request.session["paperFingerprint"]
+    except KeyError:
+        return {
+            "status": 0,
+            "errors": ["No file uploaded!"],
+            "messages": [],
+            "result": {}
+        }
     if cache.get(prefix+"_initialized")==None:
         return {
             "status": 0,
@@ -122,7 +138,15 @@ def provideRefs(request):
 
 
 def provideMeta(request):
-    prefix=request.session["paperFingerprint"]
+    try:
+        prefix=request.session["paperFingerprint"]
+    except KeyError:
+        return {
+            "status": 0,
+            "errors": ["No file uploaded!"],
+            "messages": [],
+            "result": {}
+        }
     if cache.get(prefix+"_initialized")==None:
         return {
             "status": 0,
@@ -175,7 +199,15 @@ def provideMeta(request):
 
 
 def provideMetric(request):
-    prefix=request.session["paperFingerprint"]
+    try:
+        prefix=request.session["paperFingerprint"]
+    except KeyError:
+        return {
+            "status": 0,
+            "errors": ["No file uploaded!"],
+            "messages": [],
+            "result": {}
+        }
     if cache.get(prefix+"_initialized")==None:
         return {
             "status": 0,
