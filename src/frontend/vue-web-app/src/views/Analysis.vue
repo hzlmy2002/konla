@@ -1,6 +1,7 @@
 <template>
     <PageHeader />
     <div class="container-fluid mt-4">
+        <p class="text-center error-text" :class="{'d-none': hideAnalysisError}">Error: Analysis process failed to start</p>
         <div class="row mb-5 px-5">
             <div class="col-lg-3 col-md-4 col-sm-12 mb-md-0 mb-5 px-4 py-3 sidebar">
                 <div v-for="(isSelected, feature) in analysisFeaturesSelected" :key="feature">
@@ -46,7 +47,7 @@
             </div>
         </div>
     </div>
-    <PageFooter :footer-style="footerStyle" />
+    <PageFooter class="footer-position" />
 </template>
 
 <script>
@@ -83,12 +84,7 @@
             return {
                 mainloop: null,
 
-                footerStyle: {
-                    position: "absolute",
-                    bottom: 0,
-                    right: 0,
-                    left: 0,
-                },
+                hideAnalysisError: true,
 
                 analysisFeaturesMap: {
                     "whole": "Whole Paper Summarisation",
@@ -138,6 +134,8 @@
                         this.analysisFeaturesNotCompleted.push(feature);
                     }
                 }
+
+                this.startAnalysis();
             }
         },
 
@@ -164,34 +162,34 @@
         },
 
         methods: {
-            redirectToUpload() {
-               this.$router.push('/');
+            async startAnalysis() {
+                /* Starts the analysis process on the backend */
+
+                const CONFIG = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                    },
+                    mode: "cors",
+                    // URL encode the analysis features object
+                    body: new URLSearchParams(this.analysisFeaturesSelected)
+                };
+
+                const URL = "http://localhost:5000/api/v1/upload/start";
+                const getObject = await fetch(URL, CONFIG);
+                const response = await getObject.json();
+
+                // Check if analysis process start failed
+                if (response.current_status === 0) {
+                    // Show analysis error message
+                    this.hideAnalysisError = false;
+                    // Stop main loop
+                    clearInterval(this.mainloop);
+                }
             },
 
-            // async getAnalysisFeaturesStatus() {
-            //     /*
-            //     Fetches the status of each analysis feature selected and
-            //     if a feature is completed, then it is moved into the completed
-            //     list
-            //     */
-            //
-            //     const URL = "http://localhost:5000/api/v1/status/process";
-            //     const getObject = await fetch(URL);
-            //     const response = await getObject.json();
-            //
-            //     if (response.success === true) {
-            //         const result = response.result;
-            //         this.markAnalysisFeaturesAsCompleted(result);
-            //     } else {
-            //         // Show request error message
-            //         this.isHiddenRequestError = false;
-            //     }
-            // },
-
             async getAnalysisFeaturesData() {
-                /*
-                Fetches the data of each analysis feature process
-                */
+                /* Fetches the data from each analysis feature process */
 
                 const URL_MAP = {
                     "whole": "http://localhost:5000/api/v1/summarisation/whole",
@@ -208,7 +206,7 @@
                     const getObject = await fetch(URL);
                     const response = await getObject.json();
 
-                    switch (response.success) {
+                    switch (response.current_status) {
                         // Feature completed with errors
                         case 0: {
                             const errors = response.errors;
@@ -232,22 +230,6 @@
                 }
             },
 
-            // markAnalysisFeaturesAsCompleted(result) {
-            //     // Populate list of completed features
-            //     for (const [feature, value] of Object.entries(result)) {
-            //         // If analysis feature is completed
-            //         if (value === 1) {
-            //             const indexOfFeature = this.analysisFeaturesNotCompleted.indexOf(feature);
-            //             if (indexOfFeature > -1) {
-            //                 // Remove feature from not completed array
-            //                 this.analysisFeaturesNotCompleted.splice(indexOfFeature, 1);
-            //                 this.analysisFeaturesCompleted.push(feature);
-            //                 this.markAnalysisTabCompleted(feature);
-            //                 this.getAnalysisFeaturesData(feature);
-            //             }
-            //         }
-            //     }
-            // },
             markAnalysisFeatureAsCompleted(feature) {
                 const indexOfFeature = this.analysisFeaturesNotCompleted.indexOf(feature);
                 if (indexOfFeature > -1) {
@@ -264,27 +246,7 @@
                     this.analysisFeaturesNotCompleted.splice(indexOfFeature, 1);
                     this.analysisFeaturesError.push(feature);
                 }
-            },
-
-            // markAnalysisTabCompleted(analysisFeature) {
-            //     // Marks the analysis tab as completed
-            //     // const analysisTab = analysisFeature + "AnalysisTab"
-            //     const loadingIcon = analysisFeature + "LoadingIcon"
-            //
-            //     // this.$refs[analysisTab][0].classList.add("completed-tab");
-            //     this.$refs[loadingIcon][0].$el.classList.add("d-none");
-            // },
-            //
-            // markAnalysisTabError(analysisFeature) {
-            //     // Marks the analysis tab as error
-            //     const analysisTab = analysisFeature + "AnalysisTab"
-            //     const loadingIcon = analysisFeature + "LoadingIcon"
-            //     const errorIcon = analysisFeature + "ErrorIcon"
-            //
-            //     this.$refs[analysisTab][0].classList.add("error");
-            //     this.$refs[loadingIcon][0].$el.classList.add("d-none");
-            //     this.$refs[errorIcon][0].$el.classList.remove("d-none");
-            // }
+            }
         }
     }
 </script>
@@ -346,5 +308,12 @@
 
     .frequence-val {
         font-family: 'Oswald', sans-serif;
+    }
+
+    .footer-position {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 </style>
