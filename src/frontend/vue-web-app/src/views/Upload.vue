@@ -50,7 +50,7 @@
                 method="POST"
                 @submit.prevent="URLFormSubmit">
                     <div class="input-group">
-                        <input type="text" class="form-control url-input"
+                        <input type="url" class="form-control url-input"
                             placeholder="Search" v-model="paperURL" />
                         <button type="submit" class="btn btn-success search-btn">
                             <!-- <span class="material-icons m-1">search</span> -->
