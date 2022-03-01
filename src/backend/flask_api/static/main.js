@@ -8,5 +8,7 @@
 // }).$mount('#konla-app');
 var testObject = new Vue({
   el: '#test',
-  data: {message: 'Hello World!'}
+  data: {
+      message: 'Hello World!'
+  }
 })
