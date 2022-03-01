@@ -9,3 +9,4 @@ pandas
 flask_restful
 redis
 django
+requests
