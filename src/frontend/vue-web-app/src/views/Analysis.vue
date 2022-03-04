@@ -311,9 +311,10 @@
     }
 
     .footer-position {
-        position: absolute;
+        position: relative;
         bottom: 0;
         left: 0;
         right: 0;
+        height: 14vh;
     }
 </style>
