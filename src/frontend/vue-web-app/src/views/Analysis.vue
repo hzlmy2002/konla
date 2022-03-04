@@ -253,7 +253,7 @@
 
 <style scoped>
     .content-section {
-        height: 65vh;
+        height: 75vh;
         overflow-y: auto;
     }
 
@@ -301,6 +301,7 @@
     }
 
     .analysis-feature-label {
+        max-width: 50%;
         font-weight: bold;
         margin: 0;
         user-select: none;
