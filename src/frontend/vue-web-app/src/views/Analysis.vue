@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <PageFooter class="footer-position" />
+    <PageFooter />
 </template>
 
 <script>
@@ -309,13 +309,5 @@
 
     .frequence-val {
         font-family: 'Oswald', sans-serif;
-    }
-
-    .footer-position {
-        position: relative;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 14vh;
     }
 </style>

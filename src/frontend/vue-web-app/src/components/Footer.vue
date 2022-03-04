@@ -1,6 +1,6 @@
 <template>
-    <footer class="page-footer footer-style" :style="footerStyle">
-        <div class="px-4">
+    <footer class="page-footer py-3 footer-style" :style="footerStyle">
+        <div class="px-3">
             <p class="small">KONLA | Copyright &copy; 2021-{{ currentYear }} | Team: Suraj Kothari, Bartosz Grabek, Harry Lei</p>
         </div>
     </footer>
@@ -23,8 +23,10 @@ export default {
 
 <style scoped>
 .footer-style {
-    height: 60px;
-    line-height: 60px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: #607D8B;
     color: #ECEFF1;
 }

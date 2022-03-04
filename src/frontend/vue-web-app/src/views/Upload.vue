@@ -89,7 +89,7 @@
 
         </div>
     </div>
-    <PageFooter class="footer-position" />
+    <PageFooter />
 </template>
 
 <script>
@@ -322,12 +322,5 @@
         font-size: 18px;
         font-weight: bold;
         font-family: "Poppins", sans-serif;
-    }
-
-    .footer-position {
-        position: relative;
-        bottom: 0;
-        right: 0;
-        left: 0;
     }
 </style>
