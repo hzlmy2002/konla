@@ -7,7 +7,7 @@
                 <div v-for="(isSelected, feature) in analysisFeaturesSelected" :key="feature">
                     <!-- If feature is selected (its value is 1) -->
                     <div :ref="feature + 'AnalysisTab'"
-                         class="row mb-md-4 mb-3 px-2 py-3 align-items-center analysis-tab"
+                         class="row d-flex justify-content-between mb-md-4 mb-3 px-2 py-3 align-items-center analysis-tab"
                          :class="{
                              'completed-tab': analysisFeaturesCompleted.includes(feature),
                              'error-tab': analysisFeaturesError.includes(feature),
@@ -18,18 +18,18 @@
                             analysisFeaturesError.includes(feature)
                             ? analysisTabSelected = feature : null">
 
-                        <h6 class="col-9 analysis-feature-label" @click="extractTextSectionShow">
+                        <h6 class="col-auto analysis-feature-label" @click="extractTextSectionShow">
                             {{ this.analysisFeaturesMap[feature] }}
                         </h6>
 
                         <!-- Hide loading icon if feature is completed or has errors -->
-                        <LoadingIcon :ref="feature + 'LoadingIcon'" class="col"
+                        <LoadingIcon :ref="feature + 'LoadingIcon'" class="col-auto"
                             :class="{
                                 'd-none': analysisFeaturesCompleted.includes(feature) ||
                                 analysisFeaturesError.includes(feature)}" />
 
                         <!-- Hide error icon if feature is not in error list -->
-                        <span :ref="feature + 'ErrorIcon'" class="col material-icons"
+                        <span :ref="feature + 'ErrorIcon'" class="col-auto material-icons"
                             :class="{'d-none': !analysisFeaturesError.includes(feature)}">
                             error
                         </span>
