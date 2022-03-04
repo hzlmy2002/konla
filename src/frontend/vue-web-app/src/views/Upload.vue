@@ -54,7 +54,7 @@
                             placeholder="Search" v-model="paperURL" />
                         <button type="submit" class="btn btn-success search-btn">
                             <!-- <span class="material-icons m-1">search</span> -->
-                            <strong>Analyse URL</strong>
+                            <strong>Analyse URL Paper</strong>
                         </button>
                     </div>
                 </form>
