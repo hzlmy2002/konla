@@ -4,8 +4,9 @@
 
 from flask import Flask, render_template, request
 from flask_restful import Api
-from settings import UPLOAD_PATH
 from flask_cors import CORS
+from werkzeug.utils import secure_filename
+from settings import UPLOAD_PATH
 
 class VueFlask(Flask):
     """ Flask application with jinja syntax changed """
@@ -20,16 +21,66 @@ app = VueFlask(__name__)
 app.config['UPLOAD_PATH'] = UPLOAD_PATH
 CORS(app)
 
-@app.route("/api/v1/upload", methods=["GET", "POST"])
+@app.route("/api/v1/upload/binary", methods=["GET", "POST"])
 def upload():
-    if request.method == "POST":
-        #print(request.get_json())
-        return ("Success", 200)
+    file = request.files["fileInput"]
+    filename = secure_filename(file.filename)
+    if filename:
+        print(filename)
+        response = {
+            "current_status": 1,
+            "errors": [],
+            "messages": [],
+            "result": {
+                "sha256": hash(filename),
+	            "text": "Content of paper... Hello World!"
+            }
+        }
+    else:
+        response = {
+            "current_status": 0,
+            "errors": [],
+            "messages": [],
+            "result": {}
+        }
+
+    return response
+
+
+@app.route("/api/v1/upload/url", methods=["GET", "POST"])
+def upload_url():
+    url_parameters = request.args
+    print(url_parameters)
+    response = {
+        "current_status": 1,
+        "errors": [],
+        "messages": [],
+        "result": {
+            "sha256": '',
+            "text": "Content of paper... Hello World!"
+        }
+    }
+
+    return response
+
+
+@app.route("/api/v1/upload/start", methods=["GET", "POST"])
+def analysisStart():
+    url_parameters = request.get_data()
+
+    response = {
+        "current_status": 1,
+        "errors": [],
+        "messages": [],
+        "result": {}
+    }
+
+    return response
 
 @app.route("/api/v1/summarisation/whole", methods=["GET"])
 def whole_summarisation():
     response = {
-    	"success": 1,
+    	"current_status": 1,
         "errors": ["Error 1", "Error 2", "Error 3"],
         "messages": [],
         "result": {
@@ -50,7 +101,7 @@ def whole_summarisation():
 @app.route("/api/v1/summarisation/partial", methods=["GET"])
 def partial_summarisation():
     response = {
-    	"success": 1,
+    	"current_status": 1,
         "errors": ["Error A", "Error B", "Error C"],
         "messages": [],
         "result": {
@@ -71,7 +122,7 @@ def partial_summarisation():
 @app.route("/api/v1/keywords", methods=["GET"])
 def keywords():
     response = {
-    	"success": 1,
+    	"current_status": 1,
         "errors": ["Error 10", "Error 20", "Error 30"],
         "messages": [],
         "result": {
@@ -84,7 +135,7 @@ def keywords():
 @app.route("/api/v1/info/refs", methods=["GET"])
 def refs():
     response = {
-    	"success": 1,
+    	"current_status": 1,
         "errors": ["Error 100", "Error 200", "Error 300"],
         "messages": [],
         "result": {
@@ -119,7 +170,7 @@ def refs():
 @app.route("/api/v1/info/metadata", methods=["GET"])
 def metadata():
     response = {
-    	"success": 1,
+    	"current_status": 1,
         "errors": ["Error 1K", "Error 2K", "Error 3K"],
         "messages": [],
         "result": {
@@ -138,7 +189,7 @@ def metadata():
 @app.route("/api/v1/info/metrics", methods=["GET"])
 def metrics():
     response = {
-    	"success": 1,
+    	"current_status": 1,
         "errors": ["Error 1M", "Error 2M", "Error 3M"],
         "messages": [],
         "result": {
@@ -151,24 +202,6 @@ def metrics():
     }
 
     return response
-
-# @app.route("/api/v1/status/process", methods=["GET"])
-# def process_status():
-#     response = {
-#     	"success": 1,
-#         "errors": [],
-#         "messages": [],
-#         "result": {
-#         	"whole": 1,
-#         	"partial": 1,
-#         	"keywords": 1,
-#         	"refs": 1,
-#         	"metadata": 1,
-#         	"metrics": 1,
-#         }
-#     }
-#
-#     return response
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True, host="0.0.0.0")

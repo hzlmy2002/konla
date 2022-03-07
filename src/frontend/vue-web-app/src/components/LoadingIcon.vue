@@ -19,6 +19,7 @@ export default {
       display: inline-block;
       position: relative;
       height: 48px;
+      right: 2.5em;
     }
 
     .lds-ring div {

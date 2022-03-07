@@ -3,60 +3,93 @@
     <div clas="container">
         <div class="container w-75 py-5 px-4 mb-5 upload-section">
             <h2 class="text-center display-5 mb-3 upload-title">Upload research paper</h2>
-            <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
-            <div class="p-5 drag-drop-section" :style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
-                <div class="text-center"><span class="material-icons upload-icon">description</span></div>
-                <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
-                <p class="text-center lead error-text" :class="{ 'd-none': isHiddenUploadError }">File uploaded is not a PDF or an image</p>
+
+            <div class="mt-5 py-4 px-5 analysis-selection-section">
+                <h5><strong>Select analysis features</strong></h5>
+                <!-- Analysis features checkboxes -->
+                <div class="form-check">
+                    <!-- Set selectAllCheckboxes(num) argument to the number of featues -->
+                    <input ref="selectAll" class="form-check-input" type="checkbox" @click="selectAllCheckboxes(6)" />
+                    <label class="form-check-label" for="selectAll"><strong>Select all</strong></label>
+                </div>
+                <!-- Analysis featues checkboxes -->
+                <div class="form-check">
+                    <input ref="analysisTool1" class="form-check-input" type="checkbox" name="whole" />
+                    <label class="form-check-label" for="analysisTool1">Whole Paper Summarisation</label>
+                </div>
+                <div class="form-check">
+                    <input ref="analysisTool2" class="form-check-input" type="checkbox" name="partial" />
+                    <label class="form-check-label" for="analysisTool2">Partial Paper Summarisation</label>
+                </div>
+                <div class="form-check">
+                    <input ref="analysisTool3" class="form-check-input" type="checkbox" name="keywords" />
+                    <label class="form-check-label" for="analysisTool3">Keyword Extraction</label>
+                </div>
+                <div class="form-check">
+                    <input ref="analysisTool4" class="form-check-input" type="checkbox" name="refs" />
+                    <label class="form-check-label" for="analysisTool4">Extract References</label>
+                </div>
+                <div class="form-check">
+                    <input ref="analysisTool5" class="form-check-input" type="checkbox" name="metadata" />
+                    <label class="form-check-label" for="analysisTool5">Extract Metadata</label>
+                </div>
+                <div class="form-check">
+                    <input ref="analysisTool6" class="form-check-input" type="checkbox" name="metrics" />
+                    <label class="form-check-label" for="analysisTool6">Calculate Metrics</label>
+                </div>
             </div>
 
-            <form action="/" method="post" enctype="multipart/form-data">
+            <div class="row d-flex my-4 justify-content-center">
+                <p class="text-center lead upload-text">Enter the URL of a paper</p>
+
+                <!-- Hides resonse of URL form -->
+                <iframe name="URLHiddenFrame" class="d-none"></iframe>
+                <form
+                ref="URLUploadForm"
+                target="URLHiddenFrame"
+                method="POST"
+                @submit.prevent="URLFormSubmit">
+                    <div class="input-group">
+                        <input type="url" class="form-control url-input"
+                            placeholder="Search" v-model="paperURL" />
+                        <button type="submit" class="btn btn-success search-btn">
+                            <!-- <span class="material-icons m-1">search</span> -->
+                            <strong>Analyse URL Paper</strong>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
+
+            <!-- Hides resonse of upload form -->
+            <iframe name="uploadHiddenFrame" class="d-none"></iframe>
+            <form
+                ref="uploadForm"
+                action="http://localhost:5000/api/v1/upload/binary"
+                target="uploadHiddenFrame"
+                method="POST" enctype="multipart/form-data"
+                @submit.prevent="uploadFormSubmit">
+
                 <input ref="fileInput" type="file" name="fileInput" class="d-none" @change="updateUploadSection" />
-                <div class="mt-5 py-4 px-5 analysis-selection-section" v-bind:class="{ 'd-none': isHiddenAnalysis }">
+
+                <div class="p-5 drag-drop-section" :style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
+                    <div class="text-center"><span class="material-icons upload-icon">description</span></div>
+                    <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
+                    <p class="text-center lead error-text" :class="{ 'd-none': hideFileTypeError }">File uploaded is not a PDF or an image</p>
                     <p class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
-                    <p class="text-center error-text" v-bind:class="{ 'd-none': isHiddenRequestError }"><strong>Error: Failed to send request to server</strong></p>
-                    <h5><strong>Select analysis features for the paper:</strong></h5>
-                    <!-- Analysis features checkboxes -->
-                    <div class="form-check">
-                        <!-- Set selectAllCheckboxes(num) argument to the number of featues -->
-                        <input ref="selectAll" class="form-check-input" type="checkbox" @click="selectAllCheckboxes(6)" />
-                        <label class="form-check-label" for="selectAll"><strong>Select all analysis features</strong></label>
-                    </div>
-                    <!-- Analysis featues checkboxes -->
-                    <div class="form-check">
-                        <input ref="analysisTool1" class="form-check-input" type="checkbox" name="whole" />
-                        <label class="form-check-label" for="analysisTool1">Whole Paper Summarisation</label>
-                    </div>
-                    <div class="form-check">
-                        <input ref="analysisTool2" class="form-check-input" type="checkbox" name="partial" />
-                        <label class="form-check-label" for="analysisTool2">Partial Paper Summarisation</label>
-                    </div>
-                    <div class="form-check">
-                        <input ref="analysisTool3" class="form-check-input" type="checkbox" name="keywords" />
-                        <label class="form-check-label" for="analysisTool3">Keyword Extraction</label>
-                    </div>
-                    <div class="form-check">
-                        <input ref="analysisTool4" class="form-check-input" type="checkbox" name="refs" />
-                        <label class="form-check-label" for="analysisTool4">Extract References</label>
-                    </div>
-                    <div class="form-check">
-                        <input ref="analysisTool5" class="form-check-input" type="checkbox" name="metadata" />
-                        <label class="form-check-label" for="analysisTool5">Extract Metadata</label>
-                    </div>
-                    <div class="form-check">
-                        <input ref="analysisTool6" class="form-check-input" type="checkbox" name="metrics" />
-                        <label class="form-check-label" for="analysisTool6">Calculate Metrics</label>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-success mt-3 analysis-btn" type="submit" name="analyseBtn">
+                            <strong>Analyse Uploaded Paper</strong>
+                        </button>
                     </div>
 
-                    <!-- Set checkSelection(num) argument to the number of featues -->
-                    <button class="btn btn-success mt-3 analysis-btn" type="button" name="analyseBtn" @click="checkSelection(6)">
-                        <strong>Analyse Paper</strong>
-                    </button>
                 </div>
             </form>
+
         </div>
     </div>
-    <PageFooter :footer-style="footerStyle" />
+    <PageFooter />
 </template>
 
 <script>
@@ -71,19 +104,14 @@
 
         data() {
             return {
-                footerStyle: {
-                    position: "absolute",
-                    bottom: 0,
-                    right: 0,
-                    left: 0,
-                },
+                NUM_FEATURES: 6,
+
+                paperURL: "",
 
                 dragDropBackgroundColor: "#EEEEEE",
                 dragDropOutlineOffset: "-10px",
 
-                isHiddenUploadError: true,
-                isHiddenRequestError: true,
-                isHiddenAnalysis: true,
+                hideFileTypeError: true,
                 fileUploadedText: "",
 
                 analysisFeatures: {
@@ -98,8 +126,21 @@
         },
 
         methods: {
-            redirectToAnalysis() {
-               this.$router.push('/analysis');
+            async redirectToAnalysis() {
+                // Wait before redirecting
+                await new Promise(r => setTimeout(r, 1000));
+
+                // Switch to the analysis view
+                this.$router.push(
+                    {
+                        path: "/analysis",
+                        name: "Analysis",
+                        params: {
+                            // Send the analysis features selected to analysis page
+                            analysisFeaturesJSONString: JSON.stringify(this.analysisFeatures)
+                        }
+                    }
+                );
             },
 
             // File drag/drop methods
@@ -121,40 +162,33 @@
                 this.dragDropOutlineOffset = "-10px";
 
                 // Pass dropped files to file input
-                this.$refs['fileInput'].files = ev.dataTransfer.files;
+                this.$refs["fileInput"].files = ev.dataTransfer.files;
                 this.updateUploadSection();
             },
 
             updateUploadSection() {
                 //const filename = this.fileInput.files[0].name;
-                const filename = this.$refs['fileInput'].files[0].name;
+                const filename = this.$refs["fileInput"].files[0].name;
                 const extension = filename.split('.').pop().toLowerCase();
-
-                // Change position of footer
-                this.footerStyle = {
-                    position: "relative",
-                    bottom: 0,
-                }
 
                 // Check extension is valid
                 if (["pdf", "jpg", "png"].includes(extension)) {
                     // Hide error and show analysis feature selection section
-                    this.isHiddenUploadError = true;
-                    this.isHiddenAnalysis = false;
+                    this.hideFileTypeError = true;
 
                     this.fileUploadedText = "File uploaded: \
                         <span class='filename'>"
                         + filename + "</span>";
                 } else {
                     // Show error and hide analysis feature selection section
-                    this.isHiddenUploadError = false;
-                    this.isHiddenAnalysis = true;
+                    this.hideFileTypeError = false;
+                    this.fileUploadedText = "";
                 }
             },
 
             selectAllCheckboxes(numfeatues) {
                 // If select all is checked
-                if(this.$refs['selectAll'].checked) {
+                if(this.$refs["selectAll"].checked) {
                     // Check all checkboxes
                     for (let i = 1; i < numfeatues + 1; i++) {
                         const checkbox = "analysisTool" + i;
@@ -182,39 +216,43 @@
                     }
                 }
 
-                // Send data to server if at least one checkbox was selected
+                // If at least one checkbox was selected, upload paper
                 if (isSelected) {
-                    this.sendData();
+                    return true;
+                } else {
+                    return false;
                 }
             },
 
-            async sendData() {
-                const CONFIG = {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    mode: "cors",
-                    body: JSON.stringify(this.analysisFeatures)
-                };
+            async uploadFormSubmit($event) {
+                // Check file has been selected and features selected
+                if (this.checkSelection(this.NUM_FEATURES)
+                    && this.$refs["fileInput"].files[0]) {
 
-                const URL = "http://localhost:5000/api/v1/upload";
-                const response = await fetch(URL, CONFIG);
+                    $event.target.submit();  // Submit the form
 
-                // Check response is successful
-                if (response.status == 200) {
-                    this.$router.push({
-                        path: "/analysis",
-                        name: "Analysis",
-                        params: {
-                            analysisFeaturesJSONString: JSON.stringify(this.analysisFeatures)
-                        }
-                    });
-                } else {
-                    // Show request error message
-                    this.isHiddenRequestError = false;
+                    this.redirectToAnalysis();
                 }
+            },
 
+            URLFormSubmit($event) {
+                // Check if URL is defined and featues have been selected
+                if (this.paperURL && this.checkSelection(this.NUM_FEATURES)) {
+                    // URL encode the paper URL
+                    const URLParameter = new URLSearchParams(
+                        {
+                            "link": this.paperURL
+                        }
+                    )
+                    const URL = "http://localhost:5000/api/v1/upload/url?" + URLParameter;
+
+                    // Update form action to new URL
+                    this.$refs["URLUploadForm"].action = URL;
+
+                    $event.target.submit();  // Submit the form
+
+                    this.redirectToAnalysis();
+                }
             }
         }
     }
@@ -227,13 +265,29 @@
     }
 
     .upload-title {
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         font-weight: bold;
     }
 
     .upload-text {
         color: #616161;
         font-weight: bold;
+    }
+
+    .url-input {
+        border-top-left-radius: 24px;
+        border-bottom-left-radius: 24px;
+    }
+
+    .search-btn {
+        border: none;
+        outline: none;
+        border-top-right-radius: 24px;
+        border-bottom-right-radius: 24px
+    }
+
+    .search-btn:focus {
+        outline: none;
     }
 
     .drag-drop-section {
@@ -267,6 +321,6 @@
     .filename {
         font-size: 18px;
         font-weight: bold;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
     }
 </style>
