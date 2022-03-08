@@ -4,44 +4,49 @@ from .wordFrequency import wordFrequency
 from .PDFHelper.PDFHelper import PDFHelper
 from .refs import Ref
 from .authors import AuthorParser
+from .sections import SectionExtractor
 
 class PaperProcessor():
     def __init__(self,path:str) -> None:
-        text=PDFHelper.pdf2text(path)
-        self.metadata=PDFHelper.getMetaData(path)
-        self.nlpTRF=spacy.load("en_core_web_trf")
-        self.doc=self.nlpTRF(text)
+        text = PDFHelper.pdf2text(path)
+        self.metadata = PDFHelper.getMetaData(path)
+        self.nlpTRF = spacy.load("en_core_web_trf")
+        self.doc = self.nlpTRF(text)
     
     def wordFrequency(self,max=10,ignoreCase=False,useLemma=False) -> dict:
-        wf=wordFrequency(self.doc,max,ignoreCase,useLemma)
+        wf = wordFrequency(self.doc,max,ignoreCase,useLemma)
         return wf.getWordFrequency()
 
     def metaData(self) -> dict:
-        self.metadata["author"]=self.getAuthor()
+        self.metadata["author"] = self.getAuthor()
         return self.metadata
 
     def getAuthor(self) -> List[str]:
-        ap=AuthorParser(self.doc)
+        ap = AuthorParser(self.doc)
         return ap.run()
 
-    def wordCount(self)-> int:
+    def wordCount(self) -> int:
         count=0
         for token in self.doc:
             if not token.is_punct:
                 count+=1
         return count
 
-    def metrics(self)->dict:
+    def metrics(self) -> dict:
         result={}
-        result["wordcount"]=self.wordCount()
-        result["readingtime"]=self.wordCount()//238
-        result["speakingtime"]=self.wordCount()//140
+        result["wordcount"] = self.wordCount()
+        result["readingtime"] = self.wordCount()//238
+        result["speakingtime"] = self.wordCount()//140
 
         return result
 
-    def references(self)->List[str]:
-        refs=Ref(self.doc,self.nlpTRF)
+    def references(self) -> List[str]:
+        refs = Ref(self.doc,self.nlpTRF)
         return refs.run()
+
+    def sections(self) -> List[str]:
+        extractor = SectionExtractor(self.doc, self.nlpTRF)
+        return extractor.run()
 
 def test():
     pp=PaperProcessor("/tmp/typestudy.pdf")
@@ -50,5 +55,6 @@ def test():
     print(pp.metaData())
     print(pp.metrics())
     print(pp.references())
+    print(pp.sections())
 
 #test()
