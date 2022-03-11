@@ -37,7 +37,7 @@ https://konla.thinktank007.com/api/v1/
 
 **Description**: The upload api is used for uploading binaries like pdf or images. The user can also submit an url so that the server can download and analyse it. 
 
-**Methods**: POST
+**Methods**: POST for binary, GET for url
 
 **Parameters**:
 
