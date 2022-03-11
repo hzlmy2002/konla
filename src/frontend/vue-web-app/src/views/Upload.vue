@@ -47,7 +47,7 @@
                 <form
                 ref="URLUploadForm"
                 target="URLHiddenFrame"
-                method="POST"
+                method="GET"
                 @submit.prevent="URLFormSubmit">
                     <div class="input-group">
                         <input type="url" class="form-control url-input"
