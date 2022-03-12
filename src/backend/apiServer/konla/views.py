@@ -14,6 +14,9 @@ from . import dataProviderView
 
 # Create your views here.
 
+def index(request):
+    return HttpResponse("Konla")
+
 @csrf_exempt
 def uploadFile(request):
     response=uploadingView.acceptFile(request)
@@ -24,6 +27,7 @@ def uploadFile(request):
         httpResponse.status_code=400
         return httpResponse
 
+@csrf_exempt
 def uploadURL(request):
     response=uploadingView.acceptURL(request)
     if response["status"] == 1:

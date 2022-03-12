@@ -10,3 +10,5 @@ flask_restful
 redis
 django
 requests
+django-cors-headers
+

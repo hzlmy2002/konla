@@ -18,11 +18,10 @@ def startProcessing(request):
             "enablePartialSummarisation":True if form.cleaned_data["partial"] == 1 else False,
             "enableKeywords":True if form.cleaned_data["keywords"] == 1 else False,
             "enableRefs":True if form.cleaned_data["refs"] == 1 else False,
-            "enableMeta":True if form.cleaned_data["meta"] == 1 else False,
+            "enableMeta":True if form.cleaned_data["metadata"] == 1 else False,
             "enableMetrics":True if form.cleaned_data["metrics"] == 1 else False
         }
-        
-        if request.session["uploadedFile"] == None:
+        if "uploadFile" not in request.session:
             raise Exception("No file uploaded!")
         checksum=request.session["paperFingerprint"]
         cache.set(checksum+"_featureTable",featureTable,timeout=3600)
