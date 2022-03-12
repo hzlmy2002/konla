@@ -238,9 +238,14 @@
                 /* Uploads the URL */
                 // Check if URL is defined and featues have been selected
                 if (this.paperURL && this.checkSelection(this.NUM_FEATURES)) {
-                    const URL_encoded = encodeURIComponent(this.paperURL)
-                    const URL = "http://localhost:5000/api/v1/upload/url?link=" + URL_encoded
-                    const getObject = await fetch(URL);
+                    const CONFIG = {
+                        method: "GET",
+                        credentials: "include",
+                    };
+
+                    const URL_encoded = encodeURIComponent(this.paperURL);
+                    const URL = "http://localhost:5000/api/v1/upload/url?link=" + URL_encoded;
+                    const getObject = await fetch(URL, CONFIG);
                     const response = await getObject.json();
 
                     // Check if upload is successful

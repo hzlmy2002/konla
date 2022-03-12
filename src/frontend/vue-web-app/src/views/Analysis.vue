@@ -202,9 +202,12 @@
                 }
 
                 for (const feature of this.analysisFeaturesNotCompleted) {
+                    const CONFIG = {
+                        method: "GET",
+                        credentials: "include",
+                    };
                     const URL = URL_MAP[feature];
-
-                    const getObject = await fetch(URL);
+                    const getObject = await fetch(URL, CONFIG);
                     const response = await getObject.json();
 
                     switch (response.current_status) {
