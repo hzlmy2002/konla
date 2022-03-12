@@ -21,8 +21,8 @@ def startProcessing(request):
             "enableMeta":True if form.cleaned_data["metadata"] == 1 else False,
             "enableMetrics":True if form.cleaned_data["metrics"] == 1 else False
         }
-        if "uploadFile" not in request.session:
-            raise Exception("No file uploaded!")
+        if "paperFingerprint" not in request.session:
+            raise Exception("No file uploaded! Session data missing!")
         checksum=request.session["paperFingerprint"]
         cache.set(checksum+"_featureTable",featureTable,timeout=3600)
         threadMain=Thread(target=mainThread,args=(request.session["uploadedFile"],checksum,featureTable))
