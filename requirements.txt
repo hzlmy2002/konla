@@ -11,4 +11,5 @@ redis
 django
 requests
 django-cors-headers
+uwsgi
 

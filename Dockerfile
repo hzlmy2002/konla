@@ -8,7 +8,7 @@ ENV TZ="Europe/London"
 ENV CHOKIDAR_USEPOLLING=true
 
 RUN apt update && \
-	apt install -y poppler-utils python3 python3-pip supervisor npm redis
+	apt install -y poppler-utils python3 python3-pip supervisor npm redis nginx
 
 # Vue.js Command Line Interface
 RUN npm install -g @vue/cli
@@ -18,7 +18,6 @@ RUN npm install --save vue-router
 COPY . /konla
 
 RUN python3 -m pip install -r /konla/requirements.txt
-RUN python3 -m spacy download en_core_web_lg
 RUN python3 -m spacy download en_core_web_trf
 RUN python3 -m pip install pytesseract
 RUN apt install tesseract-ocr -y
