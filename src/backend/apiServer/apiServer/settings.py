@@ -138,8 +138,9 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-CORS_ALLOW_ALL_ORIGINS = True
-
+CORS_ALLOWED_ORIGINS = [
+        "http://127.0.0.1:5000",
+]
 
 SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True

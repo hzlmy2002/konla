@@ -19,7 +19,7 @@ def acceptURL(request):
         request.session["uploadedFile"]=os.path.join("/tmp",fileName)
         request.session["paperFingerprint"]=fingerprint
         response={
-            "status": 1,
+            "current_status": 1,
             "errors": [],
             "messages": [],
             "result": {
@@ -29,7 +29,7 @@ def acceptURL(request):
         }
     except Exception as e:
         response={
-            "status": 0,
+            "current_status": 0,
             "errors": [str(e)],
             "messages": [],
             "result": {}
@@ -58,7 +58,7 @@ def acceptFile(request):
         request.session["uploadedFile"]=os.path.join("/tmp",fileName)
         request.session["paperFingerprint"]=fingerprint
         response={
-            "status": 1,
+            "current_status": 1,
             "errors": [],
             "messages": [],
             "result": {
@@ -68,7 +68,7 @@ def acceptFile(request):
         }
     except Exception as e:
         response={
-            "status": 0,
+            "current_status": 0,
             "errors": [str(e)],
             "messages": [],
             "result": {}

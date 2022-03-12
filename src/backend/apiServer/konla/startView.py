@@ -29,7 +29,7 @@ def startProcessing(request):
         threadMain.start()
 
         response={
-            "status": 1,
+            "current_status": 1,
             "errors": [],
             "messages": [],
             "result": {}
@@ -37,7 +37,7 @@ def startProcessing(request):
 
     except Exception as e:
         response={
-            "status": 0,
+            "current_status": 0,
             "errors": [str(e)],
             "messages": [],
             "result": {}
@@ -78,24 +78,6 @@ def mainThread(path,prefix,featureTable):
         metrics.start()
     
     cache.set(prefix+"_initialized",True,timeout=3600)
-
-    """
-    ### debug only, delete before submission
-    keyword.join()
-    refs.join()
-    meta.join()
-    metrics.join()
-    print(cache.get(prefix+"_keywords"))
-    print(cache.get(prefix+"_keywords_completed"))
-    print(cache.get(prefix+"_refs"))
-    print(cache.get(prefix+"_refs_completed"))
-    print(cache.get(prefix+"_meta"))
-    print(cache.get(prefix+"_meta_completed"))
-    print(cache.get(prefix+"_metrics"))
-    print(cache.get(prefix+"_metrics_completed"))
-    """
-    
-
 
 def keywordThread(prefix,paperProcessor):
     normalResult=paperProcessor.wordFrequency(max=100,ignoreCase=False,useLemma=False)

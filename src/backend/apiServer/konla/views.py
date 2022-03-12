@@ -20,7 +20,7 @@ def index(request):
 @csrf_exempt
 def uploadFile(request):
     response=uploadingView.acceptFile(request)
-    if response["status"] == 1:
+    if response["current_status"] == 1:
         return HttpResponse(json.dumps(response),content_type="application/json")
     else:
         httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
@@ -30,7 +30,7 @@ def uploadFile(request):
 @csrf_exempt
 def uploadURL(request):
     response=uploadingView.acceptURL(request)
-    if response["status"] == 1:
+    if response["current_status"] == 1:
         return HttpResponse(json.dumps(response),content_type="application/json")
     else:
         httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
@@ -40,7 +40,7 @@ def uploadURL(request):
 @csrf_exempt
 def uploadStart(request):
     response=startView.startProcessing(request)
-    if response["status"] == 1:
+    if response["current_status"] == 1:
         return HttpResponse(json.dumps(response),content_type="application/json")
     else:
         httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
@@ -50,7 +50,7 @@ def uploadStart(request):
 
 def keywords(request):
     response=dataProviderView.provideKeywords(request)
-    if response["status"] != 0:
+    if response["current_status"] != 0:
         return HttpResponse(json.dumps(response),content_type="application/json")
     else:
         httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
@@ -59,7 +59,7 @@ def keywords(request):
 
 def infoRefs(request):
     response=dataProviderView.provideRefs(request)
-    if response["status"] != 0:
+    if response["current_status"] != 0:
         return HttpResponse(json.dumps(response),content_type="application/json")
     else:
         httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
@@ -68,7 +68,7 @@ def infoRefs(request):
 
 def infoMeta(request):
     response=dataProviderView.provideMeta(request)
-    if response["status"] != 0:
+    if response["current_status"] != 0:
         return HttpResponse(json.dumps(response),content_type="application/json")
     else:
         httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
@@ -77,7 +77,7 @@ def infoMeta(request):
 
 def infoMetrics(request):
     response=dataProviderView.provideMetric(request)
-    if response["status"] != 0:
+    if response["current_status"] != 0:
         return HttpResponse(json.dumps(response),content_type="application/json")
     else:
         httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
