@@ -42,50 +42,30 @@
             <div class="row d-flex my-4 justify-content-center">
                 <p class="text-center lead upload-text">Enter the URL of a paper</p>
 
-                <!-- Hides resonse of URL form -->
-                <iframe name="URLHiddenFrame" class="d-none"></iframe>
-                <form
-                ref="URLUploadForm"
-                target="URLHiddenFrame"
-                method="POST"
-                @submit.prevent="URLFormSubmit">
-                    <div class="input-group">
-                        <input type="url" class="form-control url-input"
-                            placeholder="Search" v-model="paperURL" />
-                        <button type="submit" class="btn btn-success search-btn">
-                            <!-- <span class="material-icons m-1">search</span> -->
-                            <strong>Analyse URL Paper</strong>
-                        </button>
-                    </div>
-                </form>
+                <div class="input-group">
+                    <input type="url" class="form-control url-input"
+                        placeholder="Search" v-model="paperURL" />
+                    <button type="button" class="btn btn-success search-btn" @click="URLUpload">
+                        <strong>Analyse URL Paper</strong>
+                    </button>
+                </div>
             </div>
 
             <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
 
-            <!-- Hides resonse of upload form -->
-            <iframe name="uploadHiddenFrame" class="d-none"></iframe>
-            <form
-                ref="uploadForm"
-                action="http://localhost:5000/api/v1/upload/binary"
-                target="uploadHiddenFrame"
-                method="POST" enctype="multipart/form-data"
-                @submit.prevent="uploadFormSubmit">
+            <input ref="fileInput" type="file" name="fileInput" class="d-none" @change="updateUploadSection" />
 
-                <input ref="fileInput" type="file" name="fileInput" class="d-none" @change="updateUploadSection" />
-
-                <div class="p-5 drag-drop-section" :style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
-                    <div class="text-center"><span class="material-icons upload-icon">description</span></div>
-                    <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
-                    <p class="text-center lead error-text" :class="{ 'd-none': hideFileTypeError }">File uploaded is not a PDF or an image</p>
-                    <p class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-success mt-3 analysis-btn" type="submit" name="analyseBtn">
-                            <strong>Analyse Uploaded Paper</strong>
-                        </button>
-                    </div>
-
+            <div class="p-5 drag-drop-section" :style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
+                <div class="text-center"><span class="material-icons upload-icon">description</span></div>
+                <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
+                <p class="text-center lead error-text" :class="{ 'd-none': hideFileTypeError }">File uploaded is not a PDF or an image</p>
+                <p class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-success mt-3 analysis-btn" type="button" name="analyseBtn" @click="fileUpload()">
+                        <strong>Analyse Uploaded Paper</strong>
+                    </button>
                 </div>
-            </form>
+            </div>
 
         </div>
     </div>
@@ -216,7 +196,7 @@
                     }
                 }
 
-                // If at least one checkbox was selected, upload paper
+                // If at least one checkbox is selected, upload paper
                 if (isSelected) {
                     return true;
                 } else {
@@ -224,34 +204,52 @@
                 }
             },
 
-            async uploadFormSubmit($event) {
+            async fileUpload() {
+                /* Uploads the file */
                 // Check file has been selected and features selected
                 if (this.checkSelection(this.NUM_FEATURES)
                     && this.$refs["fileInput"].files[0]) {
 
-                    $event.target.submit();  // Submit the form
+                    const fileInput = this.$refs["fileInput"];
+                    // Add file uploaded to the form data
+                    const formData = new FormData();
+                    formData.append('fileInput', fileInput.files[0]);
 
-                    this.redirectToAnalysis();
+                    const CONFIG = {
+                        method: "POST",
+                        mode: "cors",
+                        // URL encode the analysis features object
+                        body: formData
+                    };
+
+                    const URL = "http://localhost:5000/api/v1/upload/binary";
+                    const getObject = await fetch(URL, CONFIG);
+                    const response = await getObject.json();
+
+                    // Check if upload is successful
+                    if (response.current_status === 1) {
+                        this.redirectToAnalysis();
+                    }
                 }
             },
 
-            URLFormSubmit($event) {
+            async URLUpload() {
                 // Check if URL is defined and featues have been selected
                 if (this.paperURL && this.checkSelection(this.NUM_FEATURES)) {
-                    // URL encode the paper URL
-                    const URLParameter = new URLSearchParams(
-                        {
-                            "link": this.paperURL
-                        }
-                    )
-                    const URL = "http://localhost:5000/api/v1/upload/url?" + URLParameter;
+                    const CONFIG = {
+                        method: "POST",
+                        mode: "cors",
+                        body: this.paperURL
+                    };
 
-                    // Update form action to new URL
-                    this.$refs["URLUploadForm"].action = URL;
+                    const URL = "http://localhost:5000/api/v1/upload/url"
+                    const getObject = await fetch(URL, CONFIG);
+                    const response = await getObject.json();
 
-                    $event.target.submit();  // Submit the form
-
-                    this.redirectToAnalysis();
+                    // Check if upload is successful
+                    if (response.current_status === 1) {
+                        this.redirectToAnalysis();
+                    }
                 }
             }
         }
