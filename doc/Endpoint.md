@@ -77,7 +77,7 @@ https://konla.thinktank007.com/api/v1/
 * partial: Control whether enable partial summarisation
 * keywords: Control whether enable keywords extraction
 * refs: Control whether enable references extraction
-* meta: Control whether enable meta data extraction
+* metadata: Control whether enable meta data extraction
 * metrics: Control whether enable metrics calculation
 
 **Request**:
@@ -85,7 +85,7 @@ https://konla.thinktank007.com/api/v1/
 Request body:
 
 ```
-whole=1&partial=1&keywords=1&refs=1&meta=1&metrics=1
+whole=1&partial=1&keywords=1&refs=1&metadata=1&metrics=1
 ```
 
 **Response**:
