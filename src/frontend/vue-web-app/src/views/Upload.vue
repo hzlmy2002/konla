@@ -238,18 +238,9 @@
                 /* Uploads the URL */
                 // Check if URL is defined and featues have been selected
                 if (this.paperURL && this.checkSelection(this.NUM_FEATURES)) {
-                    const CONFIG = {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-                        },
-                        mode: "cors",
-                        credentials: "include",
-                        body: new URLSearchParams({"link": this.paperURL})
-                    };
-
-                    const URL = "http://localhost:5000/api/v1/upload/url"
-                    const getObject = await fetch(URL, CONFIG);
+                    const URL_encoded = encodeURIComponent(this.paperURL)
+                    const URL = "http://localhost:5000/api/v1/upload/url?link=" + URL_encoded
+                    const getObject = await fetch(URL);
                     const response = await getObject.json();
 
                     // Check if upload is successful
