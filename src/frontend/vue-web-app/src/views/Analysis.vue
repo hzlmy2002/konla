@@ -171,6 +171,7 @@
                         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
                     },
                     mode: "cors",
+                    credentials: "include",
                     // URL encode the analysis features object
                     body: new URLSearchParams(this.analysisFeaturesSelected)
                 };

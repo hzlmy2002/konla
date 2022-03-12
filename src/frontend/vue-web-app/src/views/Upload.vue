@@ -218,6 +218,7 @@
                     const CONFIG = {
                         method: "POST",
                         mode: "cors",
+                        credentials: "include",
                         // URL encode the analysis features object
                         body: formData
                     };
@@ -234,12 +235,17 @@
             },
 
             async URLUpload() {
+                /* Uploads the URL */
                 // Check if URL is defined and featues have been selected
                 if (this.paperURL && this.checkSelection(this.NUM_FEATURES)) {
                     const CONFIG = {
                         method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                        },
                         mode: "cors",
-                        body: this.paperURL
+                        credentials: "include",
+                        body: new URLSearchParams({"link": this.paperURL})
                     };
 
                     const URL = "http://localhost:5000/api/v1/upload/url"
