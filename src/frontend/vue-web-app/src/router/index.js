@@ -1,3 +1,4 @@
+/* Switches routes for different views */
 import { createWebHistory, createRouter } from "vue-router";
 import Upload from "@/views/Upload.vue";
 import Analysis from "@/views/Analysis.vue";

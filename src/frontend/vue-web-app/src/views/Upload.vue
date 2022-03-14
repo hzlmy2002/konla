@@ -147,7 +147,10 @@
             },
 
             updateUploadSection() {
-                //const filename = this.fileInput.files[0].name;
+                /*
+                Updates the upload section to show the filename or an
+                error message
+                */
                 const filename = this.$refs["fileInput"].files[0].name;
                 const extension = filename.split('.').pop().toLowerCase();
 
@@ -166,27 +169,30 @@
                 }
             },
 
-            selectAllCheckboxes(numfeatues) {
+            selectAllCheckboxes(NUM_FEATURES) {
+                /* Automatically selects/deselects all checkboxes */
+
                 // If select all is checked
                 if(this.$refs["selectAll"].checked) {
                     // Check all checkboxes
-                    for (let i = 1; i < numfeatues + 1; i++) {
+                    for (let i = 1; i < NUM_FEATURES + 1; i++) {
                         const checkbox = "analysisTool" + i;
                         this.$refs[checkbox].checked = true;
                     }
                 } else {
                     // Uncheck all checkboxes
-                    for (let i = 1; i < numfeatues + 1; i++) {
+                    for (let i = 1; i < NUM_FEATURES + 1; i++) {
                         const checkbox = "analysisTool" + i;
                         this.$refs[checkbox].checked = false;
                     }
                 }
             },
 
-            checkSelection(numfeatues) {
-                // Check that at least one checkbox is checked
+            checkSelection(NUM_FEATURES) {
+                /* Checks that at least one checkbox is checked */
+
                 let isSelected = false;
-                for (let i = 1; i < numfeatues + 1; i++) {
+                for (let i = 1; i < NUM_FEATURES + 1; i++) {
                     const checkbox = "analysisTool" + i;
                     if (this.$refs[checkbox].checked) {
                         // Set the selection to 1 for the checkboxes that are
@@ -196,16 +202,12 @@
                     }
                 }
 
-                // If at least one checkbox is selected, upload paper
-                if (isSelected) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return isSelected;
             },
 
             async fileUpload() {
                 /* Uploads the file */
+
                 // Check file has been selected and features selected
                 if (this.checkSelection(this.NUM_FEATURES)
                     && this.$refs["fileInput"].files[0]) {
@@ -224,8 +226,8 @@
                     };
 
                     const URL = "http://localhost:5000/api/v1/upload/binary";
-                    const getObject = await fetch(URL, CONFIG);
-                    const response = await getObject.json();
+                    const GET_Object = await fetch(URL, CONFIG);
+                    const response = await GET_Object.json();
 
                     // Check if upload is successful
                     if (response.current_status === 1) {
@@ -236,6 +238,7 @@
 
             async URLUpload() {
                 /* Uploads the URL */
+
                 // Check if URL is defined and featues have been selected
                 if (this.paperURL && this.checkSelection(this.NUM_FEATURES)) {
                     const CONFIG = {
@@ -245,8 +248,8 @@
 
                     const URL_encoded = encodeURIComponent(this.paperURL);
                     const URL = "http://localhost:5000/api/v1/upload/url?link=" + URL_encoded;
-                    const getObject = await fetch(URL, CONFIG);
-                    const response = await getObject.json();
+                    const GET_Object = await fetch(URL, CONFIG);
+                    const response = await GET_Object.json();
 
                     // Check if upload is successful
                     if (response.current_status === 1) {
@@ -260,7 +263,7 @@
 
 <style scoped>
     .upload-section {
-        background-color: #FFF;
+        background-color: #FFFFFF;
         border-radius: 8px;
     }
 
