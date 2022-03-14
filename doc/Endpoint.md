@@ -185,7 +185,7 @@ whole=1&partial=1&keywords=1&refs=1&metadata=1&metrics=1
     	"errors": [],
     	"messages": [],
     	"result": {
-    		"keywords": {"Hello": 10, "World": 6, "KONLA": "3"}
+    		"keywords": {"Hello": 10, "World": 6, "KONLA": 3}
     	}
 }
 ```
