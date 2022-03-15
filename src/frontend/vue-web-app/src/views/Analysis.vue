@@ -19,7 +19,7 @@
                             ? analysisTabSelected = feature : null">
 
                         <h6 class="col-auto analysis-feature-label" @click="extractTextSectionShow">
-                            {{ this.analysisFeaturesMap[feature] }}
+                            {{ this.analysisFeaturesTitle[feature] }}
                         </h6>
 
                         <!-- Hide loading icon if feature is completed or has errors -->
@@ -28,7 +28,7 @@
                                 'd-none': analysisFeaturesCompleted.includes(feature) ||
                                 analysisFeaturesError.includes(feature)}" />
 
-                        <!-- Hide error icon if feature is not in error list -->
+                        <!-- Hide error icon if feature is not in error array -->
                         <span :ref="feature + 'ErrorIcon'" class="col-auto material-icons"
                             :class="{'d-none': !analysisFeaturesError.includes(feature)}">
                             error
@@ -86,7 +86,7 @@
 
                 hideAnalysisError: true,
 
-                analysisFeaturesMap: {
+                analysisFeaturesTitle: {
                     "whole": "Whole Paper Summarisation",
                     "partial": "Partial Paper Summarisation",
                     "keywords": "Keyword Extraction",
@@ -118,19 +118,22 @@
         },
 
         created() {
+            /* Function to be run when this view is initialised */
+
             // If user is on analysis page without having selected the analysis
             // features, redirect them to the main site
             if (this.analysisFeaturesJSONString === undefined) {
                 this.$router.push('/');
             } else {
-                // Parse the string passed as a prop
-                const analysisFeaturesObject = JSON.parse(this.analysisFeaturesJSONString);
-                this.analysisFeaturesSelected = analysisFeaturesObject;
+                // Parse the string into a JSON object
+                this.analysisFeaturesSelected = JSON.parse(this.analysisFeaturesJSONString);
 
-                // Initialise list of not completed features
-                for (const [feature, value] of Object.entries(analysisFeaturesObject)) {
+                for (const [feature, value] of Object.entries(
+                    this.analysisFeaturesSelected)) {
+
                     // Check if analysis feature is selected
                     if (value === 1) {
+                        // Add feature to not completed array
                         this.analysisFeaturesNotCompleted.push(feature);
                     }
                 }
@@ -140,15 +143,16 @@
         },
 
         mounted() {
-            // Call function continuously
+            /* Function to be run when this view is loaded */
+
+            // Call function continuously with a delay
             this.mainloop = window.setInterval(() => {
-                console.log("Fetching data...");
                 this.getAnalysisFeaturesData();
             }, 1000);
         },
 
         watch: {
-            // Watch for changes to the array
+            // Watch for updates to this array
             analysisFeaturesNotCompleted: {
                 handler: function(array) {
                     if (array.length === 0) {
@@ -157,7 +161,7 @@
                     }
                 },
 
-                deep: true  // Checks changes to array element s
+                deep: true  // Checks changes to array elements
             }
         },
 
@@ -177,8 +181,8 @@
                 };
 
                 const URL = "http://localhost:5000/api/v1/upload/start";
-                const getObject = await fetch(URL, CONFIG);
-                const response = await getObject.json();
+                const GET_Object = await fetch(URL, CONFIG);
+                const response = await GET_Object.json();
 
                 // Check if analysis process start failed
                 if (response.current_status === 0) {
@@ -192,7 +196,7 @@
             async getAnalysisFeaturesData() {
                 /* Fetches the data from each analysis feature process */
 
-                const URL_MAP = {
+                const FEATURE_URL = {
                     "whole": "http://localhost:5000/api/v1/summarisation/whole",
                     "partial": "http://localhost:5000/api/v1/summarisation/partial",
                     "keywords": "http://localhost:5000/api/v1/keywords",
@@ -206,12 +210,13 @@
                         method: "GET",
                         credentials: "include",
                     };
-                    const URL = URL_MAP[feature];
-                    const getObject = await fetch(URL, CONFIG);
-                    const response = await getObject.json();
+
+                    const URL = FEATURE_URL[feature];  // Get URL from dictionary
+                    const GET_Object = await fetch(URL, CONFIG);
+                    const response = await GET_Object.json();
 
                     switch (response.current_status) {
-                        // Feature completed with errors
+                        // Feature completed, but with errors
                         case 0: {
                             const errors = response.errors;
                             // Mark the analysis feature tab to indicate an error
@@ -235,18 +240,22 @@
             },
 
             markAnalysisFeatureAsCompleted(feature) {
+                /* Updates the feature tab to show as completed */
+
                 const indexOfFeature = this.analysisFeaturesNotCompleted.indexOf(feature);
                 if (indexOfFeature > -1) {
-                    // Remove feature from not completed array
+                    // Remove feature from not-completed array
                     this.analysisFeaturesNotCompleted.splice(indexOfFeature, 1);
                     this.analysisFeaturesCompleted.push(feature);
                 }
             },
 
             markAnalysisFeatureAsError(feature) {
+                /* Updates the feature tab to show as error */
+
                 const indexOfFeature = this.analysisFeaturesNotCompleted.indexOf(feature);
                 if (indexOfFeature > -1) {
-                    // Remove feature from not completed array
+                    // Remove feature from not-completed array
                     this.analysisFeaturesNotCompleted.splice(indexOfFeature, 1);
                     this.analysisFeaturesError.push(feature);
                 }
@@ -262,7 +271,7 @@
     }
 
     .sidebar {
-        background-color: #eceff1;
+        background-color: #ECEFF1;
         border-radius: 16px;
         box-shadow: 0px 0px 20px -4px #263238;
     }

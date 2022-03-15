@@ -1,4 +1,3 @@
-<!-- Reference: https://loading.io/css/ -->
 <template>
     <div v-if="errors">
         <ErrorContent  :errors-content="errors" />
