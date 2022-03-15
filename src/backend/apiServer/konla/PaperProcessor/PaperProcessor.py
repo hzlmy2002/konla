@@ -18,7 +18,7 @@ class PaperProcessor():
         return wf.getWordFrequency()
 
     def metaData(self) -> dict:
-        self.metadata["author"] = self.getAuthor()
+        self.metadata["authors"] = self.getAuthor()
         return self.metadata
 
     def getAuthor(self) -> List[str]:
@@ -34,9 +34,9 @@ class PaperProcessor():
 
     def metrics(self) -> dict:
         result={}
-        result["wordcount"] = self.wordCount()
-        result["readingtime"] = self.wordCount()//238
-        result["speakingtime"] = self.wordCount()//140
+        result["wordCount"] = self.wordCount()
+        result["readingTime"] = 60*self.wordCount()//238
+        result["speakingTime"] = 60*self.wordCount()//140
 
         return result
 
