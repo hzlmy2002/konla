@@ -180,7 +180,7 @@
                     body: new URLSearchParams(this.analysisFeaturesSelected)
                 };
 
-                const domain = "https://" + window.location.hostname + ":5000";
+                const domain = "https://" + window.location.hostname;
                 const URL = domain + "/api/v1/upload/start";
 
                 const GET_Object = await fetch(URL, CONFIG);
@@ -197,7 +197,7 @@
 
             async getAnalysisFeaturesData() {
                 /* Fetches the data from each analysis feature process */
-                const domain = "https://" + window.location.hostname + ":5000";
+                const domain = "https://" + window.location.hostname;
                 const FEATURE_URL = {
                     "whole": domain + "/api/v1/summarisation/whole",
                     "partial": domain + "/api/v1/summarisation/partial",

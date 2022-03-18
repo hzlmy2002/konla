@@ -225,7 +225,7 @@
                         body: formData
                     };
 
-                    const domain = "https://" + window.location.hostname + ":5000";
+                    const domain = "https://" + window.location.hostname;
                     const URL = domain + "/api/v1/upload/binary";
 
                     const GET_Object = await fetch(URL, CONFIG);
@@ -248,7 +248,7 @@
                         credentials: "include",
                     };
 
-                    const domain = "https://" + window.location.hostname + ":5000";
+                    const domain = "https://" + window.location.hostname;
                     const URL_encoded = encodeURIComponent(this.paperURL);
                     const URL = domain + "/api/v1/upload/url?link=" + URL_encoded;
 
