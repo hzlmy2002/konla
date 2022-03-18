@@ -1,5 +1,5 @@
 import spacy
-import pickle
+import re
 
 class Ref():
     def __init__(self,doc,nlp):
@@ -17,17 +17,6 @@ class Ref():
             {"ENT_TYPE":"DATE"},
             {"IS_PUNCT":True,"OP":"?"}
         ]
-        self.looseRules=[
-            {"IS_SPACE":True,"OP":"*"},
-            {"IS_PUNCT":True,"OP":"?"},
-            {"IS_DIGIT":True},
-            {"IS_PUNCT":True,"OP":"?"},
-            {"ENT_TYPE":"PERSON","OP":"+"},
-            {"IS_PUNCT":True,"OP":"?"},
-            {"OP":"*"},
-            {"ENT_TYPE":"DATE"},
-            {"IS_PUNCT":True,"OP":"?"}
-        ]
         self.refRegion=""
 
     def getRefRegion(self):
@@ -37,32 +26,33 @@ class Ref():
         self.refRegion=str(self.doc[matches[0][1]:matches[0][2]])
 
     def parseRef(self):
-        matcher=spacy.matcher.Matcher(self.nlp.vocab)
-        matcher.add("ref",[self.looseRules],greedy="LONGEST")
         lines=self.refRegion.split("\n")
+        sequenceNumberPattern=r"^\[\d+\]"
         tmp=""
         for i in lines:
-            tmp+=i+" "
-            doc=self.nlp(tmp)
-            matches=matcher(doc)
-            if len(matches)>0:
-                self.refs.append(str(doc[matches[0][1]:matches[0][2]]))
-                tmp=str(doc[:matches[0][1]])+" "+str(doc[matches[0][2]:])
+            isHitted= len(re.findall(sequenceNumberPattern,i.strip())) > 0
+            if isHitted:
+                if len(tmp.strip()) > 0:
+                    self.refs.append(tmp)
+                    tmp=""
+            tmp= tmp+" "+i.strip()
         self.refs.append(tmp)
 
     def run(self):
         self.getRefRegion()
         self.parseRef()
+        self.refs=list(map(lambda x:x.strip(),self.refs))
         return self.refs
 
 
 def test():
     nlp=spacy.load("en_core_web_trf")
-    with open("/tmp/typestudy.txt") as file:
+    with open("/tmp/shapes.txt") as file:
         text=file.read()
     doc=nlp(text)
     ref=Ref(doc,nlp)
     r=ref.run()
+    print(r)
     pass
 
 #test()

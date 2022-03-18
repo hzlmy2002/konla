@@ -64,7 +64,7 @@ def provideKeywords(request):
             "current_status": 1,
             "errors": [],
             "messages": [],
-            "result": finalResult
+            "result": {"keywords":finalResult}
         }
         return response
     else:
@@ -121,7 +121,7 @@ def provideRefs(request):
             "current_status": 1,
             "errors": [],
             "messages": [],
-            "result": result
+            "result": {"refs":result}
         }
         return response
     else:
@@ -182,7 +182,7 @@ def provideMeta(request):
             "current_status": 1,
             "errors": [],
             "messages": [],
-            "result": result
+            "result": {"metadata":result}
         }
         return response
     else:
@@ -243,7 +243,7 @@ def provideMetric(request):
             "current_status": 1,
             "errors": [],
             "messages": [],
-            "result": result
+            "result": {"metrics":result}
         }
         return response
     else:
