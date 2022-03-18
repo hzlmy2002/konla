@@ -180,7 +180,9 @@
                     body: new URLSearchParams(this.analysisFeaturesSelected)
                 };
 
-                const URL = "http://localhost:5000/api/v1/upload/start";
+                const domain = window.location.hostname + ":5000";
+                const URL = domain + "/api/v1/upload/start";
+
                 const GET_Object = await fetch(URL, CONFIG);
                 const response = await GET_Object.json();
 
@@ -195,14 +197,14 @@
 
             async getAnalysisFeaturesData() {
                 /* Fetches the data from each analysis feature process */
-
+                const domain = window.location.hostname + ":5000";
                 const FEATURE_URL = {
-                    "whole": "http://localhost:5000/api/v1/summarisation/whole",
-                    "partial": "http://localhost:5000/api/v1/summarisation/partial",
-                    "keywords": "http://localhost:5000/api/v1/keywords",
-                    "refs": "http://localhost:5000/api/v1/info/refs",
-                    "metadata": "http://localhost:5000/api/v1/info/metadata",
-                    "metrics": "http://localhost:5000/api/v1/info/metrics",
+                    "whole": domain + "/api/v1/summarisation/whole",
+                    "partial": domain + "/api/v1/summarisation/partial",
+                    "keywords": domain + "/api/v1/keywords",
+                    "refs": domain + "/api/v1/info/refs",
+                    "metadata": domain + "/api/v1/info/metadata",
+                    "metrics": domain + "/api/v1/info/metrics",
                 }
 
                 for (const feature of this.analysisFeaturesNotCompleted) {

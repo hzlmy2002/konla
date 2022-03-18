@@ -225,7 +225,9 @@
                         body: formData
                     };
 
-                    const URL = "http://localhost:5000/api/v1/upload/binary";
+                    const domain = window.location.hostname + ":5000";
+                    const URL = domain + "/api/v1/upload/binary";
+
                     const GET_Object = await fetch(URL, CONFIG);
                     const response = await GET_Object.json();
 
@@ -246,8 +248,10 @@
                         credentials: "include",
                     };
 
+                    const domain = window.location.hostname + ":5000";
                     const URL_encoded = encodeURIComponent(this.paperURL);
-                    const URL = "http://localhost:5000/api/v1/upload/url?link=" + URL_encoded;
+                    const URL = domain + "/api/v1/upload/url?link=" + URL_encoded;
+
                     const GET_Object = await fetch(URL, CONFIG);
                     const response = await GET_Object.json();
 
