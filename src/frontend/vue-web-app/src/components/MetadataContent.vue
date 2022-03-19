@@ -5,7 +5,7 @@
     <div v-else>
         <div class="metadata-section">
             <div class="px-3 section-heading">
-                <h3>Title and Subject</h3>
+                <h3>Title</h3>
             </div>
             <h4><strong>{{ this.metadata.title }}</strong></h4>
             <h5 class="text-secondary">{{ this.metadata.subject }}</h5>
