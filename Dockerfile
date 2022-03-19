@@ -10,11 +10,6 @@ ENV CHOKIDAR_USEPOLLING=true
 RUN apt update && \
 	apt install -y poppler-utils python3 python3-pip supervisor npm redis nginx
 
-# Vue.js Command Line Interface
-RUN npm install -g @vue/cli
-# Vue.js router
-RUN npm install --save vue-router
-
 COPY . /konla
 
 RUN python3 -m pip install -r /konla/requirements.txt
@@ -23,6 +18,7 @@ RUN python3 -m spacy download en_core_web_trf
 RUN mkdir -p /var/log/supervisor
 
 WORKDIR /konla/src/frontend/vue-web-app
+RUN npm install --save-dev
 RUN npm run build
 RUN cp -r /konla/src/frontend/vue-web-app/dist/* /var/www/html
 
