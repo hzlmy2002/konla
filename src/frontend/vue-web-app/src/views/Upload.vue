@@ -58,7 +58,7 @@
             <div class="p-5 drag-drop-section" :style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
                 <div class="text-center"><span class="material-icons upload-icon">description</span></div>
                 <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
-                <p class="text-center lead error-text" :class="{ 'd-none': hideFileTypeError }">File uploaded is not a PDF or an image</p>
+                <p class="text-center lead error-text" :class="{ 'd-none': hideFileTypeError }">File selected is not a PDF or an image</p>
                 <p class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
                 <div class="d-flex justify-content-center">
                     <button class="btn btn-success mt-3 analysis-btn" type="button" name="analyseBtn" @click="fileUpload()">
@@ -159,7 +159,7 @@
                     // Hide error and show analysis feature selection section
                     this.hideFileTypeError = true;
 
-                    this.fileUploadedText = "File uploaded: \
+                    this.fileUploadedText = "File selected: \
                         <span class='filename'>"
                         + filename + "</span>";
                 } else {
