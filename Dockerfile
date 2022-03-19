@@ -19,15 +19,19 @@ COPY . /konla
 
 RUN python3 -m pip install -r /konla/requirements.txt
 RUN python3 -m spacy download en_core_web_trf
-RUN python3 -m pip install pytesseract
-RUN apt install tesseract-ocr -y
 
 RUN mkdir -p /var/log/supervisor
 
+WORKDIR /konla/src/frontend/vue-web-app
+RUN npm run build
+RUN cp -r /konla/src/frontend/vue-web-app/dist/* /var/www/html
+
+RUN chmod 755 /konla && chown www-data.www-data -R /konla
+RUN chmod 700 /konla/CERT && chown root.root -R /konla/CERT
+
 COPY ./configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./configs/nginx.conf /etc/nginx/nginx.conf
 
 CMD ["/usr/bin/supervisord"]
 
-EXPOSE 8000
-EXPOSE 5000
-EXPOSE 8080
+EXPOSE 443

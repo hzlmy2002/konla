@@ -1,15 +1,7 @@
-pillow
 PyPDF2
-flask==2.0.2
-flask-cors
 spacy==3.2.0
-werkzeug==2.0.2
-tika==1.24
-pandas
-flask_restful
 redis
 django
 requests
 django-cors-headers
 uwsgi
-
