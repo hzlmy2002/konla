@@ -108,7 +108,7 @@
         methods: {
             async redirectToAnalysis() {
                 // Wait before redirecting
-                await new Promise(r => setTimeout(r, 1000));
+                await new Promise(r => setTimeout(r, 500));
 
                 // Switch to the analysis view
                 this.$router.push(
@@ -199,6 +199,9 @@
                         // selected
                         this.analysisFeatures[this.$refs[checkbox].name] = 1;
                         isSelected = true;
+                    } else {
+                        // Unchecked feature is set to 0
+                        this.analysisFeatures[this.$refs[checkbox].name] = 0;
                     }
                 }
 
