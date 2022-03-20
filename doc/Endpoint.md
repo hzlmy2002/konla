@@ -26,9 +26,6 @@ https://konla.thinktank007.com/api/v1/
 	 |	|--- metrics
          |
          |--- images
-         |
-         |--- status
-                |--- process
 ```
 
 ### Upload (binary&url)
@@ -314,48 +311,6 @@ TBC
 ```
 TBC
 ```
-
-### Status (process)
-
-**Endpoint**: /api/v1/status/process
-
-**Description**: Return the status of each task.
-
-**Methods**: GET
-
-**Parameters**:
-
-* None
-
-**Request**:
-
-* get  https://konla.thinktank007.com/api/v1/info/process
-* Disabled partial summarisation
-
-**Response**:
-
-* -1 - Feature not selected
-* 0 - Feature not completed yet
-* 1 - Feature completed
-
-```
-{
-	"current_status": 1,
-    	"errors": [],
-    	"messages": [],
-    	"result": {
-		"whole": 0,
-		"partial": -1,
-		"keywords": 1,
-		"refs": 1,
-		"meta": 1,
-		"metrics": 1,
-		# TBC: images
-    	}
-}
-```
-
-
 
 
 
