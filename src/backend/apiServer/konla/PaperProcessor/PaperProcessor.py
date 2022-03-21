@@ -1,10 +1,12 @@
-from typing import List
+from typing import List, OrderedDict
 import spacy
 from .wordFrequency import wordFrequency
 from .PDFHelper.PDFHelper import PDFHelper
 from .refs import Ref
 from .authors import AuthorParser
 from .sections import SectionExtractor
+from .summary import Summarizer
+
 
 class PaperProcessor():
     def __init__(self,path:str) -> None:
@@ -48,6 +50,16 @@ class PaperProcessor():
         extractor = SectionExtractor(self.doc, self.nlpTRF)
         return extractor.run()
 
+    def summarize_whole(self) -> str: # Or should it be List[str]
+        summarizer = Summarizer(self.doc, self.nlpTRF)
+        return summarizer.run_whole()
+
+    def summarize_partial(self) -> OrderedDict:
+        # returns ordered dict where key is title of section, value is its summary
+        summarizer = Summarizer(self.doc, self.nlpTRF)
+        return summarizer.run_partial()
+
+
 def test():
     pp=PaperProcessor("/tmp/typestudy.pdf")
     print(pp.wordFrequency(max=20,useLemma=True))
@@ -56,5 +68,10 @@ def test():
     print(pp.metrics())
     print(pp.references())
     print(pp.sections())
+    print(pp.summarize_whole)
+    print(pp.summarize_partial)
 
 #test()
+# For in-container testing
+# import os
+# # os.chdir('src/backend/apiServer/konla/PaperProcessor')
