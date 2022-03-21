@@ -107,20 +107,16 @@ class SectionExtractor():
             string_id = self.nlp.vocab.strings[match_id]
             span = self.doc[start:end]
             match_text = span.text
-            # if match_text == "250 controls was reported by Song":
-            #     hello = True
             print(match_text)
             # check if all non-stopwords are capitalized (use if loose patterns)
             valid = True
             for tk in span:
-                # if hello: print(f"{tk}, {tk.like_num}, {tk.is_punct}, {tk.is_space}, {tk.is_title}")
                 if not(tk.like_num or tk.is_stop or tk.is_punct or tk.is_digit or tk.is_space):
                     valid = tk.is_title
                     if valid == False:
                         break
             if valid:
                 matched.append((match_text, string_id, start, end))
-                # print(f"MATCHED {string_id}: {match_text}")
         return matched
     
     def _remove_copies_and_overlap(self, matched):
@@ -154,7 +150,7 @@ class SectionExtractor():
             # start checking following sections
             j = i+1
             take_end_of_doc = False
-            while num_2.startswith(num_1): # eg. '1.4' followss section '1.'
+            while num_2.startswith(num_1): # eg. '1.4' follows section '1.'
                 j += 1
                 if j > len(final)-1:
                     take_end_of_doc = True
@@ -177,6 +173,4 @@ class SectionExtractor():
         matches = self._check_matches(matches)
         matches = self._remove_copies_and_overlap(matches)
         self.segments = self._get_section_ranges(matches)
-        # for segment in self.segments:
-        #     print(segment)
         return self.segments
