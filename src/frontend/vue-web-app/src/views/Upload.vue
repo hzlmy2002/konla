@@ -248,6 +248,7 @@
                 if (this.paperURL && this.checkSelection(this.NUM_FEATURES)) {
                     const CONFIG = {
                         method: "GET",
+                        mode: "cors",
                         credentials: "include",
                     };
 

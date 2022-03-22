@@ -210,6 +210,7 @@
                 for (const feature of this.analysisFeaturesNotCompleted) {
                     const CONFIG = {
                         method: "GET",
+                        mode: "cors",
                         credentials: "include",
                     };
 
