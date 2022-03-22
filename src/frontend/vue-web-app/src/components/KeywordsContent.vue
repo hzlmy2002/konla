@@ -3,6 +3,37 @@
         <ErrorContent  :errors-content="errors" />
     </div>
     <div v-else>
+        <div class="row parameter-selection justify-content-center">
+            <!-- Number of keywords -->
+            <div class="col-auto">
+                <div class="input-group input-group-sm mb-3">
+
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Number of keywords</span>
+                  </div>
+                  <input class="form-control" aria-label="Small"
+                    aria-describedby="inputGroup-sizing-sm"
+                    type="number" min="1" max="100"
+                    name="num-keywords" value="100">
+                  <!-- <input type="text"  > -->
+                </div>
+            </div>
+
+            <!-- Ignore Case -->
+            <div class="col-auto">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                  <label class="form-check-label" for="flexSwitchCheckDefault">Ignore Case</label>
+                </div>
+            </div>
+            <!-- Extract Lemma -->
+            <div class="col-auto">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                  <label class="form-check-label" for="flexSwitchCheckDefault">Extract Lemma</label>
+                </div>
+            </div>
+        </div>
         <table class="table w-50">
           <thead>
             <tr>
@@ -49,5 +80,21 @@ export default {
 <style scoped>
     .frequence-val {
         font-family: 'Oswald', sans-serif;
+    }
+
+    .form-control {
+        box-shadow: none;
+        border: 0;
+        border-radius: 5px;
+    }
+
+    .input-group-text {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .parameter-selection {
+        background-color: #B0BEC5;
+        border-radius: 8px;
     }
 </style>
