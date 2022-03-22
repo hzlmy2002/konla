@@ -57,7 +57,7 @@
           <tbody>
             <tr v-for="(frequency, keyword, index) in keywordsData" :key="keyword">
                 <!-- Check index is less than maximum number of keywords -->
-                <template v-if="(index+1) <= numKeywords">
+                <template v-if="(index+1) <= Math.max(numKeywords, 1)">
                     <th scope="row">{{ index+1 }}</th>
                     <td>{{ keyword }}</td>
                     <td class="frequence-val">{{ frequency }}</td>
