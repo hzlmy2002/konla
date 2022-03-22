@@ -7,15 +7,14 @@
             <!-- Number of keywords -->
             <div class="col-auto">
                 <div class="input-group input-group-sm mb-3">
-
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Number of keywords</span>
                   </div>
-                  <input class="form-control" aria-label="Small"
+                  <input ref="numKeywordsInput" class="form-control" aria-label="Small"
                     aria-describedby="inputGroup-sizing-sm"
                     type="number" min="1" max="100"
-                    name="num-keywords" value="100">
-                  <!-- <input type="text"  > -->
+                    name="num-keywords"
+                    v-model.number="numKeywords">
                 </div>
             </div>
 
@@ -44,10 +43,12 @@
           </thead>
           <tbody>
             <tr v-for="(frequency, keyword, index) in keywordsData" :key="keyword">
-                <!-- Index + 1 to start counting from 1 -->
-                <th scope="row">{{ index+1 }}</th>
-                <td>{{ keyword }}</td>
-                <td class="frequence-val">{{ frequency }}</td>
+                <!-- Check index is less than maximum number of keywords -->
+                <template v-if="(index+1) <= numKeywords">
+                    <th scope="row">{{ index+1 }}</th>
+                    <td>{{ keyword }}</td>
+                    <td class="frequence-val">{{ frequency }}</td>
+                </template>
             </tr>
           </tbody>
         </table>
@@ -71,6 +72,7 @@ export default {
     data() {
         return {
             keywordsData: this.content.keywords,
+            numKeywords: 100, // Default num of keywords is 100
             errors: this.content.errors
         }
     }
