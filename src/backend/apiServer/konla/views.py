@@ -1,21 +1,13 @@
-from urllib import response
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-
 import json
-import time
-from threading import Thread
-from django.core.cache import cache
 
 from . import uploadingView
 from . import startView
 from . import dataProviderView
 
 # Create your views here.
-
-def index(request):
-    return HttpResponse("Konla")
 
 @csrf_exempt
 def uploadFile(request):

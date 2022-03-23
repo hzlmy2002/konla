@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: konla/dataProviderView.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="konla.dataProviderView.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               konla/dataProviderView.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="E225">
+               <span class="count sev-2">
+                  35
+               </span>
+               <strong>E225:</strong> missing whitespace around operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="konla.dataProviderView.source.html#l7">
+                  <tt><i>7</i>         <span class="n">prefix</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;paperFingerprint&quot;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l15">
+                  <tt><i>15</i>     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span> <span class="c1"># avoid key error</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l22">
+                  <tt><i>22</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_featureTable&quot;</span><span class="p">)[</span><span class="s2">&quot;enableKeywords&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l29">
+                  <tt><i>29</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l44">
+                  <tt><i>44</i>         <span class="n">result</span><span class="o">=</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_keywords&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l46">
+                  <tt><i>46</i>             <span class="n">maxNum</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l48">
+                  <tt><i>48</i>             <span class="n">maxNum</span><span class="o">=</span><span class="mi">100</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l49">
+                  <tt><i>49</i>         <span class="n">ignoreCase</span><span class="o">=</span><span class="kc">True</span> <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ignorecase&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l50">
+                  <tt><i>50</i>         <span class="n">extractLemma</span><span class="o">=</span><span class="kc">True</span> <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;extractlemma&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span> <span class="k">else</span> <span class="kc">False</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l51">
+                  <tt><i>51</i>         <span class="n">provisionalResult</span><span class="o">=</span><span class="p">{}</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l53">
+                  <tt><i>53</i>             <span class="n">provisionalResult</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;lemma&quot;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l55">
+                  <tt><i>55</i>             <span class="n">provisionalResult</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;ignoreCase&quot;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l57">
+                  <tt><i>57</i>             <span class="n">provisionalResult</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;normal&quot;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l58">
+                  <tt><i>58</i>         <span class="n">finalResultKey</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">provisionalResult</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">provisionalResult</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="n">maxNum</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l59">
+                  <tt><i>59</i>         <span class="n">finalResult</span><span class="o">=</span><span class="p">{}</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l61">
+                  <tt><i>61</i>             <span class="n">finalResult</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">provisionalResult</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l63">
+                  <tt><i>63</i>         <span class="n">response</span><span class="o">=</span><span class="p">{</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l81">
+                  <tt><i>81</i>         <span class="n">prefix</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;paperFingerprint&quot;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l89">
+                  <tt><i>89</i>     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l96">
+                  <tt><i>96</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_featureTable&quot;</span><span class="p">)[</span><span class="s2">&quot;enableRefs&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l104">
+                  <tt><i>104</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l119">
+                  <tt><i>119</i>         <span class="n">result</span><span class="o">=</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_refs&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l120">
+                  <tt><i>120</i>         <span class="n">response</span><span class="o">=</span><span class="p">{</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l142">
+                  <tt><i>142</i>         <span class="n">prefix</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;paperFingerprint&quot;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l150">
+                  <tt><i>150</i>     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l157">
+                  <tt><i>157</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_featureTable&quot;</span><span class="p">)[</span><span class="s2">&quot;enableMeta&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l165">
+                  <tt><i>165</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l180">
+                  <tt><i>180</i>         <span class="n">result</span><span class="o">=</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_meta&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l181">
+                  <tt><i>181</i>         <span class="n">response</span><span class="o">=</span><span class="p">{</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l203">
+                  <tt><i>203</i>         <span class="n">prefix</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;paperFingerprint&quot;</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l211">
+                  <tt><i>211</i>     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l218">
+                  <tt><i>218</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_featureTable&quot;</span><span class="p">)[</span><span class="s2">&quot;enableMetrics&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l226">
+                  <tt><i>226</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l241">
+                  <tt><i>241</i>         <span class="n">result</span><span class="o">=</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_metrics&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l242">
+                  <tt><i>242</i>         <span class="n">response</span><span class="o">=</span><span class="p">{</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E712">
+               <span class="count sev-2">
+                  16
+               </span>
+               <strong>E712:</strong> comparison to False should be 'if cond is False:' or 'if not cond:'
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l22">
+                  <tt><i>22</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_featureTable&quot;</span><span class="p">)[</span><span class="s2">&quot;enableKeywords&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l29">
+                  <tt><i>29</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l36">
+                  <tt><i>36</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_keywords_completed&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to True should be 'if cond is True:' or 'if cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l43">
+                  <tt><i>43</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_keywords_completed&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l96">
+                  <tt><i>96</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_featureTable&quot;</span><span class="p">)[</span><span class="s2">&quot;enableRefs&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l104">
+                  <tt><i>104</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l111">
+                  <tt><i>111</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_refs_completed&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to True should be 'if cond is True:' or 'if cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l118">
+                  <tt><i>118</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_refs_completed&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l157">
+                  <tt><i>157</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_featureTable&quot;</span><span class="p">)[</span><span class="s2">&quot;enableMeta&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l165">
+                  <tt><i>165</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l172">
+                  <tt><i>172</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_meta_completed&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to True should be 'if cond is True:' or 'if cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l179">
+                  <tt><i>179</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_meta_completed&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l218">
+                  <tt><i>218</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_featureTable&quot;</span><span class="p">)[</span><span class="s2">&quot;enableMetrics&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l226">
+                  <tt><i>226</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to False should be 'if cond is False:' or 'if not cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l233">
+                  <tt><i>233</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_metrics_completed&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to True should be 'if cond is True:' or 'if cond:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l240">
+                  <tt><i>240</i>     <span class="k">elif</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_metrics_completed&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  7
+               </span>
+               <strong>E231:</strong> missing whitespace after ','
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Missing whitespace after ',' (in 2 places):</p>
+               
+               <a href="konla.dataProviderView.source.html#l58">
+                  <tt><i>58</i>         <span class="n">finalResultKey</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">provisionalResult</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">provisionalResult</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="n">maxNum</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':':</p>
+               
+               <a href="konla.dataProviderView.source.html#l58">
+                  <tt><i>58</i>         <span class="n">finalResultKey</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">provisionalResult</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">provisionalResult</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="n">maxNum</span><span class="p">]</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':':</p>
+               
+               <a href="konla.dataProviderView.source.html#l67">
+                  <tt><i>67</i>             <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;keywords&quot;</span><span class="p">:</span><span class="n">finalResult</span><span class="p">}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':':</p>
+               
+               <a href="konla.dataProviderView.source.html#l124">
+                  <tt><i>124</i>             <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;refs&quot;</span><span class="p">:</span><span class="n">result</span><span class="p">}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':':</p>
+               
+               <a href="konla.dataProviderView.source.html#l185">
+                  <tt><i>185</i>             <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;metadata&quot;</span><span class="p">:</span><span class="n">result</span><span class="p">}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':':</p>
+               
+               <a href="konla.dataProviderView.source.html#l246">
+                  <tt><i>246</i>             <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;metrics&quot;</span><span class="p">:</span><span class="n">result</span><span class="p">}</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E711">
+               <span class="count sev-2">
+                  5
+               </span>
+               <strong>E711:</strong> comparison to None should be 'if cond is None:'
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Comparison to None should be 'if cond is None:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l15">
+                  <tt><i>15</i>     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span> <span class="c1"># avoid key error</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to None should be 'if cond is not None:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l45">
+                  <tt><i>45</i>         <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to None should be 'if cond is None:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l89">
+                  <tt><i>89</i>     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to None should be 'if cond is None:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l150">
+                  <tt><i>150</i>     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Comparison to None should be 'if cond is None:':</p>
+               
+               <a href="konla.dataProviderView.source.html#l211">
+                  <tt><i>211</i>     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W293">
+               <span class="count sev-2">
+                  4
+               </span>
+               <strong>W293:</strong> blank line contains whitespace
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="konla.dataProviderView.source.html#l62">
+                  <tt><i>62</i>         </tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l103">
+                  <tt><i>103</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l164">
+                  <tt><i>164</i>     </tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.dataProviderView.source.html#l225">
+                  <tt><i>225</i>     </tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E303">
+               <span class="count sev-2">
+                  3
+               </span>
+               <strong>E303:</strong> too many blank lines (3)
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Too many blank lines (3):</p>
+               
+               <a href="konla.dataProviderView.source.html#l5">
+                  <tt><i>5</i> <span class="k">def</span> <span class="nf">provideKeywords</span><span class="p">(</span><span class="n">request</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (6):</p>
+               
+               <a href="konla.dataProviderView.source.html#l140">
+                  <tt><i>140</i> <span class="k">def</span> <span class="nf">provideMeta</span><span class="p">(</span><span class="n">request</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Too many blank lines (6):</p>
+               
+               <a href="konla.dataProviderView.source.html#l201">
+                  <tt><i>201</i> <span class="k">def</span> <span class="nf">provideMetric</span><span class="p">(</span><span class="n">request</span><span class="p">):</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E261">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E261:</strong> at least two spaces before inline comment
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="konla.dataProviderView.source.html#l15">
+                  <tt><i>15</i>     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_initialized&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span> <span class="c1"># avoid key error</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E501:</strong> line too long (104 > 79 characters)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="konla.dataProviderView.source.html#l58">
+                  <tt><i>58</i>         <span class="n">finalResultKey</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">provisionalResult</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">provisionalResult</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="n">maxNum</span><span class="p">]</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W292">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W292:</strong> no newline at end of file
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="konla.dataProviderView.source.html#l255">
+                  <tt><i>255</i>         <span class="p">}</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

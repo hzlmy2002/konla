@@ -4,8 +4,6 @@ from .form import selectionForm
 from .PaperProcessor.PaperProcessor import PaperProcessor
 from threading import Thread
 
-import time
-
 def startProcessing(request):
     try:
         if request.method=="POST":

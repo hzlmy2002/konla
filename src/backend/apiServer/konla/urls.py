@@ -1,8 +1,7 @@
-from django.urls import path,include
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("",views.index,name="index"),
     path("upload/binary",views.uploadFile,name="acceptFile"),
     path("upload/url",views.uploadURL,name="acceptURL"),
     path("upload/start",views.uploadStart,name="startProcessing"),

@@ -107,7 +107,7 @@ class SectionExtractor():
             string_id = self.nlp.vocab.strings[match_id]
             span = self.doc[start:end]
             match_text = span.text
-            print(match_text)
+            #print(match_text)
             # check if all non-stopwords are capitalized (use if loose patterns)
             valid = True
             for tk in span:

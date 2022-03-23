@@ -1,5 +1,3 @@
-import spacy
-import pickle
 
 class AuthorParser():
     def __init__(self,doc):
@@ -21,6 +19,7 @@ class AuthorParser():
         self.getConsecutiveNames()
         return self.names
 
+"""
 def test():
     nlp=spacy.load("en_core_web_trf")
     with open("/tmp/typestudy.txt") as file:
@@ -31,3 +30,4 @@ def test():
     pass
 
 #test()
+"""
