@@ -1,4 +1,4 @@
-from sections import SectionExtractor
+from .sections import SectionExtractor
 from collections import OrderedDict
 
 class Summarizer:
@@ -40,7 +40,7 @@ class Summarizer:
         str: Concatanated n best scoring sentences in order
         """
         # STEP 1. Text preprocessing
-        print(type(doc))
+        #print(type(doc))
         keywords = dict()
         num_tks = 0
         for tk in doc: 
@@ -71,3 +71,20 @@ class Summarizer:
 # Potential additional arg for extractive summarization
 # mct (int): optional argument, number of top keywords to take into account
 # when computing sentence score, default 0 means all
+
+"""
+def test():
+    nlp=spacy.load('en_core_web_trf')
+    with open("Trident_Controlling_Side_Effects_in_Automated_Program_Repair.txt") as file:
+        text = file.read()
+    doc = nlp(text)
+
+    sm=Summarizer(doc, nlp)
+    whole=sm.run_whole()
+    partial=sm.run_partial()
+    print(whole)
+    print(partial)
+    pass
+
+#test()
+"""

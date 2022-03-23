@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: konla/PaperProcessor/refs.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="konla.PaperProcessor.refs.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               konla/PaperProcessor/refs.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="E231">
+               <span class="count sev-2">
+                  31
+               </span>
+               <strong>E231:</strong> missing whitespace after ','
+               
+                  (and 1 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Missing whitespace after ',' (in 2 places):</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l5">
+                  <tt><i>5</i>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">doc</span><span class="p">,</span><span class="n">nlp</span><span class="p">):</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l10">
+                  <tt><i>10</i>             <span class="p">{</span><span class="s2">&quot;IS_SPACE&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':' (in 2 places):</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l10">
+                  <tt><i>10</i>             <span class="p">{</span><span class="s2">&quot;IS_SPACE&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l11">
+                  <tt><i>11</i>             <span class="p">{</span><span class="s2">&quot;IS_PUNCT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;?&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':' (in 2 places):</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l11">
+                  <tt><i>11</i>             <span class="p">{</span><span class="s2">&quot;IS_PUNCT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;?&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l12">
+                  <tt><i>12</i>             <span class="p">{</span><span class="s2">&quot;IS_DIGIT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;LENGTH&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':' (in 2 places):</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l12">
+                  <tt><i>12</i>             <span class="p">{</span><span class="s2">&quot;IS_DIGIT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;LENGTH&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l13">
+                  <tt><i>13</i>             <span class="p">{</span><span class="s2">&quot;IS_PUNCT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;?&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':' (in 2 places):</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l13">
+                  <tt><i>13</i>             <span class="p">{</span><span class="s2">&quot;IS_PUNCT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;?&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l14">
+                  <tt><i>14</i>             <span class="p">{</span><span class="s2">&quot;ENT_TYPE&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON&quot;</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;+&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':' (in 2 places):</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l14">
+                  <tt><i>14</i>             <span class="p">{</span><span class="s2">&quot;ENT_TYPE&quot;</span><span class="p">:</span><span class="s2">&quot;PERSON&quot;</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;+&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l15">
+                  <tt><i>15</i>             <span class="p">{</span><span class="s2">&quot;IS_PUNCT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;?&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':' (in 2 places):</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l15">
+                  <tt><i>15</i>             <span class="p">{</span><span class="s2">&quot;IS_PUNCT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;?&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l16">
+                  <tt><i>16</i>             <span class="p">{</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;*&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l17">
+                  <tt><i>17</i>             <span class="p">{</span><span class="s2">&quot;ENT_TYPE&quot;</span><span class="p">:</span><span class="s2">&quot;DATE&quot;</span><span class="p">},</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l18">
+                  <tt><i>18</i>             <span class="p">{</span><span class="s2">&quot;IS_PUNCT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;?&quot;</span><span class="p">}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':' (in 2 places):</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l18">
+                  <tt><i>18</i>             <span class="p">{</span><span class="s2">&quot;IS_PUNCT&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;OP&quot;</span><span class="p">:</span><span class="s2">&quot;?&quot;</span><span class="p">}</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',' (in 2 places):</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l24">
+                  <tt><i>24</i>         <span class="n">matcher</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;ref&quot;</span><span class="p">,[</span><span class="bp">self</span><span class="o">.</span><span class="n">tightRules</span><span class="p">],</span><span class="n">greedy</span><span class="o">=</span><span class="s2">&quot;LONGEST&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l33">
+                  <tt><i>33</i>             <span class="n">isHitted</span><span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequenceNumberPattern</span><span class="p">,</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span> <span class="o">&gt;</span> <span class="mi">0</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l44">
+                  <tt><i>44</i>         <span class="bp">self</span><span class="o">.</span><span class="n">refs</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span><span class="bp">self</span><span class="o">.</span><span class="n">refs</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ':':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l44">
+                  <tt><i>44</i>         <span class="bp">self</span><span class="o">.</span><span class="n">refs</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span><span class="bp">self</span><span class="o">.</span><span class="n">refs</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Missing whitespace after ',':</p>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l53">
+                  <tt><i>53</i>     <span class="n">ref</span><span class="o">=</span><span class="n">Ref</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span><span class="n">nlp</span><span class="p">)</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E225">
+               <span class="count sev-2">
+                  20
+               </span>
+               <strong>E225:</strong> missing whitespace around operator
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l6">
+                  <tt><i>6</i>         <span class="bp">self</span><span class="o">.</span><span class="n">doc</span><span class="o">=</span><span class="n">doc</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l7">
+                  <tt><i>7</i>         <span class="bp">self</span><span class="o">.</span><span class="n">refs</span><span class="o">=</span><span class="p">[]</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l8">
+                  <tt><i>8</i>         <span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="o">=</span><span class="n">nlp</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l9">
+                  <tt><i>9</i>         <span class="bp">self</span><span class="o">.</span><span class="n">tightRules</span><span class="o">=</span><span class="p">[</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l20">
+                  <tt><i>20</i>         <span class="bp">self</span><span class="o">.</span><span class="n">refRegion</span><span class="o">=</span><span class="s2">&quot;&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l23">
+                  <tt><i>23</i>         <span class="n">matcher</span><span class="o">=</span><span class="n">spacy</span><span class="o">.</span><span class="n">matcher</span><span class="o">.</span><span class="n">Matcher</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nlp</span><span class="o">.</span><span class="n">vocab</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l25">
+                  <tt><i>25</i>         <span class="n">matches</span><span class="o">=</span><span class="n">matcher</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">doc</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l26">
+                  <tt><i>26</i>         <span class="bp">self</span><span class="o">.</span><span class="n">refRegion</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">doc</span><span class="p">[</span><span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]:</span><span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]])</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l29">
+                  <tt><i>29</i>         <span class="n">lines</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">refRegion</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l30">
+                  <tt><i>30</i>         <span class="n">sequenceNumberPattern</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;^\[\d+\]&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l31">
+                  <tt><i>31</i>         <span class="n">tmp</span><span class="o">=</span><span class="s2">&quot;&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l33">
+                  <tt><i>33</i>             <span class="n">isHitted</span><span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequenceNumberPattern</span><span class="p">,</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span> <span class="o">&gt;</span> <span class="mi">0</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l37">
+                  <tt><i>37</i>                     <span class="n">tmp</span><span class="o">=</span><span class="s2">&quot;&quot;</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l38">
+                  <tt><i>38</i>             <span class="n">tmp</span><span class="o">=</span> <span class="n">tmp</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l44">
+                  <tt><i>44</i>         <span class="bp">self</span><span class="o">.</span><span class="n">refs</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span><span class="bp">self</span><span class="o">.</span><span class="n">refs</span><span class="p">))</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l49">
+                  <tt><i>49</i>     <span class="n">nlp</span><span class="o">=</span><span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_trf&quot;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l51">
+                  <tt><i>51</i>         <span class="n">text</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l52">
+                  <tt><i>52</i>     <span class="n">doc</span><span class="o">=</span><span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l53">
+                  <tt><i>53</i>     <span class="n">ref</span><span class="o">=</span><span class="n">Ref</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span><span class="n">nlp</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l54">
+                  <tt><i>54</i>     <span class="n">r</span><span class="o">=</span><span class="n">ref</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E265">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E265:</strong> block comment should start with '# '
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l58">
+                  <tt><i>58</i> <span class="c1">#test()</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E302">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>E302:</strong> expected 2 blank lines, found 1
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l4">
+                  <tt><i>4</i> <span class="k">class</span> <span class="nc">Ref</span><span class="p">():</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="W292">
+               <span class="count sev-2">
+                  1
+               </span>
+               <strong>W292:</strong> no newline at end of file
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="konla.PaperProcessor.refs.source.html#l58">
+                  <tt><i>58</i> <span class="c1">#test()</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>

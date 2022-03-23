@@ -2,20 +2,13 @@ from urllib import response
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-
 import json
-import time
-from threading import Thread
-from django.core.cache import cache
 
 from . import uploadingView
 from . import startView
 from . import dataProviderView
 
 # Create your views here.
-
-def index(request):
-    return HttpResponse("Konla")
 
 @csrf_exempt
 def uploadFile(request):
@@ -47,6 +40,23 @@ def uploadStart(request):
         httpResponse.status_code=400
         return httpResponse
 
+def wholeSummarisation(request):
+    response=dataProviderView.provideWholeSummarisation(request)
+    if response["current_status"] != 0:
+        return HttpResponse(json.dumps(response),content_type="application/json")
+    else:
+        httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
+        httpResponse.status_code=400
+        return httpResponse
+
+def partialSummarisation(request):
+    response=dataProviderView.providePartialSummarisation(request)
+    if response["current_status"] != 0:
+        return HttpResponse(json.dumps(response),content_type="application/json")
+    else:
+        httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
+        httpResponse.status_code=400
+        return httpResponse
 
 def keywords(request):
     response=dataProviderView.provideKeywords(request)

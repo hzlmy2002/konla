@@ -2,6 +2,119 @@ from django.core.cache import cache
 
 
 
+def provideWholeSummarisation(request):
+    try:
+        prefix=request.session["paperFingerprint"]
+    except KeyError:
+        return {
+            "current_status": 0,
+            "errors": ["No file uploaded!"],
+            "messages": [],
+            "result": {}
+        }
+    if cache.get(prefix+"_initialized")==None:
+        return {
+            "current_status": 0,
+            "errors": ["No file uploaded!"],
+            "messages": [],
+            "result": {}
+        }
+    elif cache.get(prefix+"_featureTable")["enableWholeSummarisation"]==False:
+        return {
+            "current_status": 0,
+            "errors": ["Whole summarisation is disabled!"],
+            "messages": [],
+            "result": {}
+        }
+    
+    elif cache.get(prefix+"_initialized")==False:
+        return {
+            "current_status": -1,
+            "errors": ["System initializing, analysis did not start yet!"],
+            "messages": [],
+            "result": {}
+        }
+    elif cache.get(prefix+"_whole_completed") == False:
+        return {
+            "current_status": -1,
+            "errors": ["Whole summarisation is in progress!"],
+            "messages": [],
+            "result": {}
+        }
+    elif cache.get(prefix+"_whole_completed") == True:
+        result=cache.get(prefix+"_whole")
+        response={
+            "current_status": 1,
+            "errors": [],
+            "messages": [],
+            "result": {"whole_summarisation":result}
+        }
+        return response
+    else:
+        return {
+            "current_status": 0,
+            "errors": ["Unknown error!"],
+            "messages": [],
+            "result": {}
+        }
+
+def providePartialSummarisation(request):
+    try:
+        prefix=request.session["paperFingerprint"]
+    except KeyError:
+        return {
+            "current_status": 0,
+            "errors": ["No file uploaded!"],
+            "messages": [],
+            "result": {}
+        }
+    if cache.get(prefix+"_initialized")==None:
+        return {
+            "current_status": 0,
+            "errors": ["No file uploaded!"],
+            "messages": [],
+            "result": {}
+        }
+    elif cache.get(prefix+"_featureTable")["enablePartialSummarisation"]==False:
+        return {
+            "current_status": 0,
+            "errors": ["Partial summarisation is disabled!"],
+            "messages": [],
+            "result": {}
+        }
+    
+    elif cache.get(prefix+"_initialized")==False:
+        return {
+            "current_status": -1,
+            "errors": ["System initializing, analysis did not start yet!"],
+            "messages": [],
+            "result": {}
+        }
+    elif cache.get(prefix+"_partial_completed") == False:
+        return {
+            "current_status": -1,
+            "errors": ["Partial summarisation is in progress!"],
+            "messages": [],
+            "result": {}
+        }
+    elif cache.get(prefix+"_partial_completed") == True:
+        result=cache.get(prefix+"_partial")
+        response={
+            "current_status": 1,
+            "errors": [],
+            "messages": [],
+            "result": {"partial_summarisation":result}
+        }
+        return response
+    else:
+        return {
+            "current_status": 0,
+            "errors": ["Unknown error!"],
+            "messages": [],
+            "result": {}
+        }
+
+
 def provideKeywords(request):
     try:
         prefix=request.session["paperFingerprint"]

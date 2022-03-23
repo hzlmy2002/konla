@@ -11,7 +11,7 @@ class wordFrequency():
     def getWordFrequency(self) -> dict:
         wordList=[]
         for token in self.doc:
-            if token.is_stop or token.is_punct or token.is_space or token.is_bracket or len(token.text)<4:
+            if token.is_stop or token.is_punct or token.is_space or token.is_bracket or token.is_digit or token.like_num or token.like_url or len(token.text)<4:
                 continue
             if not self.useLemma:
                 if self.ignoreCase:
