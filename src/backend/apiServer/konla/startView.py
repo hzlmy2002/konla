@@ -48,13 +48,13 @@ def mainThread(path,prefix,featureTable):
     pp=PaperProcessor(path)
 
     if featureTable["enableWholeSummarisation"]:
-        pass
-    else:
-        pass
+        whole=Thread(target=wholeSummarisationThread,args=(prefix,pp))
+        cache.set(prefix+"_whole_completed",False,timeout=3600)
+        whole.start()
     if featureTable["enablePartialSummarisation"]:
-        pass
-    else:
-        pass
+        partial=Thread(target=partialSummarisationThread,args=(prefix,pp))
+        cache.set(prefix+"_partial_completed",False,timeout=3600)
+        partial.start()
     if featureTable["enableKeywords"]:
         keyword=Thread(target=keywordThread,args=(prefix,pp))
         cache.set(prefix+"_keywords_completed",False,timeout=3600) # 0: in progress, 1: completed, -1: disabled
@@ -76,6 +76,16 @@ def mainThread(path,prefix,featureTable):
         metrics.start()
     
     cache.set(prefix+"_initialized",True,timeout=3600)
+
+def wholeSummarisationThread(prefix,paperProcessor):
+    summary=paperProcessor.summarize_whole()
+    cache.set(prefix+"_whole",summary,timeout=3600)
+    cache.set(prefix+"_whole_completed",True,timeout=3600)
+
+def partialSummarisationThread(prefix,paperProcessor):
+    summary=paperProcessor.summarize_partial()
+    cache.set(prefix+"_partial",summary,timeout=3600)
+    cache.set(prefix+"_partial_completed",True,timeout=3600)
 
 def keywordThread(prefix,paperProcessor):
     normalResult=paperProcessor.wordFrequency(max=100,ignoreCase=False,useLemma=False)

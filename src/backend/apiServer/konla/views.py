@@ -1,3 +1,4 @@
+from urllib import response
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -39,6 +40,23 @@ def uploadStart(request):
         httpResponse.status_code=400
         return httpResponse
 
+def wholeSummarisation(request):
+    response=dataProviderView.provideWholeSummarisation(request)
+    if response["current_status"] != 0:
+        return HttpResponse(json.dumps(response),content_type="application/json")
+    else:
+        httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
+        httpResponse.status_code=400
+        return httpResponse
+
+def partialSummarisation(request):
+    response=dataProviderView.providePartialSummarisation(request)
+    if response["current_status"] != 0:
+        return HttpResponse(json.dumps(response),content_type="application/json")
+    else:
+        httpResponse=HttpResponse(json.dumps(response),content_type="application/json")
+        httpResponse.status_code=400
+        return httpResponse
 
 def keywords(request):
     response=dataProviderView.provideKeywords(request)
