@@ -97,8 +97,8 @@ export default {
             // Parameters for keyword analysis
             const parameters = {
                 "max": 100,
-                "ignorecase": this.ignoreCaseValue,
-                "extractlemma": this.extractLemmaValue,
+                "ignorecase": Number(this.ignoreCaseValue),
+                "extractlemma": Number(this.extractLemmaValue),
             }
 
             const CONFIG = {
