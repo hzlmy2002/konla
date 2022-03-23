@@ -120,7 +120,7 @@ whole=1&partial=1&keywords=1&refs=1&metadata=1&metrics=1
  	"errors": [],
     	"messages": [],
     	"result": {
-    		"summarisation": "Whole summarised paper content"
+    		"whole_summarisation": "Whole summarised paper content"
     	}
 }
 ```
@@ -151,7 +151,7 @@ whole=1&partial=1&keywords=1&refs=1&metadata=1&metrics=1
  	"errors": [],
     	"messages": [],
     	"result": {
-    		"summarisation": "Partial summarised paper content"
+    		"partial_summarisation": {"section1 title":"summarized text for section1","section2 title":"summarized text for section2"}
     	}
 }
 ```
