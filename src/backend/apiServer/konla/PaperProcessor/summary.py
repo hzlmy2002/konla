@@ -1,4 +1,4 @@
-from sections import SectionExtractor
+from .sections import SectionExtractor
 from collections import OrderedDict
 
 class Summarizer:
