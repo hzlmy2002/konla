@@ -3,7 +3,12 @@
         <ErrorContent  :errors-content="errors" />
     </div>
     <div v-else>
-        <p>{{ summary }}</p>
+        <div v-for="(summaryContent, summaryHeading) in summariesList" :key="summaryHeading" class="partial-summary-section">
+            <div class="px-3 summary-heading">
+                <h3>{{ summaryHeading }}</h3>
+            </div>
+            <p>{{ summaryContent }}</p>
+        </div>
     </div>
 </template>
 
@@ -22,9 +27,20 @@ export default {
 
     data() {
         return {
-            summary: this.content.summarisation,
+            summariesList: this.content.partial_summarisation,
             errors: this.content.errors
         }
     }
 };
 </script>
+
+<style scoped>
+    .partial-summary-section {
+        border-bottom: 3px solid #BDBDBD;
+        margin-bottom: 2rem;
+    }
+
+    .summary-heading {
+        border-left: 10px solid #263238;
+    }
+</style>

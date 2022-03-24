@@ -22,7 +22,7 @@ export default {
 
     data() {
         return {
-            summary: this.content.summarisation,
+            summary: this.content.whole_summarisation,
             errors: this.content.errors
         }
     }
