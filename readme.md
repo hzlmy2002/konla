@@ -19,7 +19,7 @@ To run the project locally, download or clone the project from the repositoy. To
 ##### Step 1 Build the docker image
 `docker build -t konla .`
 ##### Step 2 Run the server using the safe port 443
-`docker build -p 443:443 -d`
+`docker run -p 443:443 -d konla`
 ##### Step 3 Open the browser and try out the app
 Open your browser and navigate to https://127.0.0.1
 
