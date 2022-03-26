@@ -27,8 +27,11 @@ After you selected the features you should upload your .pdf paper. You can do th
 
 #### After upload
 You will see a new view after a few seconds. The features you selected will appear on the left side and they will be color-coded:
+
 🟡 Yellow – Your feature is still being run in the background. Please wait.
+
 🟢 Green – Your feature has finished. You can click on the block to see the results.
+
 🔴 Red – An error occurred while trying to run this feature. Try again or report an issue.
 
 
