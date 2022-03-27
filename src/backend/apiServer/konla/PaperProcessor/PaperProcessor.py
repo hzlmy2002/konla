@@ -10,10 +10,14 @@ from .summary import Summarizer
 
 class PaperProcessor():
     def __init__(self,path:str) -> None:
-        text = PDFHelper.pdf2text(path)
+        text = self.preprocessText(PDFHelper.pdf2text(path))
         self.metadata = PDFHelper.getMetaData(path)
         self.nlpTRF = spacy.load("en_core_web_trf")
         self.doc = self.nlpTRF(text)
+
+    def preprocessText(self, text: str) -> str:
+        text = text.replace("’", "'")  # handle tricky chars
+        return text
     
     def wordFrequency(self,max=10,ignoreCase=False,useLemma=False) -> dict:
         wf = wordFrequency(self.doc,max,ignoreCase,useLemma)
@@ -39,7 +43,6 @@ class PaperProcessor():
         result["wordCount"] = self.wordCount()
         result["readingTime"] = 60*self.wordCount()//238
         result["speakingTime"] = 60*self.wordCount()//140
-
         return result
 
     def references(self) -> List[str]:
@@ -73,5 +76,3 @@ def test():
 
 #test()
 # For in-container testing
-# import os
-# # os.chdir('src/backend/apiServer/konla/PaperProcessor')
