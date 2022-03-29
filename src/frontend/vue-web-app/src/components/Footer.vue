@@ -1,7 +1,7 @@
 <template>
     <footer class="page-footer py-3 footer-style" :style="footerStyle">
         <div class="px-3">
-            <p class="small">KONLA | Copyright &copy; 2021-{{ currentYear }} | Team: Suraj Kothari, Bartosz Grabek, Harry Lei</p>
+            <p class="small">KONLA | Copyright &copy; 2021-{{ currentYear }} | Team: Suraj Kothari, Bartosz Grabek, Harry Lei | KONLA logo: flaticon.com</p>
         </div>
     </footer>
 </template>
