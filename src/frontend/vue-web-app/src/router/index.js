@@ -1,4 +1,6 @@
 /* Switches routes for different views */
+/* AUTHOR: Suraj Kothari */
+
 import { createWebHistory, createRouter } from "vue-router";
 import Upload from "@/views/Upload.vue";
 import Analysis from "@/views/Analysis.vue";

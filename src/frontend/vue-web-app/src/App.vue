@@ -1,3 +1,4 @@
+<!-- AUTHOR: Suraj Kothari -->
 <template>
     <router-view />
 </template>

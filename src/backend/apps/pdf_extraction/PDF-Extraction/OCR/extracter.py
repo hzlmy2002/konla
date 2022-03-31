@@ -1,11 +1,11 @@
 """
-PDF text extracter using OCR (Optical Character Recognition)
+PDF text extracter using OCR (Optical Character Recognition). Convert each page
+of a PDF to a PNG. Then use OCR to convert to text.
+AUTHOR: Suraj Kothari
 
 References:
 PDF to images: https://stdworkflow.com/272/say-goodbye-to-copy-paste-python-implements-pdf-to-text
 Pytesseract OCR: https://nanonets.com/blog/ocr-with-tesseract/
-
-Convert each page of a PDF to a PNG. Then use OCR to convert to text
 """
 from pdf2image import convert_from_path
 import pytesseract

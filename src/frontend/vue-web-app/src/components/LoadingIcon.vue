@@ -1,3 +1,4 @@
+<!-- AUTHOR: Suraj Kothari -->
 <!-- Reference: https://loading.io/css/ -->
 <template>
     <div class="lds-ring">

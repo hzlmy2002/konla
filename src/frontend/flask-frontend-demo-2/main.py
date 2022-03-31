@@ -1,4 +1,7 @@
-""" This is a KONLA application demonstration version 2 """
+"""
+KONLA DEMO
+AUTHOR: Suraj Kothari
+"""
 import os
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename

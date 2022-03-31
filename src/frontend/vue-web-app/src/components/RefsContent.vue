@@ -1,3 +1,4 @@
+<!-- AUTHOR: Suraj Kothari -->
 <template>
     <div v-if="errors">
         <ErrorContent  :errors-content="errors" />

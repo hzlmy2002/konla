@@ -1,3 +1,4 @@
+<!-- AUTHOR: Suraj Kothari -->
 <template>
     <footer class="page-footer py-3 footer-style" :style="footerStyle">
         <div class="px-3">

@@ -1,4 +1,7 @@
-""" PDF text extracter using Tika """
+"""
+PDF text extracter using Tika
+AUTHOR: Suraj Kothari
+"""
 from tika import parser as tikaParser
 
 class PDFToText():

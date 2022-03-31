@@ -1,4 +1,6 @@
-// KONLA APP - 2022
+/* KONLA DEMO */
+/* AUTHOR: Suraj Kothari */
+
 function initialise() {
     // Add event listeners for window to prevent default opening of a file
     window.addEventListener("dragover",function(e) { e.preventDefault(); }, false);

@@ -1,4 +1,7 @@
-""" PDF text extracter using pdftotext """
+"""
+PDF text extracter using pdftotext
+AUTHOR: Suraj Kothari
+"""
 import pdftotext
 import os
 

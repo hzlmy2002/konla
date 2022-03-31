@@ -1,8 +1,10 @@
-# Run API
-# API Structure inspired by post
-# https://dev.to/paurakhsharma/flask-rest-api-part-2-better-structure-with-blueprint-and-flask-restful-2n93
+"""
+AUTHOR: Suraj Kothari
+API Structure inspired by post
+https://dev.to/paurakhsharma/flask-rest-api-part-2-better-structure-with-blueprint-and-flask-restful-2n93
+"""
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_restful import Api
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
@@ -47,10 +49,10 @@ def upload():
     return response
 
 
-@app.route("/api/v1/upload/url", methods=["GET", "POST"])
+@app.route("/api/v1/upload/url", methods=["GET"])
 def upload_url():
-    url_parameters = request.args
-    print(url_parameters)
+    url = request.args
+    print(url)
     response = {
         "current_status": 1,
         "errors": [],
@@ -121,14 +123,25 @@ def partial_summarisation():
 
 @app.route("/api/v1/keywords", methods=["GET"])
 def keywords():
-    response = {
-    	"current_status": 1,
-        "errors": ["Error 10", "Error 20", "Error 30"],
-        "messages": [],
-        "result": {
-        	"keywords": {"Hello": 10, "World": 6, "KONLA": 3}
+    parameters = request.args
+    if parameters['ignorecase'] == 'true':
+        response = {
+        	"current_status": 1,
+            "errors": ["Error 10", "Error 20", "Error 30"],
+            "messages": [],
+            "result": {
+            	"keywords": {"Hello": 10, "TRUE": 6, "KONLA": 3}
+            }
         }
-    }
+    else:
+        response = {
+        	"current_status": 1,
+            "errors": ["Error 10", "Error 20", "Error 30"],
+            "messages": [],
+            "result": {
+            	"keywords": {"Hello": 10, "FALSE": 6, "KONLA": 3}
+            }
+        }
 
     return response
 

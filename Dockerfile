@@ -1,3 +1,4 @@
+# AUTHORS: Harry Lei, Suraj Kothari
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -31,3 +32,4 @@ COPY ./configs/nginx.conf /etc/nginx/nginx.conf
 CMD ["/usr/bin/supervisord"]
 
 EXPOSE 443
+EXPOSE 5000

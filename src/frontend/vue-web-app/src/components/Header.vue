@@ -1,3 +1,4 @@
+<!-- AUTHOR: Suraj Kothari -->
 <template>
     <a href="/" style="text-decoration: none;">
         <h2 class="display-3 py-3 px-5 konla-logo">
@@ -6,7 +7,7 @@
                 <strong>&#8212; K</strong>nowledge
                 <strong>O</strong>rganisation using
                 <strong>N</strong>atural
-                <strong>L</strong>anguage 
+                <strong>L</strong>anguage
                 <strong>A</strong>nalysis
             </span>
         </h2>
