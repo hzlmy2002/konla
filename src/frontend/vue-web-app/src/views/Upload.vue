@@ -52,14 +52,14 @@
                 </div>
             </div>
 
-            <p class="text-center lead upload-text">Upload a PDF or a scanned image of a paper</p>
+            <p class="text-center lead upload-text">Upload a PDF of a paper</p>
 
             <input ref="fileInput" type="file" name="fileInput" class="d-none" @change="updateUploadSection" />
 
             <div class="p-5 drag-drop-section" :style="{ backgroundColor: dragDropBackgroundColor, outlineOffset: dragDropOutlineOffset }" @drop="fileDropped" @dragover="fileDragHover" @dragleave="noFileDragHover">
                 <div class="text-center"><span class="material-icons upload-icon">description</span></div>
                 <p class="text-center lead" style="color: #9E9E9E;">Drag and drop or <a class="upload-link" @click="this.$refs['fileInput'].click()">browse</a> your files</p>
-                <p class="text-center lead error-text" :class="{ 'd-none': hideFileTypeError }">File selected is not a PDF or an image</p>
+                <p class="text-center lead error-text" :class="{ 'd-none': hideFileTypeError }">File selected is not a PDF</p>
                 <p class="text-center file-uploaded-text"><span v-html="fileUploadedText"></span></p>
                 <div class="d-flex justify-content-center">
                     <button class="btn btn-success mt-3 analysis-btn" type="button" name="analyseBtn" @click="fileUpload()">
@@ -156,7 +156,7 @@
                 const extension = filename.split('.').pop().toLowerCase();
 
                 // Check extension is valid
-                if (["pdf", "jpg", "png"].includes(extension)) {
+                if (["pdf"].includes(extension)) {
                     // Hide error and show analysis feature selection section
                     this.hideFileTypeError = true;
 
