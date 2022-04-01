@@ -1,11 +1,11 @@
 
 ---
-title: "Examples"
-linkTitle: "Examples"
-weight: 3
-date: 2017-01-05
+title: "UI design"
+linkTitle: "UI design"
+weight: 4
+date: 2022-4-01
 description: >
-  See your project in action!
+  UI design
 ---
 
 {{% pageinfo %}}
