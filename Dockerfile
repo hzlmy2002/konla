@@ -1,12 +1,13 @@
-# AUTHORS: Harry Lei, Suraj Kothari
+# Copyright (c) Minyi Lei 2022
+# The Dockerfile and the configuration files under configs/ are solely designed and written by Minyi Lei
+# All rights reserved
+
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG=C.UTF-8
 ENV TZ="Europe/London"
 
-# To allow Vue.js to make live updates in container
-ENV CHOKIDAR_USEPOLLING=true
 
 RUN apt update && \
 	apt install -y poppler-utils python3 python3-pip supervisor npm redis nginx
@@ -32,4 +33,3 @@ COPY ./configs/nginx.conf /etc/nginx/nginx.conf
 CMD ["/usr/bin/supervisord"]
 
 EXPOSE 443
-EXPOSE 5000
