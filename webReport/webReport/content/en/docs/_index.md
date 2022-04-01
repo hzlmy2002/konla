@@ -1,7 +1,7 @@
 
 ---
-title: "Documentation"
-linkTitle: "Documentation"
+title: "Project Report"
+linkTitle: "Project Report"
 weight: 20
 menu:
   main:
