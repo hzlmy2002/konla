@@ -32,9 +32,9 @@ We further researched the market to find some existing solutions as well as to t
 
 ### Extract from the survey
 
-![](/images/survey123.png)
-![](/images/survey456.png)
-![](/images/survey78.png)
+![](/2021/group6/images/survey123.png)
+![](/2021/group6/images/survey456.png)
+![](/2021/group6/images/survey78.png)
 
 Unfortunately, because of time constraints we did not receive as many responses as we expected. Nevertheless, we still got useful feedback regarding the features the potential users would like to see in the product. Here are some key insights:
 - almost 50% of participants use some kind of software as a research assistance tool (other than referencing software)
@@ -45,5 +45,5 @@ Unfortunately, because of time constraints we did not receive as many responses 
 
 Having analysed the survey and interview results, we created personas to better understand our potential users, their pains, needs, motivations and behaviours.
 
-![](/images/Persona1.png)
-![](/images/Persona2.png)
+![](/2021/group6/images/Persona1.png)
+![](/2021/group6/images/Persona2.png)
