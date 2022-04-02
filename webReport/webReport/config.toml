@@ -1,6 +1,6 @@
 baseURL = "https://students.cs.ucl.ac.uk/2021/group6/"
 title = "KONLA"
-
+canonifyURLs=true
 # Language settings
 contentDir = "content/en"
 defaultContentLanguage = "en"
