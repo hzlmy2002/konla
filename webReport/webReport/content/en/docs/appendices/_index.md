@@ -5,13 +5,27 @@ linkTitle: "Appendices"
 weight: 9
 date: 2022-4-01
 description: >
-  Appendices
+  Documentation, Legal Statement and more
 ---
 
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
+### License
+TBA
 
-Do you have any example **applications** or **code** for your users in your repo or elsewhere? Link to your examples here.
+### Legal Statement
+TBA
+
+### Documentation
+TBA
+
+### User Manual
+TBA
+
+### Deployment Guide
+TBA
+
+### Development Blog
+Our development blog was recently incorporated to this website. Just click **Blog** on the top navigation bar OR click here [here](https://students.cs.ucl.ac.uk/2021/group6/blog/)
+
+
 
 

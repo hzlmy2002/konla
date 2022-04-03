@@ -5,7 +5,7 @@ linkTitle: "Evaluation"
 weight: 8
 date: 2022-4-01
 description: >
-  Evaluation
+  Summary of achievements, evaluation of deliverables and future work
 ---
 
 {{% pageinfo %}}

@@ -5,7 +5,7 @@ linkTitle: "Algorithms"
 weight: 3
 date: 2022-4-01
 description: >
-  Description of algorithm
+  Description of algorithms used in the project.
 ---
 
 {{% pageinfo %}}

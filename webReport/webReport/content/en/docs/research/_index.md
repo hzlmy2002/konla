@@ -5,7 +5,7 @@ linkTitle: "Research"
 weight: 2
 date: 2022-4-01
 description: >
-  Research
+  Learn about the technology we used, and key system design decisions.
 ---
 
 {{% pageinfo %}}

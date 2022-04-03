@@ -5,7 +5,7 @@ linkTitle: "UI design"
 weight: 4
 date: 2022-4-01
 description: >
-  UI design
+  Learn how we approached UI design and its implementation.
 ---
 
 {{% pageinfo %}}
