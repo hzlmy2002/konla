@@ -8,10 +8,10 @@ description: >
   Implementation
 ---
 
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
+Our whole system comprises four parts, which are Frontend, Backend Api server, NLP library Paper Processor and the docker container.
+This section will introduce the implementation of them and explain how they work together.
+An overall system block diagram can be shown as the following:
 
-Do you have any example **applications** or **code** for your users in your repo or elsewhere? Link to your examples here.
+![](/2021/group6/images/KONLA_Architecture.png)
 
 
