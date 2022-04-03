@@ -1,9 +1,38 @@
 ---
-title: "Analysis Features Content"
-linkTitle: "Analysis Features Content"
-date: 2022-03-24
-description: > 
+title: "Week 23"
+linkTitle: "Week 23"
+date: 2022-03-21
+description: >
+  **(21.03.2022 - 27.03.2022)**
+
+
+  This week we are focusing on integration between frontend and the backend and fixing some issues, so that the system will be ready for deployment.
 ---
+
+### 21 Mar
+* whole and partial summarization, basic extractive methods
+* code cleaning
+
+### 22 Mar
+* More options for viewing components in frontend
+
+### 23 Mar
+* Used flake8 to remove violations
+* Added summarization to api
+* Implemented to frontend
+
+### 24 Mar
+* Documentation writing
+* User Manual
+* Deployment Guide
+
+### 24 Mar
+* Suraj has finished the analysis features display in frontend. [See here](#analysis-features-content)
+
+### 27 Mar
+* This is the end of Term 2.
+
+### Analysis Features Content
 Each analysis feature has a different way of representing its content, so we will showcase how each one displays the data. The images use placeholder text, such as [Lorem Ipsum](https://www.lipsum.com/), in places where the actual analysis content would be placed.
 
 ![Whole Summary](/2021/group6/images/analysis_features/whole_summary.png "Whole Summary")

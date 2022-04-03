@@ -1,10 +1,31 @@
 ---
-title: "Project Structure"
-linkTitle: "Project Structure"
-date: 2022-02-02
+title: "Weeks 16-17"
+linkTitle: "Weeks 16-17"
+date: 2022-01-31
 description: >
+  **(31.01.2022 - 13.02.2022)**
+
+  
+  [Description]
 ---
 
+
+### 2-4 Feb
+* Updated flask to support API
+* Started working on Vue application
+* Harry designed the API structure, 50%
+* npm was added
+
+### 4-8 Feb
+* updated frequency counter
+* enabled vue hot encoding
+
+### 9-11
+* Drag and drop pdf
+* Analysis feature selection post
+* Reference recognition (13 Feb improved rules)
+
+### Revised Project Structure & Clean-up
 We have done our first presentation a week ago, and after that, we decided to clean our repository. A new structure has been designed like this.
 ![New Structure](/2021/group6/images/new_structure.jpg "New Structure")
 

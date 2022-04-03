@@ -1,10 +1,21 @@
 ---
-title: "Frontend - Version 1"
-linkTitle: "Frontend - Version 1"
-date: 2022-01-15
+title: "Week 14"
+linkTitle: "Week 14"
+date: 2022-01-17
 description: >
+  **(17.01.2022 - 23.01.2022)**
+
+
+  [Description]
 ---
 
+### Jan 15
+The frontend for the first (Flask-based) version of the app is now finished. [See more](#frontend---version-1)
+
+### 18-22 Jan
+Improved keyword extraction by specifying lemma
+
+### Frontend - Version 1
 We created a web application that can analyse research papers. In this version, the webpages are rendered on the server-side using Flask's template engine Jinja2. This allows the server to embed content received from the analysis processes into the HTML file that is then sent to the client. We designed the user interface to be similar to the initial sketches and mockups, but the current version still lacks a few features.
 
 ![Upload page](/2021/group6/images/frontend/upload1_v1.png "Upload page")

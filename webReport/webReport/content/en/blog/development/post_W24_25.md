@@ -1,9 +1,33 @@
 ---
-title: "Frontend - Version 2"
-linkTitle: "Frontend - Version 2"
-date: 2022-03-04
+title: "Weeks 24-25"
+linkTitle: "Weeks 24-25"
+date: 2022-03-28
 description: >
+  **(28.03.2022 - 06.04.2022)**
+
+
+  During weeks 31 and 32, we finalised our deliverables.
 ---
+
+
+### Deadlines
+
+| Task                                    | Date                |
+|-----------------------------------------|---------------------|
+| Code Handover to Client                 | 04-04-2022  2:00pm  |
+| Submission of Deliverables to Moodle    | 06-04-2022  4:00pm  |
+| Submission of Ind. Report to Moodle     | 06-04-2022  4:00pm  |
+| Assessment Meeting                      | 08-04-2022 11:00am  |
+
+
+### 31 Mar
+* Added unittests for backend analysis tasks
+
+### 1 Apr
+* Working on report website
+* dev blog
+
+### Frontend - Version 2
 The frontend has been updated to a newer version with more features being added. This version focuses on asynchronisation which allows the frontend to communicate with the backend in real-time. The backend and frontend exchange data using JSON. Requests are sent to specific endpoints and when they respond, the UI updates to render the data.
 
 ![Upload page](/2021/group6/images/frontend/upload_v2.png "Upload page")
@@ -29,3 +53,7 @@ As soon as any feature is completed, its tab will go green and the loading icon 
 ![Analysis error state](/2021/group6/images/frontend/analysis_error_v2.png "Analysis error state")
 
 Sometimes, an error can occur during the analysis of a particular feature, for example in this case whole paper summarisation. Users will be alerted by seeing a red tab and an info icon. When clicking on this tab, they will see a list of errors sent from the backend describing the problem.
+
+
+### Achievements
+
