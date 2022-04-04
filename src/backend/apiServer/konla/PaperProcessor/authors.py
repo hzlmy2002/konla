@@ -1,4 +1,4 @@
-
+# Written by Minyi Lei
 class AuthorParser():
     def __init__(self,doc):
         self.doc=doc
@@ -18,16 +18,3 @@ class AuthorParser():
     def run(self):
         self.getConsecutiveNames()
         return self.names
-
-"""
-def test():
-    nlp=spacy.load("en_core_web_trf")
-    with open("/tmp/typestudy.txt") as file:
-        text=file.read()
-    doc=nlp(text)
-    ap=AuthorParser(doc)
-    aaa=ap.run()
-    pass
-
-#test()
-"""

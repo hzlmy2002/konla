@@ -1,6 +1,6 @@
 from .sections import SectionExtractor
 from collections import OrderedDict
-
+# Written by Bartosz Grabek 
 class Summarizer:
 
     WHOLE_SUMMARY_LENGTH = 10
@@ -71,20 +71,3 @@ class Summarizer:
 # Potential additional arg for extractive summarization
 # mct (int): optional argument, number of top keywords to take into account
 # when computing sentence score, default 0 means all
-
-"""
-def test():
-    nlp=spacy.load('en_core_web_trf')
-    with open("Trident_Controlling_Side_Effects_in_Automated_Program_Repair.txt") as file:
-        text = file.read()
-    doc = nlp(text)
-
-    sm=Summarizer(doc, nlp)
-    whole=sm.run_whole()
-    partial=sm.run_partial()
-    print(whole)
-    print(partial)
-    pass
-
-#test()
-"""

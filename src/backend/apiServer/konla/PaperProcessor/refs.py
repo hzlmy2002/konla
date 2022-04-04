@@ -1,6 +1,6 @@
 import spacy
 import re
-
+# Written by Minyi Lei
 class Ref():
     def __init__(self,doc,nlp):
         self.doc=doc
@@ -43,16 +43,3 @@ class Ref():
         self.parseRef()
         self.refs=list(map(lambda x:x.strip(),self.refs))
         return self.refs
-
-
-def test():
-    nlp=spacy.load("en_core_web_trf")
-    with open("/tmp/shapes.txt") as file:
-        text=file.read()
-    doc=nlp(text)
-    ref=Ref(doc,nlp)
-    r=ref.run()
-    print(r)
-    pass
-
-#test()

@@ -1,5 +1,6 @@
 import PyPDF2
 import subprocess
+# Written by Minyi Lei
 
 class PDFHelper():
     def __init__(self) -> None:

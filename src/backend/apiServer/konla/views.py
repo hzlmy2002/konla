@@ -8,7 +8,8 @@ from . import uploadingView
 from . import startView
 from . import dataProviderView
 
-# Create your views here.
+# Written by Minyi Lei
+
 
 @csrf_exempt
 def uploadFile(request):
