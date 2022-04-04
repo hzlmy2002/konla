@@ -1,17 +1,10 @@
-
 ---
-title: "Research"
-linkTitle: "Research"
+title: "Research & Algorithms"
+linkTitle: "Research & Algorithms"
 weight: 2
 date: 2022-4-01
 description: >
-  Learn about the technology we used, and key system design decisions.
+  Learn about the technology we used, including the external libraries, NLP models and algorithms.
 ---
-
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
-
-Do you have any example **applications** or **code** for your users in your repo or elsewhere? Link to your examples here.
 
 

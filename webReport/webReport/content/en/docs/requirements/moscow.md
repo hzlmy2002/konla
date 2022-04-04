@@ -14,7 +14,7 @@ MUST HAVE:
 - The user can upload a PDF paper from a URL link for analysis
 - The system must have an web-based user interface where the file can be uploaded and where the results of text analysis can be displayed
 - The text analysis must include whole paper summarization
-- The text analysis must include partial (segment) summarization (preferably summaries of different sections and subsections)
+- The text analysis must include partial (segment) summarization (preferably summaries of different sections and/or subsections)
 - The text analysis must include keyword extraction
 
 SHOULD HAVE:
