@@ -1,7 +1,7 @@
-PyPDF2
+PyPDF2==1.26.0
 spacy==3.2.0
-redis
-django
-requests
-django-cors-headers
-uwsgi
+redis==4.1.4
+django==4.0.2
+requests==2.27.1
+django-cors-headers==3.11.0
+uwsgi==2.0.20
