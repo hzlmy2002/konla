@@ -239,6 +239,8 @@
                     if (response.current_status === 1) {
                         this.redirectToAnalysis();
                     }
+                } else {
+                     alert("Something went wrong. Ensure you uploaded a valid .pdf paper and selected at least one analysis feature");
                 }
             },
 
@@ -264,6 +266,8 @@
                     if (response.current_status === 1) {
                         this.redirectToAnalysis();
                     }
+                } else {
+                    alert("Something went wrong. Ensure you entered a valid URL and selected at least one analysis feature");
                 }
             }
         }
