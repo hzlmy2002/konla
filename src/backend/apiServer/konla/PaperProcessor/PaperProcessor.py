@@ -41,8 +41,8 @@ class PaperProcessor():
     def metrics(self) -> dict:
         result={}
         result["wordCount"] = self.wordCount()
-        result["readingTime"] = 60*self.wordCount()//238
-        result["speakingTime"] = 60*self.wordCount()//140
+        result["readingTime"] = 60*self.wordCount()//250
+        result["speakingTime"] = 60*self.wordCount()//130
         return result
 
     def references(self) -> List[str]:
