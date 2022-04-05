@@ -51,4 +51,4 @@ SHOULD HAVE:
 COULD HAVE:
 - Deployment: the final prototype could be deployed online
 
-*Note: The MoSCoW requirement list changed throughout the project upon mutual agreement between the team and the project partner. Changes were made to prioritise specific features or discard the less important or less feasible ones.
+**Note: The MoSCoW requirement list changed throughout the project upon mutual agreement between the team and the project partner. Changes were made to prioritise specific features or discard the less important or less feasible ones.*

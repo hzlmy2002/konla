@@ -9,7 +9,7 @@ description: >
 |---------|------|--------|
 | Uploading a paper through file uploading|Pass|Works well|
 | Uploading a paper through URL|Pass|Could add validations to the URL|
-| Start the analysis| Pass/Fail|Should show a warning when no feature has been selected|
+| Start the analysis| Pass|Works well, shows a warning if no features were selected|
 | General analysis result page|Pass|Works well, the progress icon looks good|
 |Whole summarisation|Pass|Mostly works well|
 |Patrial summarisation|Pass|The summary by section looks good|
