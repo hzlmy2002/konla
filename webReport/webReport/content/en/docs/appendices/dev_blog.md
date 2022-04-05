@@ -8,6 +8,6 @@ description: >
 ---
 
 ### Development Blog
-Our development blog was recently incorporated to this website. Just click **Blog** on the top navigation bar OR click here [here](https://students.cs.ucl.ac.uk/2021/group6/blog/)
+Our development blog was recently incorporated to this website. Just click **Blog** on the top navigation bar OR click [here](https://students.cs.ucl.ac.uk/2021/group6/blog/).
 
 

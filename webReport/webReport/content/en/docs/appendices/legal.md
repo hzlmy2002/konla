@@ -1,7 +1,7 @@
 ---
 title: "License & Legal Statement"
 linkTitle: "License & Legal Statement"
-weight: 1
+weight: 4
 date: 2022-4-01
 description: >
   
