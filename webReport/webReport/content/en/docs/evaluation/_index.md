@@ -31,9 +31,11 @@ description: >
 | 16 |The system recognizes URL links, which user can click on         |  COULD   |   ✗   |              |
 | 17 |Export metadata into a database (eg. .bib file for Latex)        |  COULD   |   ✗   |              |
 
-**Key functionalities (MUST+SHOULD): 100%**
+**Key functionalities (MUST+SHOULD): 100% (11/11)**
 
-**Optional functionalities (COULD): 66%**
+**Optional functionalities (COULD): 66% (4/6)**
+
+**Overall functionalities: 88% (15/17)**
 
 #### Non-functional requirements revisited
 
