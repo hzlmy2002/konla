@@ -40,5 +40,3 @@ You will see a new view after a few seconds. The features you selected will appe
 
 ## Using KONLA via backend API
 Please, refer to [API Documentation](Endpoint.md) to call desired endpoints.
-
-TBA
