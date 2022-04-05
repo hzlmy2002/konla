@@ -12,6 +12,6 @@ Our whole system comprises four parts, which are Frontend, Backend Api server, N
 This section will introduce the implementation of them and explain how they work together.
 An overall system block diagram can be shown as the following:
 
-![](/2021/group6/images/KONLA_Architecture.png)
+![](/2021/group6/images/konla_architecture.png)
 
 
