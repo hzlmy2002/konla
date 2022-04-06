@@ -23,6 +23,7 @@ WORKDIR /konla/src/frontend/vue-web-app
 RUN npm install --save-dev
 RUN npm run build
 RUN cp -r /konla/src/frontend/vue-web-app/dist/* /var/www/html
+RUN cp /konla/configs/refresh.html /var/www/html
 
 RUN chmod 755 /konla && chown www-data.www-data -R /konla
 RUN chmod 700 /konla/CERT && chown root.root -R /konla/CERT
