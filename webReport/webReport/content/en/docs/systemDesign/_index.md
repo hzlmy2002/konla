@@ -1,4 +1,3 @@
-
 ---
 title: "System design"
 linkTitle: "System design"
@@ -9,4 +8,3 @@ description: >
 ---
 
 This is the section for system design.
-

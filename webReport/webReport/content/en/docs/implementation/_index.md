@@ -1,4 +1,3 @@
-
 ---
 title: "Implementation"
 linkTitle: "Implementation"
@@ -13,5 +12,3 @@ This section will introduce the implementation of them and explain how they work
 An overall system block diagram can be shown as the following:
 
 ![](/2021/group6/images/konla_architecture.png)
-
-

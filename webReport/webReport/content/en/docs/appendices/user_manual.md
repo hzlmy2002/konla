@@ -2,9 +2,7 @@
 title: "User Manual"
 linkTitle: "User Manual"
 weight: 1
-date: 2022-4-01
-description: >
-  
+date: 2022-4-01  
 ---
 
 User Manual with GIFs is also available in [project repository](https://github.com/hzlmy2002/konla/blob/dc002863b41dfaff84dd1d432bc2f7c3ccde3838/doc/UserManual.md).

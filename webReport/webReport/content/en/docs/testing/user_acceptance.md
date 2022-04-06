@@ -3,7 +3,6 @@ title: "User acceptance testing"
 linkTitle: "User acceptance testing"
 weight: 3
 date: 2022-4-01
-description: >
 ---
 |Test Case|Result|Feedback|
 |---------|------|--------|

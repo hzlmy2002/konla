@@ -3,7 +3,6 @@ title: "API defined"
 linkTitle: "API defined"
 weight: 2
 date: 2022-4-01
-description: >
 ---
 # Endpoint
 
@@ -19,7 +18,7 @@ https://konla.thinktank007.com/api/v1/
          |       |--- url
          |       |--- start
          |
-         |--- summarisation 
+         |--- summarisation
          |          |--- whole
          |          |--- partial
          |
@@ -29,15 +28,15 @@ https://konla.thinktank007.com/api/v1/
 	     	   |--- refs
 	     	   |--- metadata
 	     	   |--- metrics
-         
-         
+
+
 ```
 
 ### Upload (binary&url)
 
 **Endpoint**: /api/v1/upload
 
-**Description**: The upload api is used for uploading binaries like pdf or images. The user can also submit an url so that the server can download and analyse it. 
+**Description**: The upload api is used for uploading binaries like pdf or images. The user can also submit an url so that the server can download and analyse it.
 
 **Methods**: POST for binary, GET for url
 
@@ -51,7 +50,7 @@ https://konla.thinktank007.com/api/v1/
 
 * url: GET request. Using http parameter with key "link=". E.g. "/api/v1/upload/url?link=https://ucl.ac.uk/cs/shapes.pdf". Endpoint is /api/v1/upload/url.
 
-**Response**: 
+**Response**:
 
 ```json
 {
@@ -144,7 +143,7 @@ whole=1&partial=1&keywords=1&refs=1&metadata=1&metrics=1
 
 **Methods**: GET
 
-**Request**: 
+**Request**:
 
 * GET https://konla.thinktank007.com/api/v1/summarisation/partial directly
 
@@ -248,12 +247,12 @@ whole=1&partial=1&keywords=1&refs=1&metadata=1&metrics=1
     	"errors": [],
     	"messages": [],
     	"result": {
-    		
+
     		"metadata": {
 			"authors": ["Nikhil Parasaram", "Earl T. Barr", "Sergey Mechtaev"],
-    			"creator": "Appligent AppendPDF Pro 5.5", 
-    			"producer": "pdfTeX-1.40.21; modified using iText® 7.1.16 ©2000-2021 iText Group NV (IEEE; licensed version)", 
-    			"subject": "IEEE Transactions on Software Engineering; ;PP;99;10.1109/TSE.2021.3124323", 
+    			"creator": "Appligent AppendPDF Pro 5.5",
+    			"producer": "pdfTeX-1.40.21; modified using iText® 7.1.16 ©2000-2021 iText Group NV (IEEE; licensed version)",
+    			"subject": "IEEE Transactions on Software Engineering; ;PP;99;10.1109/TSE.2021.3124323",
     			"title": "Title Of Research Paper"
     		},
     	}
@@ -292,6 +291,3 @@ whole=1&partial=1&keywords=1&refs=1&metadata=1&metrics=1
     	}
 }
 ```
-
-
-

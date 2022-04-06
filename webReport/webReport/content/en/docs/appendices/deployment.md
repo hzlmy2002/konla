@@ -3,8 +3,6 @@ title: "Deployment Guide"
 linkTitle: "Deployment Guide"
 weight: 2
 date: 2022-4-01
-description: >
-  
 ---
 
 Deployment Guide is also available in [project repository](https://github.com/hzlmy2002/konla/blob/dc002863b41dfaff84dd1d432bc2f7c3ccde3838/doc/DeploymentGuide.md).
@@ -37,11 +35,10 @@ You should be able to see the application interface now and use the UI or the un
 If you want to run the webserver again and did not remove the docker image from the first build, you can skip step 1 and follow steps 2 and 3 only.
 
 ## Deploying the project online
-The step are very similar to deploy the project locally, except the user needs to replace the certificate and the keys in **CERT** directory with their owns. 
+The step are very similar to deploy the project locally, except the user needs to replace the certificate and the keys in **CERT** directory with their owns.
 
-**The name of the certificate should be EXACTLY "konla.pem", and the name of the key should be EXACTLY "konla.key".** 
+**The name of the certificate should be EXACTLY "konla.pem", and the name of the key should be EXACTLY "konla.key".**
 
 We recommended to use Cloudflare's origin certificate so that there is no need renew the certificate. If not, the whole container should be rebuilt every time when the certificate needs to be renewed.
 
 After the certificate and the key have been replaced, follow the steps in "Running the project locally". You can access the service through its domain name.
-

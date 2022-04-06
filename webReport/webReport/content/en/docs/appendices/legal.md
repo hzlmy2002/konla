@@ -3,8 +3,6 @@ title: "License & Legal Implications"
 linkTitle: "License & Legal Implications"
 weight: 4
 date: 2022-4-01
-description: >
-  
 ---
 
 ### License
@@ -17,7 +15,7 @@ As stated in the License, KONLA application is provided 'as is' and users use it
 ### Project Dependencies
 
 The source code of KONLA is licensed under GPL v3, which has been agreed with our project partner.
-Below is the list of dependencies and the licenses under which they are available and used in the project. 
+Below is the list of dependencies and the licenses under which they are available and used in the project.
 
 |Dependency              |Use and License                                                  |
 |------------------------|-----------------------------------------------------------------|
@@ -41,5 +39,5 @@ Below is the list of dependencies and the licenses under which they are availabl
 * BSD-3-Clause License: [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 * MIT LICENSE: [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
 * Apache-2.0 license 2004: [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
-* GPL v2: [https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) 
+* GPL v2: [https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 * CC0: [https://creativecommons.org/share-your-work/public-domain/cc0/](https://creativecommons.org/share-your-work/public-domain/cc0/)

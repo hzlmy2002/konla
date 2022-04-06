@@ -1,4 +1,3 @@
-
 ---
 title: "Testing"
 linkTitle: "Testing"
@@ -9,5 +8,3 @@ description: >
 ---
 
 This is the section of testing
-
-

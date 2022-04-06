@@ -1,4 +1,3 @@
-
 ---
 title: "Project Report"
 linkTitle: "Project Report"
@@ -9,4 +8,3 @@ menu:
 ---
 
 This is the home page for our project report.
-

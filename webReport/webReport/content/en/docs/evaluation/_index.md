@@ -1,4 +1,3 @@
-
 ---
 title: "Evaluation"
 linkTitle: "Evaluation"
@@ -58,7 +57,7 @@ Contents:
 |---:|---------------------------------------------------------------------------|----------|--------------|
 |  1 | No error is shown when user enters an invalid URL                         |   Low    | Catch the error in frontend and display it |
 |  2 | Choosing lemmatization (lemma) checkbox in keyword extraction result box by default ignores the letter case which is toggable by another button | Low | This may need some clarification in interface or a slight change in UI design |
-|  3 | For segments which consist of many mathematical formulas there is a bias towards extracting sentences with numbers | Medium | Partially ignore math formulas at text preprocessing stage for clean-up OR give lower score to sentences with higher number of mathematical formulas for extraction | 
+|  3 | For segments which consist of many mathematical formulas there is a bias towards extracting sentences with numbers | Medium | Partially ignore math formulas at text preprocessing stage for clean-up OR give lower score to sentences with higher number of mathematical formulas for extraction |
 
 ### Individual Contribution Table
 | Work package            | Bart  | Suraj | Minyi |
@@ -92,9 +91,9 @@ Contents:
 * Project management
 
 ## Possible Improvements & Future Work
-One of the most difficult decisions during the design of KONLA was the **choice between accuracy and performance**. This trade-off significantly limited our capabilities of producing a system that could be both fast and accurate. 
+One of the most difficult decisions during the design of KONLA was the **choice between accuracy and performance**. This trade-off significantly limited our capabilities of producing a system that could be both fast and accurate.
 
-The *performance* is dependent on the file size, language model and the algorithms behind the text analysis tasks. 
+The *performance* is dependent on the file size, language model and the algorithms behind the text analysis tasks.
 
 The *accuracy* is dependent on the text analysis model and algorithms, but it is also limited by the noise in data. The PDF to text conversion works well in simple, formatted texts including standard characters, while richly formatted research papers with mathematical equations generate a lot of noise in the data making it more difficult to derive useful insights. Another important factor is the language model itself. The more general it is the worse the results can be for papers that include texts in a very specific domain. Ideally, the model should be fine-tuned for analysing research papers from a specific domain of knowledge. While this method requires a lot of domain-specific data for training, it can be rewarding in terms of system accuracy.
 

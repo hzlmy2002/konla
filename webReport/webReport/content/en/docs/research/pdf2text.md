@@ -4,14 +4,13 @@ linkTitle: "PDF-to-Text Conversion"
 weight: 1
 date: 2022-4-01
 description: >
-  In this section we describe the pdf-to-text tools we explored and explain our final choice for the system.
-  
+  In this section, we describe the pdf-to-text tools we explored and explain our final choice for the system.
 ---
 
 ### Objectives
-Because research papers are commonly written, published and shared in a **.pdf** file format, we had to find a tool to extract text from this type of files. We wanted to find a tool that can be accurate as well as fast enough to meet usability standards. In particular we researched the following methods:
+Because research papers are commonly written, published and shared in a **PDF** file format, we had to find a tool to extract text from these files. We wanted to find a tool that can be accurate as well as fast enough to meet usability standards. In particular, we researched the following methods:
 * [Tika](#tika)
-* [Optical Image Recognition](#optical-image-recognition-ocr)
+* [Optical Character Recognition](#optical-character-recognition-ocr)
 * [LibreOffice PDF-to-doc-to-text](#pdf-to-doc-to-text-method)
 * [Poppler](#poppler)
 
@@ -19,7 +18,7 @@ To see our final choice, scroll down to [Final Choice](#final-choice) heading.
 
 ### Tika
 
-One of the tools we explored was Tika. Tika is a Java library that can extract text content from various file types. It detects the type of file and uses a parser appropriate to that type to fetch its content. We found that there is a way to use Tika in python programme with the use of tika Python library. The Python library connects with the external Java program which then communicates with an Apache server where the PDF is processed. The downside is that Java Runtime needs to be installed on the machine.
+One of the tools we explored was Tika. Tika is a Java library that can extract text content from various file types. It detects the type of file and uses a parser appropriate for that type to fetch its content. We found that there is a way to use Tika in a Python program with the use of the Tika Python library. The Python library connects with the external Java program which then communicates with an Apache server where the PDF is processed. The downside is that Java Runtime needs to be installed on the machine.
 
 **Experimental Usage**
 
@@ -30,7 +29,7 @@ pdf_filename = "paper.pdf"
 pdf_data_dict = tikaParser.from_file(pdf_filename)
 ```
 
-The data dictionary has three keys metadata, content, status. Content is the most important as it is the extracted text. Metadata is somewhat useful as it contains properties of the PDF file.
+The data dictionary has three keys: metadata, content, and status. Content is the most important as it is the extracted text. Metadata is somewhat useful as it contains properties of the PDF file.
 ```python
 metadata = pdf_data_dict['metadata']
 content = pdf_data_dict['content']
@@ -55,19 +54,19 @@ At this stage, we can extract text from a PDF using the Tika library. Although t
 **Tika Summary**
 
 Pros of Tika:
-* quite accurate, successfully recognises text in .pdf and parses it correctly in most situations
+* Quite accurate, successfully recognises text in PDF and parses it correctly in most situations
 
 Cons of Tika:
-* medium speed
-* the need to connect to the server
-* dependent on Java Runtime
+* Medium speed
+* The need to connect to the server
+* Dependent on Java Runtime
 
-### Optical Image Recognition (OCR)
-Another approach to extracting text from a research paper is to use **OCR**, which stands for **Optical Image Recognition**. This method looks for characters in the image and generates the content of the paper. Each page of the .pdf file must be converted into an image before applying OCR. Using this method can aid researchers who have images of written research papers instead of .pdf files; however this is very uncommon and should not outweigh the most important factor such as pdf-to-text conversion performance.
+### Optical Character Recognition (OCR)
+Another approach to extracting text from a research paper is to use **OCR**, which stands for **Optical Character Recognition**. This method looks for characters in the image and generates the content of the paper. Each page of the PDF file must be converted into an image before applying OCR. Using this method can aid researchers who have scanned images of research papers instead of PDF files; however, this is a very slow and inaccurate method of text extraction.
 
 **Experimental Usage**
 
-Firstly, we used Python **pdf2image** library to convert .pdf into images. The pdf2image method `convert_from_path` takes in a path where the file is located and returns a PIL Image object representing an image of the page of this file.
+Firstly, we used Python **pdf2image** library to convert PDF into images. The pdf2image method `convert_from_path` takes in a path where the file is located and returns a PIL Image object representing an image of the page of this file.
 
 ```python
 from pdf2image import convert_from_path
@@ -89,7 +88,7 @@ for i, img in enumerate(images):
     img.save(f"pdf_images/{i}.png", 'PNG')
 ```
 
-The next stage is to apply the OCR to extract the text from each image. For this process we use a Python library called **pytesseract**  on each image. We iterate through each image in the directory and use the `image_to_string()` method which returns the content for that particular page. The content of all pages is concatenated together.
+The next stage is to apply the OCR to extract the text from each image. For this process, we use a Python library called **pytesseract**  on each image. We iterate through each image in the directory and use the `image_to_string()` method which returns the content for that particular page. The content of all pages is concatenated together.
 ```python
 import pytesseract
 
@@ -104,15 +103,16 @@ for img_filename in os.listdir("pdf_images"):
 Applying OCR to each image is very slow. Some pages can be processed in less than 10s while others take a few minutes.
 
 Pros:
-* can be used on scanned images of research papers
+* Can be used on scanned images of research papers
 
 Cons:
-* on average very slow
-* not accurate as Tika, ignores mathematical formulas
-* parses text in text blobs, which is then difficult to preprocess
+* On average very slow
+* Not accurate as Tika.
+* Ignores mathematical formulas
+* Parses text in text blobs, which is then difficult to preprocess
 
 ### PDF-to-Doc-to-text method
-Another method involves using **libreoffice** to firstly convert .pdf to .docx file and then use Python library called **python-docx** to read from docx file.
+Another method involves using **libreoffice** to firstly convert PDF to .docx file and then use Python library called **python-docx** to read from docx file.
 
 **Experimental Usage**
 We used libreoffice command for converting doc to docx:
@@ -149,4 +149,4 @@ Cons of poppler:
 
 ### Final Choice
 The fastest and most reliable tools we considered were Tika and Poppler.
-As Tika required connection to the server OR being packaged into a seperate container it was more difficult for us to use it in the project. That is why we decided that **Poppler** will be our default method of extracting text from .pdf files. To ensure that it will work on any OS, it was packaged inside Docker container running Ubuntu OS.
+As Tika required connection to the server OR being packaged into a seperate container it was more difficult for us to use it in the project. That is why we decided that **Poppler** will be our default method of extracting text from PDF files. To ensure that it will work on any OS, it was packaged inside Docker container running Ubuntu OS.
