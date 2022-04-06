@@ -17,6 +17,26 @@ KONLA (Knowledge Organisation through Natural Language Analysis) is being develo
  4. [Docs](doc/KONLA_Documentation.pdf)
  5. [API](doc/Endpoint.md)
 
+## Dependencies 
+*(all are installed using Dockerfile, Docker running Ubuntu:20.04)*
+### Tools
+* poppler-utils
+* python3
+* python3-pip
+* supervisor
+* npm
+* redis
+* nginx
+* en_core_web_trf (language model installed with spacy)
+### Python Libraries (described in requirements.txt)
+* PyPDF2==1.26.0
+* spacy==3.2.0
+* redis==4.1.4
+* django==4.0.2
+* requests==2.27.1
+* django-cors-headers==3.11.0
+* uwsgi==2.0.20
+
 ## Running the project locally
 To run the project locally, download or clone the project from the repositoy. To run, you will need to have docker installed on your machine. Navigate to the project folder, open the terminal and follow these steps to start the production server locally:
 ##### Step 1 Build the docker image
@@ -27,3 +47,5 @@ To run the project locally, download or clone the project from the repositoy. To
 Open your browser and navigate to https://127.0.0.1
 
 You should see the application interface. You now can use the UI or the underlying API to analyse your research papers.
+
+**Note:** Some browsers may block the website due to security issues. For example, Google Chrome may show a message "Your connection is not private", but you can still click "Advanced" and then on the label "Proceed to 127.0.0.1 (unsafe)" to use the app.
