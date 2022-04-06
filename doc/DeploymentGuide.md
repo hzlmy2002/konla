@@ -39,4 +39,4 @@ The step are very similar to deploy the project locally, except the user needs t
 After the certificate and the key have been replaced, follow the steps in "Running the project locally". You can access the service through its domain name.
 
 ## How to stop running Docker container?
-In terminal, type `docker ps` to view running docker containers, record the hash value of the running container you want to stop and type `docker kill <hash>` where <hash> is the hash of the container you want to stop. 
+In terminal, type `docker ps` to view running docker containers, record the hash value of the running container you want to stop and type `docker kill <hash>` where `<hash>` is the hash of the container you want to stop. 
