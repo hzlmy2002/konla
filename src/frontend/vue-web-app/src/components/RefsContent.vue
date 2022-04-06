@@ -1,4 +1,4 @@
-<!-- AUTHOR: Suraj Kothari -->
+<!-- COMP0016-Team6-Suraj Kothari -->
 <template>
     <div v-if="errors">
         <ErrorContent  :errors-content="errors" />

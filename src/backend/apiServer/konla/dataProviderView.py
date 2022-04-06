@@ -1,5 +1,5 @@
 from django.core.cache import cache
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 
 
 

@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 
 class KonlaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'

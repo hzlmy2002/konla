@@ -82,13 +82,19 @@ Contents:
 
 
 ## Critical evaluation of the project
-* User interface / user experience (if applicable)
-* Functionality
-* Stability
-* Efficiency
-* Compatibility
-* Maintainability
-* Project management
+* **User interface**: Our system consists of two interface, one for uploading and selecting the desired analysis features, another one for displaying the result. The interface is intuitive and easy to use, and has a very good looking. Meanwhile, when one feature is not ready, it will show a progress icon to indicate that the feature is not ready, while other features might be ready. This allows users to view the completed analysis results at first. Thus, we conclude this part as **GOOD**.
+
+* **Functionality**: Our system provides six useful features to the users, which aim to meet the researchers demand for improving the efficiency of reading research papers. The summarisation features significantly help researchers to reduce reading time, while other features are also beneficial. Furthermore, the asynchronized execution reduces the waiting time for the researchers to view the result. Thus, we conclude this part as **GOOD**.
+
+* **Stability**: Thanks to the Django framework, which makes our system extremly stable. We deployed our docker container to a remote server and tested it frequently withour restarting it. The result shows our service did not crash or have any problems that out of expect during this test period. Thus, we conclude this part as **GOOD**.
+
+* **Efficiency**: We have used multithreads in our project to make the whole system asynchronous. This allows us to process the data in parallel,and request data asynchromizedly. The only time consuming part is summarisation. However, due to the NLP library limit, there is no good way to improve it. Other functionalities are all well designed and their time complexity should not exceed n^2. Thus, we conclude this part as **VERY GOOD**.
+
+* **Compatibility**: Thanks to the docker container, our system is completely platform independent as long as docker can be installed and the CPU architecture is supported. The system has been tested on Linux, Windows and Mac os. Thus, we conclude this part as **VERY GOOD**.
+
+* **Maintainability**: Our project is completely modularized and well designed. We have a clear and well-defined architecture, and the code has very good function names as well as a documentation that identified the API interface. It's very easy to understand the code and the documentation, and make further development on it. Thus, we conclude this part as **GOOD**.
+
+* **Project management**: Our project is well managed, and we organized verything very well and on time. We have a gantt chart to guide our project progress, and we have a weekly meeting with our client to track the progress. Works are distributed well, and we do work parallelly. This significantly improved our project management efficiency. Thus, we conclude this part as **GOOD**.
 
 ## Possible Improvements & Future Work
 One of the most difficult decisions during the design of KONLA was the **choice between accuracy and performance**. This trade-off significantly limited our capabilities of producing a system that could be both fast and accurate.

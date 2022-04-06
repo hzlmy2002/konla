@@ -1,5 +1,5 @@
 /* Switches routes for different views */
-/* AUTHOR: Suraj Kothari */
+/* COMP0016-Team6-Suraj Kothari */
 
 import { createWebHistory, createRouter } from "vue-router";
 import Upload from "@/views/Upload.vue";

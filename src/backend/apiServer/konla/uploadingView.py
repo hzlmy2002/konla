@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib
 from .PaperProcessor.PDFHelper.PDFHelper import PDFHelper
 import os
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 
 def acceptURL(request):
     try:

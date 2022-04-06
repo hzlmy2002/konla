@@ -1,3 +1,4 @@
+<!-- COMP0016-Team6-Bartosz Grabek, Minyi_Lei -->
 # Deployment Guide
 
 ## Project Documents

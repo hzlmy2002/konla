@@ -1,4 +1,4 @@
-<!-- AUTHOR: Suraj Kothari -->
+<!-- COMP0016-Team6-Suraj Kothari -->
 <template>
     <PageHeader />
     <div class="container-fluid mt-4">

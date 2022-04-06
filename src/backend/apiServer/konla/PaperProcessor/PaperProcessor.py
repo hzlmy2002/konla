@@ -6,7 +6,7 @@ from .refs import Ref
 from .authors import AuthorParser
 from .sections import SectionExtractor
 from .summary import Summarizer
-# Written by Minyi Lei, Bartosz Grabek 
+# COMP0016-Team6-Minyi_Lei, Bartosz_Grabek 
 
 class PaperProcessor():
     def __init__(self,path:str) -> None:
