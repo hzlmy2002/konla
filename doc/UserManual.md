@@ -3,8 +3,8 @@
 ## Project Documents
 1. [README.md](../readme.md)
 2. [Deployment Guide](DeploymentGuide.md)
-3. User Manual **(YOU ARE HERE)**
-4. Docs
+3. User Manual
+4. [Docs](KONLA_Documentation.pdf)
 5. [API](Endpoint.md)
 
 ## How to use KONLA?

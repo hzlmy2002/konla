@@ -14,7 +14,7 @@ KONLA (Knowledge Organisation through Natural Language Analysis) is being develo
  1. README
  2. [Deployment Guide](doc/DeploymentGuide.md)
  3. [User Manual](doc/UserManual.md)
- 4. Docs
+ 4. [Docs](doc/KONLA_Documentation.pdf)
  5. [API](doc/Endpoint.md)
 
 ## Running the project locally

@@ -2,9 +2,9 @@
 
 ## Project Documents
 1. [README.md](../readme.md)
-2. Deployment Guide **(YOU ARE HERE)**
+2. Deployment Guide
 3. [User Manual](UserManual.md)
-4. Docs]
+4. [Docs](KONLA_Documentation.pdf)
 5. [API](Endpoint.md)
 
 ## Running the project locally

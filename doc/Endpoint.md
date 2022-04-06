@@ -4,8 +4,8 @@
 1. [README.md](../readme.md)
 2. [Deployment Guide](DeploymentGuide.md)
 3. [User Manual](UserManual.md)
-4. Docs
-5. API **(YOU ARE HERE)**
+4. [Docs](KONLA_Documentation.pdf)
+5. API
 
 ## Endpoint
 
