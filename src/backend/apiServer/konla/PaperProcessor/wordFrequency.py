@@ -1,6 +1,6 @@
 import collections
 import spacy
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 class wordFrequency():
     def __init__(self,doc:"spacy.tokens.doc.Doc",maxNumber=10,ignoreCase=False,useLemma=False) -> None:
         self.doc = doc

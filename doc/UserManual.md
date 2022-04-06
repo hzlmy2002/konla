@@ -1,3 +1,4 @@
+<!-- COMP0016-Team6-Bartosz Grabek, Minyi Lei -->
 # User Manual
 
 ## Project Documents

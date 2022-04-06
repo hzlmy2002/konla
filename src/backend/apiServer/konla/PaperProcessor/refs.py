@@ -1,6 +1,6 @@
 import spacy
 import re
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 class Ref():
     def __init__(self,doc,nlp):
         self.doc=doc

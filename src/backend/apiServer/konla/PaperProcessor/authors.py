@@ -1,4 +1,4 @@
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi_Lei
 class AuthorParser():
     def __init__(self,doc):
         self.doc=doc

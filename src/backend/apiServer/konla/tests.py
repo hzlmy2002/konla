@@ -4,7 +4,7 @@ import os
 from .PaperProcessor.PaperProcessor import PaperProcessor
 
 # Create your tests here.
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 class BasicTest(TestCase):
     def setUp(self) -> None:
         with open("test_shapes.pdf","wb") as f:

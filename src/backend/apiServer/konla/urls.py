@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 
 urlpatterns = [
     path("upload/binary",views.uploadFile,name="acceptFile"),

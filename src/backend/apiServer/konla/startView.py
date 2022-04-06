@@ -3,7 +3,7 @@ from .form import selectionForm
 
 from .PaperProcessor.PaperProcessor import PaperProcessor
 from threading import Thread
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 
 def startProcessing(request):
     try:

@@ -1,5 +1,5 @@
 import spacy
-# Written by Bartosz Grabek 
+# COMP0016-Team6-Bartosz Grabek 
 # eg. '1 Introduction \n', note: will not match lowercase stopwords
 heading_pattern_strict = [
     {"ORTH": "\n", "OP": "+"},

@@ -1,7 +1,7 @@
 #from django.db import models
 
 # Create your models here.
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 
 """ # legacy model
 class PaperFile(models.Model):

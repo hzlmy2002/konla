@@ -8,7 +8,7 @@ from . import uploadingView
 from . import startView
 from . import dataProviderView
 
-# Written by Minyi Lei
+# COMP0016-Team6-Minyi Lei
 
 
 @csrf_exempt

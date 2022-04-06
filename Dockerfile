@@ -1,6 +1,7 @@
 # Copyright (c) Minyi Lei 2022
 # The Dockerfile and the configuration files under configs/ are solely designed and written by Minyi Lei
 # All rights reserved
+# COMP0016-Team6-Minyi Lei
 
 FROM ubuntu:20.04
 

@@ -1,6 +1,6 @@
 from .sections import SectionExtractor
 from collections import OrderedDict
-# Written by Bartosz Grabek 
+# COMP0016-Team6-Bartosz Grabek 
 class Summarizer:
 
     WHOLE_SUMMARY_LENGTH = 10

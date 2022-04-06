@@ -1,4 +1,4 @@
-<!-- AUTHOR: Suraj Kothari -->
+<!-- COMP0016-Team6-Suraj Kothari -->
 <!-- Reference: https://loading.io/css/ -->
 <template>
     <div class="lds-ring">

@@ -1,4 +1,4 @@
-<!-- AUTHOR: Suraj Kothari -->
+<!-- COMP0016-Team6-Suraj Kothari -->
 <template>
     <footer class="page-footer py-3 footer-style" :style="footerStyle">
         <div class="px-3">
